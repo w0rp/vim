@@ -10,5 +10,3 @@ endif
 " Map Ctrl+R to alignment.
 vmap <buffer> <C-r> :Align = :<Return>
 
-" Use rainbow parens for javascript
-call rainbow#load()

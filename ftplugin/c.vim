@@ -9,5 +9,3 @@ endif
 " Map Ctrl+R to alignment.
 vmap <buffer> <C-r> :Align = :<Return>
 
-call rainbow#load()
-

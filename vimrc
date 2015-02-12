@@ -265,3 +265,11 @@ let g:syntastic_enable_scss_sass_checker=0
 " Disable syntax for large files.
 autocmd BufWinEnter * if line2byte(line("$") + 1) > 1000000 | syntax clear | endif
 
+let g:rainbow_conf = {
+\   'guifgs': ['#3b81e7', '#dccb3e', '#de2020', '#0bff22'],
+\   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+\   'operators': '_,_',
+\}
+
+let g:rainbow_active = 1
+

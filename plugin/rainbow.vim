@@ -1,163 +1,171 @@
 "==============================================================================
 "Script Title: rainbow parentheses improved
-"Script Version: 2.52
-"Author: luochen1990, Francisco Lopes
-"Last Edited: 2013 Sep 12
+"Script Version: 3.3.3
+"Author: luochen1990
+"Last Edited: 2015 Jan 13
+"Simple Configuration:
+"	first, put "rainbow.vim"(this file) to dir vimfiles/plugin or vim73/plugin
+"	second, add the follow sentences to your .vimrc or _vimrc :
+"	 	let g:rainbow_active = 1
+"	third, restart your vim and enjoy coding.
+"Advanced Configuration:
+"	an advanced configuration allows you to define what parentheses to use 
+"	for each type of file . you can also determine the colors of your 
+"	parentheses by this way (read file vim73/rgb.txt for all named colors).
+"	READ THE SOURCE FILE FROM LINE 25 TO LINE 50 FOR EXAMPLE.
+"User Command:
+"	:RainbowToggle		--you can use it to toggle this plugin.
+"==============================================================================
 
-" By default, use rainbow colors copied from gruvbox colorscheme (https://github.com/morhetz/gruvbox).
-" They are generally good for both light and dark colorschemes.
-let s:guifgs = exists('g:rainbow_guifgs')? g:rainbow_guifgs : [
-            \ '#458588',
-            \ '#b16286',
-            \ '#cc241d',
-            \ '#d65d0e',
-            \ '#458588',
-            \ '#b16286',
-            \ '#cc241d',
-            \ '#d65d0e',
-            \ '#458588',
-            \ '#b16286',
-            \ '#cc241d',
-            \ '#d65d0e',
-            \ '#458588',
-            \ '#b16286',
-            \ '#cc241d',
-            \ '#d65d0e',
-            \ ]
-
-let s:ctermfgs = exists('g:rainbow_ctermfgs')? g:rainbow_ctermfgs : [
-            \ 'brown',
-            \ 'Darkblue',
-            \ 'darkgray',
-            \ 'darkgreen',
-            \ 'darkcyan',
-            \ 'darkred',
-            \ 'darkmagenta',
-            \ 'brown',
-            \ 'gray',
-            \ 'black',
-            \ 'darkmagenta',
-            \ 'Darkblue',
-            \ 'darkgreen',
-            \ 'darkcyan',
-            \ 'darkred',
-            \ 'red',
-            \ ]
-
-let s:max = has('gui_running')? len(s:guifgs) : len(s:ctermfgs)
-
-func! rainbow#load(...)
-    if exists('b:loaded')
-        cal rainbow#clear()
-    endif
-
-    if a:0 >= 1
-        let b:loaded = a:1
-    elseif &ft == 'cpp'
-        let b:loaded = [
-                    \ ['(', ')'],
-                    \ ['\[', '\]'],
-                    \ ['{', '}'],
-                    \ ['\v%(<operator\_s*)@<!%(%(\i|^\_s*|template\_s*)@<=\<[<#=]@!|\<@<!\<[[:space:]<#=]@!)', '\v%(-)@<!\>']
-                    \ ]
-    elseif &ft == 'rust' || &ft == 'cs' || &ft == 'java'
-        let b:loaded = [
-                    \ ['(', ')'],
-                    \ ['\[', '\]'],
-                    \ ['{', '}'],
-                    \ ['\v%(\i|^\_s*)@<=\<[<#=]@!|\<@<!\<[[:space:]<#=]@!', '\v%(-)@<!\>']
-                    \ ]
-    else
-        let b:loaded = [ ['(', ')'], ['\[', '\]'], ['{', '}'] ]
-    endif
-
-    let b:operators = (a:0 < 2) ? '"\v[{\[(<_"''`#*/>)\]}]@![[:punct:]]|\*/@!|/[/*]@!|\<#@!|#@<!\>"' : a:2
-
-    if b:operators != ''
-        exe 'syn match op_lv0 '.b:operators
-        let cmd = 'syn match %s %s containedin=%s contained'
-        for [left , right] in b:loaded
-            for each in range(1, s:max)
-                exe printf(cmd, 'op_lv'.each, b:operators, 'lv'.each)
-            endfor
-        endfor
-    endif
-
-    let str = 'TOP'
-    for each in range(1, s:max)
-        let str .= ',lv'.each
-    endfor
-
-    let cmd = 'syn region %s matchgroup=%s start=+%s+ end=+%s+ containedin=%s contains=%s,%s,@Spell fold'
-    for [left , right] in b:loaded
-        for each in range(1, s:max)
-            exe printf(cmd, 'lv'.each, 'lv'.each.'c', left, right, 'lv'.(each % s:max + 1), str, 'op_lv'.each)
-        endfor
-    endfor
-
-    cal rainbow#activate()
-endfunc
-
-func! rainbow#clear()
-    if exists('b:loaded')
-        unlet b:loaded
-        exe 'syn clear op_lv0'
-        for each in range(1 , s:max)
-            exe 'syn clear lv'.each
-            exe 'syn clear op_lv'.each
-        endfor
-    endif
-endfunc
-
-func! rainbow#activate()
-    if !exists('b:loaded')
-        cal rainbow#load()
-    endif
-    exe 'hi default op_lv0 ctermfg='.s:ctermfgs[-1].' guifg='.s:guifgs[-1]
-    for id in range(1 , s:max)
-        let ctermfg = s:ctermfgs[(s:max - id) % len(s:ctermfgs)]
-        let guifg = s:guifgs[(s:max - id) % len(s:guifgs)]
-        exe 'hi default lv'.id.'c ctermfg='.ctermfg.' guifg='.guifg
-        exe 'hi default op_lv'.id.' ctermfg='.ctermfg.' guifg='.guifg
-    endfor
-    exe 'syn sync fromstart'
-    let b:active = 'active'
-endfunc
-
-func! rainbow#inactivate()
-    if exists('b:active')
-        exe 'hi clear op_lv0'
-        for each in range(1, s:max)
-            exe 'hi clear lv'.each.'c'
-            exe 'hi clear op_lv'.each.''
-        endfor
-        exe 'syn sync fromstart'
-        unlet b:active
-    endif
-endfunc
-
-func! rainbow#toggle()
-    if exists('b:active')
-        cal rainbow#inactivate()
-    else
-        cal rainbow#activate()
-    endif
-endfunc
-
-if exists('g:rainbow_active') && g:rainbow_active
-    if exists('g:rainbow_load_separately')
-        let ps = g:rainbow_load_separately
-        for i in range(len(ps))
-            if len(ps[i]) < 3
-                exe printf('au syntax,colorscheme %s call rainbow#load(ps[%d][1])' , ps[i][0] , i)
-            else
-                exe printf('au syntax,colorscheme %s call rainbow#load(ps[%d][1] , ps[%d][2])' , ps[i][0] , i , i)
-            endif
-        endfor
-    else
-        au syntax,colorscheme * call rainbow#load()
-    endif
+if exists('s:loaded') || !(exists('g:rainbow_active') || exists('g:rainbow_conf'))
+	finish
 endif
+let s:loaded = 1
+ 
+let s:rainbow_conf = {
+\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+\	'operators': '_,_',
+\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+\	'separately': {
+\		'*': {},
+\		'tex': {
+\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+\		},
+\		'vim': {
+\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+\		},
+\		'xml': {
+\			'parentheses': ['start=/\v\<\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'))?)*\>/ end=#</\z1># fold'],
+\		},
+\		'xhtml': {
+\			'parentheses': ['start=/\v\<\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'))?)*\>/ end=#</\z1># fold'],
+\		},
+\		'html': {
+\			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+\		},
+\		'php': {
+\			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold', 'start=/(/ end=/)/ containedin=@htmlPreproc contains=@phpClTop', 'start=/\[/ end=/\]/ containedin=@htmlPreproc contains=@phpClTop', 'start=/{/ end=/}/ containedin=@htmlPreproc contains=@phpClTop'],
+\		},
+\		'css': 0,
+\	}
+\}
+
+func s:resolve_parenthesis(p)
+	let ls = split(a:p, '\v%(%(start|step|end)\=(.)%(\1@!.)*\1[^ ]*|\w+%(\=[^ ]*)?) ?\zs', 0)
+	let [paren, containedin, contains, op] = ['', '', 'TOP', '']
+	for s in ls
+		let [k, v] = [matchstr(s, '^[^=]\+\ze='), matchstr(s, '^[^=]\+=\zs.*')]
+		if k == 'step'
+			let op = v
+		elseif k == 'contains'
+			let contains = v
+		elseif k == 'containedin'
+			let containedin = v
+		else
+			let paren .= s
+		endif
+	endfor
+	return [paren, containedin, contains, op]
+endfunc
+
+func rainbow#load()
+	let conf = b:rainbow_conf
+	let maxlvl = has('gui_running')? len(conf.guifgs) : len(conf.ctermfgs)
+	for i in range(len(conf.parentheses))
+		let p = conf.parentheses[i]
+		if type(p) == type([])
+			let op = len(p)==3? p[1] : has_key(conf, 'operators')? conf.operators : ''
+			let conf.parentheses[i] = op != ''? printf('start=#%s# step=%s end=#%s#', p[0], op, p[-1]) : printf('start=#%s# end=#%s#', p[0], p[-1])
+		endif
+	endfor
+	let def_rg = 'syn region %s matchgroup=%s containedin=%s contains=%s,@NoSpell %s'
+	let def_op = 'syn match %s %s containedin=%s contained'
+
+	call rainbow#clear()
+	let b:rainbow_loaded = maxlvl
+	for parenthesis_args in conf.parentheses
+		let [paren, containedin, contains, op] = s:resolve_parenthesis(parenthesis_args)
+		if op == '' |let op = conf.operators |endif
+		for lvl in range(maxlvl)
+			if op != '' |exe printf(def_op, 'rainbow_o'.lvl, op, 'rainbow_r'.lvl) |endif
+			if lvl == 0
+				if containedin == ''
+					exe printf(def_rg, 'rainbow_r0', 'rainbow_p0', 'rainbow_r'.(maxlvl - 1), contains, paren)
+				endif
+			else
+				exe printf(def_rg, 'rainbow_r'.lvl, 'rainbow_p'.lvl.(' contained'), 'rainbow_r'.((lvl + maxlvl - 1) % maxlvl), contains, paren)
+			endif
+		endfor
+		if containedin != ''
+			exe printf(def_rg, 'rainbow_r0', 'rainbow_p0 contained', containedin.',rainbow_r'.(maxlvl - 1), contains, paren)
+		endif
+	endfor
+	call rainbow#show()
+endfunc
+
+func rainbow#clear()
+	call rainbow#hide()
+	if exists('b:rainbow_loaded')
+		for each in range(b:rainbow_loaded)
+			exe 'syn clear rainbow_r'.each
+			exe 'syn clear rainbow_o'.each
+		endfor
+		unlet b:rainbow_loaded
+	endif
+endfunc
+
+func rainbow#show()
+	if exists('b:rainbow_loaded')
+		let b:rainbow_visible = 1
+		for id in range(b:rainbow_loaded)
+			let ctermfg = b:rainbow_conf.ctermfgs[id % len(b:rainbow_conf.ctermfgs)]
+			let guifg = b:rainbow_conf.guifgs[id % len(b:rainbow_conf.guifgs)]
+			exe 'hi default rainbow_p'.id.' ctermfg='.ctermfg.' guifg='.guifg
+			exe 'hi default rainbow_o'.id.' ctermfg='.ctermfg.' guifg='.guifg
+		endfor
+	endif
+endfunc
+
+func rainbow#hide()
+	if exists('b:rainbow_visible')
+		for each in range(b:rainbow_loaded)
+			exe 'hi clear rainbow_p'.each
+			exe 'hi clear rainbow_o'.each
+		endfor
+		unlet b:rainbow_visible
+	endif
+endfunc
+
+func rainbow#toggle()
+	if exists('b:rainbow_loaded')
+		call rainbow#clear()
+	else
+		if exists('b:rainbow_conf')
+			call rainbow#load()
+		else
+			call rainbow#hook()
+		endif
+	endif
+endfunc
+
+func rainbow#hook()
+	let g_conf = extend(copy(s:rainbow_conf), exists('g:rainbow_conf')? g:rainbow_conf : {}) |unlet g_conf.separately
+	if exists('g:rainbow_conf.separately') && has_key(g:rainbow_conf.separately, '*')
+		let separately = copy(g:rainbow_conf.separately)
+	else
+		let separately = extend(copy(s:rainbow_conf.separately), exists('g:rainbow_conf.separately')? g:rainbow_conf.separately : {})
+	endif
+	let b_conf = has_key(separately, &ft)? separately[&ft] : separately['*']
+	if type(b_conf) == type({})
+		let b:rainbow_conf = extend(g_conf, b_conf)
+		call rainbow#load()
+	endif
+endfunc
 
 command! RainbowToggle call rainbow#toggle()
-command! RainbowLoad call rainbow#load()
+
+if (exists('g:rainbow_active') && g:rainbow_active)
+	auto syntax * call rainbow#hook()
+	auto colorscheme * call rainbow#show()
+endif
