@@ -1,0 +1,55 @@
+# UTF-8 declaration
+snippet utf
+	# -*- coding: utf-8 -*-${1}
+## Common function calls/patterns ##
+# Type checking
+snippet isi
+	isinstance(${1:var}, ${2:basestring})${3}
+# Join
+snippet join
+	"${1}".join(${2})
+# Main block
+snippet main
+	if __name__ == "__main__":
+		${1}
+## Functions and classes ##
+# doc string
+snippet doc
+	"""
+	${1}
+	"""${2}
+# Function
+snippet def
+	def ${1:name}(${2}):
+		${3}
+# Method
+snippet meth
+	def ${1:name}(self${2}):
+		${3}
+# Class
+snippet class
+	class ${1:name} (${2:object}):
+		${3}
+# abc metaclass declartion
+snippet meta
+	__metaclass__ = ABCMeta
+snippet cons
+	def __init__(self${1}):
+		${2}
+# New exception type
+snippet err
+	class ${1:ExceptionName} (Exception):
+		pass
+	${2}
+snippet decorator
+	def ${1:name}(func):
+		from functools import wraps
+
+		@wraps
+		def inner(*args, **kwargs):
+			result = func(*args, **kwargs)
+			${2}
+
+			return result
+
+		return inner

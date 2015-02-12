@@ -1,0 +1,16 @@
+# Comments
+snippet !
+	<!-- ${1} -->
+## Attributes ##
+snippet att
+	<xs:attribute type="${1:type}" name="${2:name}" ${3:use="required"} />${4}
+## Other shit ##
+snippet complex
+	<xs:complexType>
+		${1}
+	</xs:complexType>
+# Element types
+snippet int
+	<xs:element type="xs:integer" name="${1:name}" />
+snippet str
+	<xs:element type="xs:string" name="${1:name}" />

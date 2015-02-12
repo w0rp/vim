@@ -1,0 +1,23 @@
+# C++0x range-based for loop
+snippet foreach
+	for (auto ${2:name}: ${3:array})
+	{
+		${4}
+	}
+snippet class
+	class ${1:`expand("%:r")`}
+	{
+	private:
+		${2}
+	public:
+	};
+snippet namespace
+	namespace ${1:name}
+	{
+		${2}
+	}
+snippet name
+	namespace ${1:name}
+	{
+		${2}
+	}

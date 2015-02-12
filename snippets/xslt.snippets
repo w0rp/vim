@@ -1,0 +1,110 @@
+## XSL madness ##
+
+# New stylesheet
+snippet new
+	<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
+		<xsl:output method="xml" />
+
+		<xsl:template match="/">
+			${1}
+		</xsl:template>
+	</xsl:stylesheet>
+# Attribute
+snippet att
+	<xsl:attribute name="${1}">${2}</xsl:attribute>
+# Debugging magic
+snippet debug
+	<script type="text/plain">
+		${1}
+	</script>
+# A visible comment
+snippet com
+	<xsl:comment>${1}</xsl:comment>${2}
+# An invisible comment
+snippet !
+	<!-- ${1} -->
+# An invisible comment, multiline.
+snippet !!
+	<!--
+		${1}
+	-->
+## XSL variables and values ##
+# Variable with select
+snippet var
+	<xsl:variable name="${1}" select="${2}" />
+# Variable with value
+snippet varb
+	<xsl:variable name="${1}">
+		${2}
+	</xsl:variable>
+# Variable with value, one line
+snippet varc
+	<xsl:variable name="${1}">${2}</xsl:variable>${3}
+# value-of
+snippet val
+	<xsl:value-of select="${1}" />${2}
+# Text block
+snippet text
+	<xsl:text>${1}</xsl:text>
+# XSLT1 is shit, XSLT2 doesn't exist.
+snippet textb
+	<xsl:text diable-output-escaping="yes">${1}</xsl:text>
+## XSL control flow ##
+# xsl:if
+snippet if
+	<xsl:if test="${1}">
+		${2}
+	</xsl:if>
+# xsl:choose
+snippet choose
+	<xsl:choose>
+		<xsl:when test="${1}">
+			${2}
+		</xsl:when>
+		<xsl:otherwise>
+
+		</xsl:otherwise>
+	</xsl:choose>
+# xsl:when
+snippet when
+	<xsl:when test="${1}">
+		${2}
+	</xsl:when>
+# foreach
+snippet foreach
+	<xsl:for-each select="${1}">
+		${2}
+	</xsl:for-each>
+# sort
+snippet sort
+	<xsl:sort select="${1}" />${2}
+## XSL template insanity ##
+# Create a template
+snippet temp
+	<xsl:template name="${1}">
+		${2}
+	</xsl:template>
+# Template parameter
+snippet param
+	<xsl:param name="${1}" />
+# Call template
+snippet call
+	<xsl:call-template name="${1}" />
+# Call template with value
+snippet callb
+	<xsl:call-template name="${1}">
+		${2}
+	</xsl:call-template>
+# xsl:with-param using select
+snippet with
+	<xsl:with-param name="${1}" select="${2}" />${3}
+# xsl:with-param with value
+snippet withb
+	<xsl:with-param name="${1}">
+		${2}
+	</xsl:with-param>
+# xsl:with-param with value, one line.
+snippet withc
+	<xsl:with-param name="${1}">${2}</xsl:with-param>${3}
+snippet inc
+	<xsl:include href="${1}" />

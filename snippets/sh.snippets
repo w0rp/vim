@@ -1,0 +1,37 @@
+# Control flow
+snippet if
+	if [ ${1} ]; then
+		${2}
+	fi
+# Numeric if
+snippet ifn
+	if (( ${1} )); then
+		${2}
+	fi
+# If the last command failed
+snippet iflast
+	if (( $? )); then
+		${1}
+	fi
+snippet for
+	for ${1:x} in ${2:"$@"}; do
+		${3}
+	done
+# Handy tricks
+snippet thispath
+	thispath=$(dirname "$(readlink -f "$0")")
+
+snippet switch
+	case ${1:var} in
+		${2}
+	esac
+snippet case
+	${1:val})
+		${2}
+	;;
+snippet default
+	*)
+		${1}
+	;;
+snippet error
+	echo ${1} 1>&2

@@ -1,0 +1,133 @@
+# Braces
+snippet {
+	{
+		${1}
+	}
+## Control flow ##
+snippet if
+	if (${1:cond}) {
+		${2}
+	}
+snippet elif
+	else if (${1:cond}) {
+		${2}
+	}
+snippet else
+	else {
+		${1}
+	}
+snippet switch
+	switch (${1:var}) {
+		${2}
+	}
+snippet case
+	case ${1:val}:
+		${2}
+	break;
+snippet for
+	for (${1:int} ${2:index} = 0; $2 < ${3:len}; ++$2) {
+		${4}
+	}
+snippet foreach
+	for (${1:Type} ${2:name} : ${3:container}) {
+		${4}
+	}
+snippet it
+	for (Iterator<${1:Type}> ${2:name}It = ${3:container}.iterator(); $2It.hasNext();) {
+		$1 $2 = $2It.next();
+
+		${4}
+	}
+snippet while
+	while (${1:condition}) {
+		${2}
+	}
+snippet do
+	do {
+		${2}
+	} while (${1:condition})
+snippet doc
+	/**
+	 * ${1:description}
+	 */${2}
+# Abstract class
+snippet abstract
+	public abstract class ${1:`expand("%:r")`}
+	{
+		${2}
+	}
+snippet class
+	public class ${1:`expand("%:r")`} {
+		${2}
+	}
+snippet enum
+	public enum ${1:`expand("%:r")`} {
+		${2}
+	}
+# single-item containers.
+snippet ArrayList
+	List<${1:Object}> ${2:name}${3: = new ArrayList<$1>()};${4}
+snippet LinkedList
+	List<${1:Object}> ${2:name}${3: = new LinkedList<$1>()};${4}
+snippet HashSet
+	Set<${1:Object}> ${2:name}${3: = new HashSet<$1>()};${4}
+snippet LinkedHashSet
+	Set<${1:Object}> ${2:name}${3: = new LinkedHashSet<$1>()};${4}
+# map containers.
+snippet HashMap
+	Map<${1:Object}, ${2:Object}> ${3:name}${4: = new HashMap<$1, $2>()};${5}
+snippet Hashtable
+	Map<${1:Object}, ${2:Object}> ${3:name}${4: = new Hashtable<$1, $2>()};${5}
+snippet EnumMap
+	Map<${1:EnumType}, ${2:Object}> ${3:name}${4: = new EnumMap<$1, $2>($1.class)};${6}
+snippet cons
+	public `expand("%:r")`(${1:}) {
+		${2}
+	}
+snippet main
+	public static void main (String[] argv) throws Exception {
+		${1}
+	}
+snippet prop
+	private ${1:boolean} ${2:name};
+
+	public $1 get${3:Name}() {
+		return this.$2;
+	}
+
+	public void set$3($1 _$2) {
+		this.$2 = _$2;
+	}
+	${4}
+snippet pub
+	public ${1:void} ${2:name}(${3:}) {
+		${4}
+	}
+snippet pri
+	private ${1:void} ${2:name}(${3:}) {
+		${4}
+	}
+snippet prot
+	protected ${1:void} ${2:name}(${3:}) {
+		${4}
+	}
+snippet th
+	throws ${1:RuntimeException}
+snippet thr
+	throws ${1:RuntimeException}
+snippet Run
+	RuntimeException
+snippet try
+	try {
+		${2}
+	}
+	catch (${1:Exception} ex) {
+
+	}
+snippet rethrow
+	try {
+		${3}
+	}
+	catch (${1:Exception} ex) {
+		throw new ${2:RuntimeException}(ex);
+	}

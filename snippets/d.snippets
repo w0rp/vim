@@ -1,0 +1,59 @@
+snippet /**
+	/**
+		${1}
+	 */
+snippet main
+	void main(string[] argv) {
+		${1}
+	}
+snippet {
+	{
+		${1}
+	}
+## Control flow ##
+snippet if
+	if (${1:cond}) {
+		${2}
+	}
+snippet elif
+	else if (${1:cond}) {
+		${2}
+	}
+snippet else
+	else {
+		${1}
+	}
+snippet switch
+	switch (${1:var}) {
+	${2}
+	}
+snippet case
+	case ${1:val}:
+		${2}
+	break;
+snippet for
+	for (${1:int} ${2:index} = 0; $2 < ${3:len}; ++$2) {
+		${4}
+	}
+snippet while
+	while (${1:condition}) {
+		${2}
+	}
+snippet do
+	do {
+		${2}
+	} while (${1:condition})
+snippet try
+	try {
+		${2}
+	} catch (${1:Exception} ex) {
+
+	}
+snippet each
+	foreach(${1:val}; ${2:expr}) {
+		${3}
+	}
+snippet foreach
+	foreach(${1:val}; ${2:expr}) {
+		${3}
+	}

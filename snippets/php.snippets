@@ -1,0 +1,137 @@
+# Magic debugging line
+snippet debug
+	error_log(sprintf("[%s:%s] %s", basename(__FILE__), __LINE__, var_export(${1}, true)));
+# Magic debugging line
+snippet debugs
+	error_log(sprintf("[%s:%s] %s", basename(__FILE__), __LINE__, ${1}));
+# BEHOLD!
+snippet xmlout
+	fwrite(fopen('/var/log/php/xmlout.xml', 'w'), $${1:objDom}->saveXml(${2:$objElement})) && system('python -c \'path ="/var/log/php/xmlout.xml"; from lxml import etree; doc = etree.parse(path); open(path, "w").write(etree.tostring(doc, pretty_print=True))\'');${3}
+snippet {
+	{
+		${1}
+	}
+## Control flow ##
+snippet if
+	if (${1:condition}) {
+		${2}
+	}
+snippet elif
+	elseif (${1:condition}) {
+		${2}
+	}
+snippet else
+	else {
+		${1}
+	}
+snippet switch
+	switch (${1:x}) {
+		${2}
+	}
+snippet case
+	case ${1:val}:
+		${2}
+	break;
+snippet foreach
+	foreach ($${2:variable} as $${1:key}) {
+		${3}
+	}
+snippet for
+	for ($${1:intIndex}; $$1 < ${2:limit}; ++$$1) {
+		${3}
+	}
+snippet while
+	while (${1:cond}) {
+	}
+# Try, catch
+snippet try
+	try {
+		${1}
+	}
+	catch (Exception $objEx) {
+
+	}
+## Functions and Classes ##
+# Function with doc block
+snippet func
+	/**
+	 * ${1:description}
+	 *
+	 */
+	function ${2:name}(${3})
+	{
+		${4}
+	}
+# Doc block
+snippet doc
+	/**
+	 * ${1:description}
+	 *
+	 */${2}
+# Abstract class
+snippet abstract
+	abstract class ${1:`expand("%:r")`}
+	{
+		${2}
+	}
+snippet class
+	class ${1:`expand("%:r")`} {
+		${2}
+	}
+# An exception class
+snippet ex
+	class ${1:Name}Exception extends Exception {}
+# Class method
+snippet meth
+	${1:public} function ${2:name}(${3})
+	{
+		${4}
+	}
+
+# Protected class method.
+snippet prot
+	protected function ${1:name}(${2})
+	{
+		${3}
+	}
+
+# Public class method.
+snippet pub
+	public function ${1:name}(${2})
+	{
+		${3}
+	}
+
+# Private class method.
+snippet pri
+	private function ${1:name}(${2})
+	{
+		${3}
+	}
+
+# New constructor
+snippet newcons
+	function __construct(${1})
+	{
+		${2}
+	}
+# Child constructor
+snippet cons
+	function __construct(${1})
+	{
+		parent::__construct(${2});
+
+		${3}
+	}
+# Properties
+snippet prop
+	private $${1:name};
+
+	public function get${2:Name}() {
+		return $this->$1;
+	}
+
+	public function set$2($$1) {
+		$this->$1 = $$1;
+	}
+	${3}
