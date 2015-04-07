@@ -13,36 +13,30 @@
 if exists("g:loaded_syntastic_ruby_mri_checker")
     finish
 endif
-let g:loaded_syntastic_ruby_mri_checker=1
+let g:loaded_syntastic_ruby_mri_checker = 1
 
-if !exists("g:syntastic_ruby_exec")
-    let g:syntastic_ruby_exec = "ruby"
-endif
+let s:save_cpo = &cpo
+set cpo&vim
 
-function! SyntaxCheckers_ruby_mri_IsAvailable()
-    return executable(expand(g:syntastic_ruby_exec))
+function! SyntaxCheckers_ruby_mri_IsAvailable() dict
+    if !exists('g:syntastic_ruby_mri_exec') && exists('g:syntastic_ruby_exec')
+        let g:syntastic_ruby_mri_exec = g:syntastic_ruby_exec
+        call self.log('g:syntastic_ruby_exec =', g:syntastic_ruby_exec)
+    endif
+    return executable(self.getExec())
 endfunction
 
 function! SyntaxCheckers_ruby_mri_GetHighlightRegex(i)
-    if match(a:i['text'], 'assigned but unused variable') > -1
+    if stridx(a:i['text'], 'assigned but unused variable') >= 0
         let term = split(a:i['text'], ' - ')[1]
-        return '\V\<'.term.'\>'
+        return '\V\<' . escape(term, '\') . '\>'
     endif
 
     return ''
 endfunction
 
-function! SyntaxCheckers_ruby_mri_GetLocList()
-    let exe = expand(g:syntastic_ruby_exec)
-    if !has('win32')
-        let exe = 'RUBYOPT= ' . exe
-    endif
-
-    let makeprg = syntastic#makeprg#build({
-        \ 'exe': exe,
-        \ 'args': '-w -T1 -c',
-        \ 'filetype': 'ruby',
-        \ 'subchecker': 'mri' })
+function! SyntaxCheckers_ruby_mri_GetLocList() dict
+    let makeprg = self.makeprgBuild({ 'args_after': '-w -T1 -c' })
 
     "this is a hack to filter out a repeated useless warning in rspec files
     "containing lines like
@@ -51,7 +45,7 @@ function! SyntaxCheckers_ruby_mri_GetLocList()
     "
     "Which always generate the warning below. Note that ruby >= 1.9.3 includes
     "the word "possibly" in the warning
-    let errorformat = '%-G%.%#warning: %\(possibly %\)%\?useless use of == in void context,'
+    let errorformat = '%-G%\m%.%#warning: %\%%(possibly %\)%\?useless use of == in void context,'
 
     " filter out lines starting with ...
     " long lines are truncated and wrapped in ... %p then returns the wrong
@@ -67,11 +61,20 @@ function! SyntaxCheckers_ruby_mri_GetLocList()
         \ '%W%f:%l: %m,'.
         \ '%-C%.%#'
 
+    let env = syntastic#util#isRunningWindows() ? {} : { 'RUBYOPT': '' }
+
     return SyntasticMake({
         \ 'makeprg': makeprg,
-        \ 'errorformat': errorformat })
+        \ 'errorformat': errorformat,
+        \ 'env': env })
 endfunction
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
     \ 'filetype': 'ruby',
-    \ 'name': 'mri'})
+    \ 'name': 'mri',
+    \ 'exec': 'ruby'})
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+
+" vim: set sw=4 sts=4 et fdm=marker:

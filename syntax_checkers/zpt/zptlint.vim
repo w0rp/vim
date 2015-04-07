@@ -13,26 +13,13 @@
 if exists("g:loaded_syntastic_zpt_zptlint_checker")
     finish
 endif
-let g:loaded_syntastic_zpt_zptlint_checker=1
+let g:loaded_syntastic_zpt_zptlint_checker = 1
 
-" In order for this plugin to be useful, you will need to set up the
-" zpt filetype in your vimrc
-"
-"    " set up zope page templates as the zpt filetype
-"    au BufNewFile,BufRead *.pt,*.cpt,*.zpt set filetype=zpt syntax=xml
-"
-" Then install the zptlint program, found on pypi:
-" http://pypi.python.org/pypi/zptlint
+let s:save_cpo = &cpo
+set cpo&vim
 
-function! SyntaxCheckers_zpt_zptlint_IsAvailable()
-    return executable("zptlint")
-endfunction
-
-function! SyntaxCheckers_zpt_zptlint_GetLocList()
-    let makeprg = syntastic#makeprg#build({
-        \ 'exe': 'zptlint',
-        \ 'filetype': 'zpt',
-        \ 'subchecker': 'zptlint' })
+function! SyntaxCheckers_zpt_zptlint_GetLocList() dict
+    let makeprg = self.makeprgBuild({})
 
     let errorformat=
         \ '%-P*** Error in: %f,'.
@@ -48,3 +35,8 @@ endfunction
 call g:SyntasticRegistry.CreateAndRegisterChecker({
     \ 'filetype': 'zpt',
     \ 'name': 'zptlint'})
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+
+" vim: set sw=4 sts=4 et fdm=marker:

@@ -1,4 +1,4 @@
-let w:trim_insert_newline=1
+let w:trim_insert_newline=0
 
 setlocal expandtab
 setlocal cc=80

@@ -8,28 +8,27 @@
 "             Want To Public License, Version 2, as published by Sam Hocevar.
 "             See http://sam.zoy.org/wtfpl/COPYING for more details.
 "
-"
-"Installation: $ npm install -g js-yaml
-"
 "============================================================================
 
 if exists("g:loaded_syntastic_yaml_jsyaml_checker")
     finish
 endif
-let g:loaded_syntastic_yaml_jsyaml_checker=1
+let g:loaded_syntastic_yaml_jsyaml_checker = 1
 
-function! SyntaxCheckers_yaml_jsyaml_IsAvailable()
-    return executable("js-yaml")
-endfunction
+let s:save_cpo = &cpo
+set cpo&vim
 
-function! SyntaxCheckers_yaml_jsyaml_GetLocList()
-    let makeprg = syntastic#makeprg#build({
-        \ 'exe': 'js-yaml',
-        \ 'args': '--compact',
-        \ 'filetype': 'yaml',
-        \ 'subchecker': 'jsyaml' })
+function! SyntaxCheckers_yaml_jsyaml_GetLocList() dict
+    if !exists('s:js_yaml_new')
+        let s:js_yaml_new = syntastic#util#versionIsAtLeast(self.getVersion(), [2])
+    endif
 
-    let errorformat='Error on line %l\, col %c:%m,%-G%.%#'
+    let makeprg = self.makeprgBuild({ 'args_after': (s:js_yaml_new ? '' : '--compact') })
+
+    let errorformat =
+        \ 'Error on line %l\, col %c:%m,' .
+        \ 'JS-YAML: %m at line %l\, column %c:,' .
+        \ '%-G%.%#'
 
     return SyntasticMake({
         \ 'makeprg': makeprg,
@@ -39,4 +38,10 @@ endfunction
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
     \ 'filetype': 'yaml',
-    \ 'name': 'jsyaml'})
+    \ 'name': 'jsyaml',
+    \ 'exec': 'js-yaml'})
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+
+" vim: set sw=4 sts=4 et fdm=marker:

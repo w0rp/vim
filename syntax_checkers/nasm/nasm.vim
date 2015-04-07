@@ -9,22 +9,20 @@
 "             See http://sam.zoy.org/wtfpl/COPYING for more details.
 "
 "============================================================================
+
 if exists("g:loaded_syntastic_nasm_nasm_checker")
     finish
 endif
-let g:loaded_syntastic_nasm_nasm_checker=1
+let g:loaded_syntastic_nasm_nasm_checker = 1
 
-function! SyntaxCheckers_nasm_nasm_IsAvailable()
-    return executable("nasm")
-endfunction
+let s:save_cpo = &cpo
+set cpo&vim
 
-function! SyntaxCheckers_nasm_nasm_GetLocList()
-    let wd = shellescape(expand("%:p:h") . "/")
-    let makeprg = syntastic#makeprg#build({
-        \ 'exe': 'nasm',
-        \ 'args': '-X gnu -f elf -I ' . wd . ' ' . syntastic#c#GetNullDevice()
-        \ 'filetype': 'nasm',
-        \ 'subchecker': 'nasm' })
+function! SyntaxCheckers_nasm_nasm_GetLocList() dict
+    let makeprg = self.makeprgBuild({
+        \ 'args_after': '-X gnu -f elf' .
+        \       ' -I ' . syntastic#util#shescape(expand('%:p:h', 1) . syntastic#util#Slash()) .
+        \       ' ' . syntastic#c#NullOutput() })
 
     let errorformat = '%f:%l: %t%*[^:]: %m'
 
@@ -36,3 +34,8 @@ endfunction
 call g:SyntasticRegistry.CreateAndRegisterChecker({
     \ 'filetype': 'nasm',
     \ 'name': 'nasm'})
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+
+" vim: set sw=4 sts=4 et fdm=marker:

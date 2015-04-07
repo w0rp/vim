@@ -262,6 +262,9 @@ au BufRead *.sql set filetype=mysql
 " Disable the sass syntax checker, because it's slow and crap.
 let g:syntastic_enable_scss_sass_checker=0
 
+" Use pep8 to check Python files.
+let g:syntastic_python_checkers=['pep8']
+
 " Disable syntax for large files.
 autocmd BufWinEnter * if line2byte(line("$") + 1) > 1000000 | syntax clear | endif
 
@@ -269,6 +272,11 @@ let g:rainbow_conf = {
 \   'guifgs': ['#3b81e7', '#dccb3e', '#de2020', '#0bff22'],
 \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
 \   'operators': '_,_',
+\   'separately': {
+\       'xhtml': {},
+\       'html': {},
+\       'xml': {},
+\   },
 \}
 
 let g:rainbow_active = 1

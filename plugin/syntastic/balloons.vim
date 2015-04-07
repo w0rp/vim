@@ -1,11 +1,7 @@
-if exists("g:loaded_syntastic_notifier_balloons")
+if exists("g:loaded_syntastic_notifier_balloons") || !exists("g:loaded_syntastic_plugin")
     finish
 endif
 let g:loaded_syntastic_notifier_balloons = 1
-
-if !exists("g:syntastic_enable_balloons")
-    let g:syntastic_enable_balloons = 1
-endif
 
 if !has('balloon_eval')
     let g:syntastic_enable_balloons = 0
@@ -15,46 +11,49 @@ let g:SyntasticBalloonsNotifier = {}
 
 " Public methods {{{1
 
-function! g:SyntasticBalloonsNotifier.New()
+function! g:SyntasticBalloonsNotifier.New() " {{{2
     let newObj = copy(self)
     return newObj
-endfunction
+endfunction " }}}2
 
-function! g:SyntasticBalloonsNotifier.enabled()
-    return exists('b:syntastic_enable_balloons') ? b:syntastic_enable_balloons : g:syntastic_enable_balloons
-endfunction
+function! g:SyntasticBalloonsNotifier.enabled() " {{{2
+    return has('balloon_eval') && syntastic#util#var('enable_balloons')
+endfunction " }}}2
 
 " Update the error balloons
-function! g:SyntasticBalloonsNotifier.refresh(loclist)
-    let b:syntastic_balloons = {}
-    if a:loclist.hasErrorsOrWarningsToDisplay()
-        let buf = bufnr('')
-        let issues = filter(a:loclist.filteredRaw(), 'v:val["bufnr"] == buf')
-        if !empty(issues)
-            for i in issues
-                if has_key(b:syntastic_balloons, i['lnum'])
-                    let b:syntastic_balloons[i['lnum']] .= "\n" . i['text']
-                else
-                    let b:syntastic_balloons[i['lnum']] = i['text']
-                endif
-            endfor
-            set beval bexpr=SyntasticBalloonsExprNotifier()
+function! g:SyntasticBalloonsNotifier.refresh(loclist) " {{{2
+    unlet! b:syntastic_private_balloons
+    if self.enabled() && !a:loclist.isEmpty()
+        let b:syntastic_private_balloons = a:loclist.balloons()
+        if !empty(b:syntastic_private_balloons)
+            set ballooneval balloonexpr=SyntasticBalloonsExprNotifier()
         endif
     endif
-endfunction
+endfunction " }}}2
 
 " Reset the error balloons
-function! g:SyntasticBalloonsNotifier.reset(loclist)
-    set nobeval
-endfunction
+" @vimlint(EVL103, 1, a:loclist)
+function! g:SyntasticBalloonsNotifier.reset(loclist) " {{{2
+    let b:syntastic_private_balloons = {}
+    if has('balloon_eval')
+        call syntastic#log#debug(g:_SYNTASTIC_DEBUG_NOTIFICATIONS, 'balloons: reset')
+        unlet! b:syntastic_private_balloons
+        set noballooneval
+    endif
+endfunction " }}}2
+" @vimlint(EVL103, 0, a:loclist)
+
+" }}}1
 
 " Private functions {{{1
 
-function! SyntasticBalloonsExprNotifier()
-    if !exists('b:syntastic_balloons')
+function! SyntasticBalloonsExprNotifier() " {{{2
+    if !exists('b:syntastic_private_balloons')
         return ''
     endif
-    return get(b:syntastic_balloons, v:beval_lnum, '')
-endfunction
+    return get(b:syntastic_private_balloons, v:beval_lnum, '')
+endfunction " }}}2
+
+" }}}1
 
 " vim: set sw=4 sts=4 et fdm=marker:

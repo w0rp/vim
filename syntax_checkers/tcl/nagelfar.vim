@@ -7,25 +7,22 @@
 "             it and/or modify it under the terms of the Do What The Fuck You
 "             Want To Public License, Version 2, as published by Sam Hocevar.
 "             See http://sam.zoy.org/wtfpl/COPYING for more details.
-"Notes:       Requires nagelfar v1.1.12 or later with support for -H option.
-"             See nagelfar homepage http://nagelfar.berlios.de/.
 "
 "============================================================================
+"
+"Notes:       Requires nagelfar v1.1.12 or later with support for -H option.
+"             See nagelfar homepage http://nagelfar.berlios.de/.
+
 if exists("g:loaded_syntastic_tcl_nagelfar_checker")
     finish
 endif
-let g:loaded_syntastic_tcl_nagelfar_checker=1
+let g:loaded_syntastic_tcl_nagelfar_checker = 1
 
-function! SyntaxCheckers_tcl_nagelfar_IsAvailable()
-    return executable('nagelfar')
-endfunction
+let s:save_cpo = &cpo
+set cpo&vim
 
-function! SyntaxCheckers_tcl_nagelfar_GetLocList()
-    let makeprg = syntastic#makeprg#build({
-        \ 'exe': 'nagelfar',
-        \ 'args': '-H ' . g:syntastic_tcl_nagelfar_conf,
-        \ 'filetype': 'tcl',
-        \ 'subchecker': 'nagelfar' })
+function! SyntaxCheckers_tcl_nagelfar_GetLocList() dict
+    let makeprg = self.makeprgBuild({ 'args_after': '-H' })
 
     let errorformat =
         \ '%I%f: %l: N %m,'.
@@ -40,3 +37,8 @@ endfunction
 call g:SyntasticRegistry.CreateAndRegisterChecker({
     \ 'filetype': 'tcl',
     \ 'name': 'nagelfar'})
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+
+" vim: set sw=4 sts=4 et fdm=marker:

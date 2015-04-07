@@ -9,21 +9,17 @@
 "             See http://sam.zoy.org/wtfpl/COPYING for more details.
 "
 "============================================================================
+
 if exists("g:loaded_syntastic_nroff_mandoc_checker")
     finish
 endif
-let g:loaded_syntastic_nroff_mandoc_checker=1
+let g:loaded_syntastic_nroff_mandoc_checker = 1
 
-function! SyntaxCheckers_nroff_mandoc_IsAvailable()
-    return executable("mandoc")
-endfunction
+let s:save_cpo = &cpo
+set cpo&vim
 
-function! SyntaxCheckers_nroff_mandoc_GetLocList()
-    let makeprg = syntastic#makeprg#build({
-        \ 'exe': 'mandoc',
-        \ 'args': '-Tlint',
-        \ 'filetype': 'nroff',
-        \ 'subchecker': 'mandoc' })
+function! SyntaxCheckers_nroff_mandoc_GetLocList() dict
+    let makeprg = self.makeprgBuild({ 'args_after': '-Tlint' })
 
     let errorformat =
         \ '%E%f:%l:%c: %tRROR: %m,' .
@@ -31,10 +27,15 @@ function! SyntaxCheckers_nroff_mandoc_GetLocList()
 
     return SyntasticMake({
         \ 'makeprg': makeprg,
-        \ 'errorformat': errorformat })
+        \ 'errorformat': errorformat,
+        \ 'returns': [0, 2, 3, 4] })
 endfunction
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
     \ 'filetype': 'nroff',
     \ 'name': 'mandoc'})
 
+let &cpo = s:save_cpo
+unlet s:save_cpo
+
+" vim: set sw=4 sts=4 et fdm=marker:

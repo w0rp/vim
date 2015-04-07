@@ -18,51 +18,41 @@
 if exists("g:loaded_syntastic_xhtml_tidy_checker")
     finish
 endif
-let g:loaded_syntastic_xhtml_tidy_checker=1
+let g:loaded_syntastic_xhtml_tidy_checker = 1
+
+let s:save_cpo = &cpo
+set cpo&vim
 
 if !exists('g:syntastic_xhtml_tidy_ignore_errors')
     let g:syntastic_xhtml_tidy_ignore_errors = []
 endif
 
-function! SyntaxCheckers_xhtml_tidy_IsAvailable()
-    return executable("tidy")
-endfunction
+" Constants {{{1
 
 " TODO: join this with html.vim DRY's sake?
 function! s:TidyEncOptByFenc()
-    let tidy_opts = {
-                \'utf-8'       : '-utf8',
-                \'ascii'       : '-ascii',
-                \'latin1'      : '-latin1',
-                \'iso-2022-jp' : '-iso-2022',
-                \'cp1252'      : '-win1252',
-                \'macroman'    : '-mac',
-                \'utf-16le'    : '-utf16le',
-                \'utf-16'      : '-utf16',
-                \'big5'        : '-big5',
-                \'cp932'       : '-shiftjis',
-                \'sjis'        : '-shiftjis',
-                \'cp850'       : '-ibm858',
-                \}
-    return get(tidy_opts, &fileencoding, '-utf8')
+    let TIDY_OPTS = {
+            \ 'utf-8':        '-utf8',
+            \ 'ascii':        '-ascii',
+            \ 'latin1':       '-latin1',
+            \ 'iso-2022-jp':  '-iso-2022',
+            \ 'cp1252':       '-win1252',
+            \ 'macroman':     '-mac',
+            \ 'utf-16le':     '-utf16le',
+            \ 'utf-16':       '-utf16',
+            \ 'big5':         '-big5',
+            \ 'cp932':        '-shiftjis',
+            \ 'sjis':         '-shiftjis',
+            \ 'cp850':        '-ibm858',
+        \ }
+    return get(TIDY_OPTS, &fileencoding, '-utf8')
 endfunction
 
-function! s:IgnoreError(text)
-    for i in g:syntastic_xhtml_tidy_ignore_errors
-        if stridx(a:text, i) != -1
-            return 1
-        endif
-    endfor
-    return 0
-endfunction
+" }}}1
 
-function! SyntaxCheckers_xhtml_tidy_GetLocList()
+function! SyntaxCheckers_xhtml_tidy_GetLocList() dict " {{{1
     let encopt = s:TidyEncOptByFenc()
-    let makeprg = syntastic#makeprg#build({
-        \ 'exe': 'tidy',
-        \ 'args': encopt . ' -xml -e',
-        \ 'filetype': 'xhtml',
-        \ 'subchecker': 'tidy' })
+    let makeprg = self.makeprgBuild({ 'args_after': encopt . ' -xml -e' })
 
     let errorformat=
         \ '%Wline %l column %v - Warning: %m,' .
@@ -72,17 +62,36 @@ function! SyntaxCheckers_xhtml_tidy_GetLocList()
     let loclist = SyntasticMake({
         \ 'makeprg': makeprg,
         \ 'errorformat': errorformat,
-        \ 'defaults': {'bufnr': bufnr("")} })
+        \ 'defaults': {'bufnr': bufnr("")},
+        \ 'returns': [0, 1, 2] })
 
-    for n in range(len(loclist))
-        if loclist[n]['valid'] && s:IgnoreError(loclist[n]['text']) == 1
-            let loclist[n]['valid'] = 0
+    for e in loclist
+        if e['valid'] && s:IgnoreError(e['text']) == 1
+            let e['valid'] = 0
         endif
     endfor
 
     return loclist
-endfunction
+endfunction " }}}1
+
+" Utilities {{{1
+
+function! s:IgnoreError(text) " {{{2
+    for item in g:syntastic_xhtml_tidy_ignore_errors
+        if stridx(a:text, item) != -1
+            return 1
+        endif
+    endfor
+    return 0
+endfunction " }}}2
+
+" }}}1
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
     \ 'filetype': 'xhtml',
     \ 'name': 'tidy'})
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+
+" vim: set sw=4 sts=4 et fdm=marker:

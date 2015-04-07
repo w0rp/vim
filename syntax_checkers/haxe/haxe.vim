@@ -13,56 +13,51 @@
 if exists("g:loaded_syntastic_haxe_haxe_checker")
     finish
 endif
-let g:loaded_syntastic_haxe_haxe_checker=1
+let g:loaded_syntastic_haxe_haxe_checker = 1
 
-function! SyntaxCheckers_haxe_haxe_IsAvailable()
-    return executable('haxe')
-endfunction
+let s:save_cpo = &cpo
+set cpo&vim
 
-" s:FindInParent
-" find the file argument and returns the path to it.
-" Starting with the current working dir, it walks up the parent folders
-" until it finds the file, or it hits the stop dir.
-" If it doesn't find it, it returns "Nothing"
-function! s:FindInParent(fln,flsrt,flstp)
-    let here = a:flsrt
-    while ( strlen( here) > 0 )
-        let p = split(globpath(here, a:fln), '\n')
-        if len(p) > 0
-            return ['ok', here, fnamemodify(p[0], ':p:t')]
-        endif
-        let fr = match(here, '/[^/]*$')
-        if fr == -1
-            break
-        endif
-        let here = strpart(here, 0, fr)
-        if here == a:flstp
-            break
-        endif
-    endwhile
-    return ['fail', '', '']
-endfunction
+function! SyntaxCheckers_haxe_haxe_GetLocList() dict
+    if exists('b:vaxe_hxml')
+        let hxml = b:vaxe_hxml
+    elseif exists('g:vaxe_hxml')
+        let hxml = g:vaxe_hxml
+    else
+        let hxml = syntastic#util#findInParent('*.hxml', expand('%:p:h', 1))
+    endif
+    let hxml = fnamemodify(hxml, ':p')
 
-function! SyntaxCheckers_haxe_haxe_GetLocList()
-    let [success, hxmldir, hxmlname] = s:FindInParent('*.hxml', expand('%:p:h'), '/')
-    if success == 'ok'
-        let makeprg = syntastic#makeprg#build({
-            \ 'exe': 'haxe',
-            \ 'fname': shellescape(fnameescape(hxmlname)),
-            \ 'filetype': 'haxe',
-            \ 'subchecker': 'haxe' })
+    call self.log('hxml =', hxml)
 
-        let errorformat = '%E%f:%l: characters %c-%*[0-9] : %m'
+    if hxml != ''
+        let makeprg = self.makeprgBuild({
+            \ 'fname': syntastic#util#shescape(fnamemodify(hxml, ':t')) })
 
-        return SyntasticMake({
+        let errorformat = '%E%f:%l: characters %c-%n : %m'
+
+        let loclist = SyntasticMake({
             \ 'makeprg': makeprg,
             \ 'errorformat': errorformat,
-            \ 'cwd': hxmldir })
-    else
-        return []
+            \ 'cwd': fnamemodify(hxml, ':h') })
+
+        for e in loclist
+            let e['hl'] = '\%>' . e['col'] . 'c\%<' . (e['nr'] + 1) . 'c'
+            let e['col'] += 1
+            let e['nr'] = 0
+        endfor
+
+        return loclist
     endif
+
+    return []
 endfunction
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
     \ 'filetype': 'haxe',
     \ 'name': 'haxe'})
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+
+" vim: set sw=4 sts=4 et fdm=marker:
