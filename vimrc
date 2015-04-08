@@ -68,6 +68,14 @@ if has('gui_running')
     " Use console dialogs instead of dialog windows.
     set guioptions+=c
 
+    " Make copy and paste work and not be shit.
+    set guioptions+=a
+
+    if v:version > 703
+        " This makes copy and paste also work better.
+        set clipboard=unnamedplus
+    endif
+
     " Always show the tab bar.
     set showtabline=2
 
@@ -280,4 +288,6 @@ let g:rainbow_conf = {
 \}
 
 let g:rainbow_active = 1
+
+let g:syntastic_d_include_dirs = glob('~/.dub/packages/*/source', 1, 1) + glob('~/.dub/packages/*/src', 1, 1) + ['./source', './src']
 
