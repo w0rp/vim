@@ -262,6 +262,13 @@ function! s:_get_include_dirs(filetype) " {{{2
         let include_dirs = copy(s:default_includes)
     endif
 
+    " Get include dirs from DUB.
+    if a:filetype =~# '\v^%(d|di)$' &&
+                \ (!exists('g:syntastic_'.a:filetype.'_no_default_include_dirs') ||
+                \ !g:syntastic_{a:filetype}_no_default_include_dirs)
+        let include_dirs = split(system("rdmd ~/.vim/dub_paths.d $'" . substitute(expand('%:p'), "'", "\\'", "g") . "'"), "\n")
+    endif
+
     if exists('g:syntastic_'.a:filetype.'_include_dirs')
         call extend(include_dirs, g:syntastic_{a:filetype}_include_dirs)
     endif
@@ -343,3 +350,4 @@ let &cpo = s:save_cpo
 unlet s:save_cpo
 
 " vim: set sw=4 sts=4 et fdm=marker:
+
