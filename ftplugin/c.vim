@@ -1,5 +1,3 @@
-let w:trim_insert_newline=0
-
 setlocal cc=80
 
 if has('gui_running')

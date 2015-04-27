@@ -1,5 +1,3 @@
-let w:trim_insert_newline=1
-
 setlocal cc=80
 
 " Set up the keybinds for headings

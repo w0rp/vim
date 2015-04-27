@@ -101,6 +101,9 @@ imap <C-tab> <Esc> :tabn <Return>
 map <C-S-tab> :tabp <Return>
 imap <C-S-tab> <Esc> :tabp <Return>
 
+map <C-E> d?[A-Z]<Return>
+imap <C-E> <Esc> d?[A-Z]<Return>i
+
 " Bind Ctrl + t to opening new tabs.
 noremap <C-t> :tabnew <Return>
 

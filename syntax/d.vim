@@ -333,7 +333,7 @@ hi def link dExceptions          Exception
 hi def link dAssert              Statement
 hi def link dStatement           Statement
 hi def link dScopeDecl           dStorageClass
-hi def link dStorageClass        StorageClass
+hi def link dStorageClass        Constant
 hi def link dBoolean             Boolean
 hi def link dUnicode             Special
 hi def link dTokenStringBrack    String

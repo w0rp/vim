@@ -40,13 +40,6 @@ fun! TrimWhitespace()
 
     %s/\s*$//
 
-    " Defaults to false.
-    if exists('w:trim_insert_newline') && w:trim_insert_newline == 1
-        %s/[ \t\r\n]*\%$/\r/g
-    else
-        %s/[ \t\r\n]*\%$//g
-    endif
-
     call cursor(line_no, col_no)
 endf
 

@@ -1,5 +1,3 @@
-let w:trim_insert_newline=1
-
 if has('gui_running')
     setlocal spell
 endif

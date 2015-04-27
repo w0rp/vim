@@ -57,3 +57,13 @@ snippet foreach
 	foreach(${1:val}; ${2:expr}) {
 		${3}
 	}
+snippet property
+	@nogc @safe pure nothrow
+	@property ${1:T} ${2:foo}() const {
+		return _$2;
+	}
+
+	@nogc @safe pure nothrow
+	@property void $2($1 value) {
+		_$2 = value;
+	}

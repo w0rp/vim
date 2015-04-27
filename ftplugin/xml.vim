@@ -1,7 +1,5 @@
 source ~/.vim/ftplugin/xml_plugin.vim
 
-let w:trim_insert_newline=0
-
 if expand("%:e") == 'xml'
     noremap <buffer> <C-]> :tabfind <cword>.xml<CR>
 endif
