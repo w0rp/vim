@@ -17,7 +17,9 @@ snippet foreach
 	});
 snippet forin
 	for (var ${1:variable} in ${2:sequence}) {
-		${3}
+		if ($2.hasOwnProperty($1)) {
+			${3}
+		}
 	}
 snippet if
 	if (${1:condition}) {

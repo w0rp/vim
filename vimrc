@@ -274,7 +274,7 @@ au BufRead *.sql set filetype=mysql
 let g:syntastic_enable_scss_sass_checker=0
 
 " Use pep8 to check Python files.
-let g:syntastic_python_checkers=['pep8']
+let g:syntastic_python_checkers=['flake8']
 
 " Disable syntax for large files.
 autocmd BufWinEnter * if line2byte(line("$") + 1) > 1000000 | syntax clear | endif
@@ -282,15 +282,13 @@ autocmd BufWinEnter * if line2byte(line("$") + 1) > 1000000 | syntax clear | end
 let g:rainbow_conf = {
 \   'guifgs': ['#3b81e7', '#dccb3e', '#de2020', '#0bff22'],
 \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
-\   'operators': '_,_',
-\   'separately': {
-\       'xhtml': {},
-\       'html': {},
-\       'xml': {},
-\   },
+\   'operators': '_,_'
 \}
 
 let g:rainbow_active = 1
+
+" Make :lprev and :lnext work in Syntastic
+let g:syntastic_always_populate_loc_list = 1
 
 let g:syntastic_d_include_dirs = glob('~/.dub/packages/*/source', 1, 1) + glob('~/.dub/packages/*/src', 1, 1) + ['./source', './src']
 
