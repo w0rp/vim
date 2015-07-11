@@ -34,7 +34,7 @@ endif
 
 if has('gui_running')
     " gvim specific settings.
-    "
+
     " CTRL-A is Select all
     " This works better than the default Windows script.
     noremap <C-A> ggVG
@@ -53,8 +53,12 @@ if has('gui_running')
     vnoremap <S-Del> "+x
 
     " CTRL-V and SHIFT-Insert are Paste
-    imap <C-V> <Esc> "+gPi
-    imap <S-Insert> <C-V>
+    noremap <C-V> "+gP
+    noremap <S-Insert> <C-V>
+    inoremap <C-V> <Esc> "+gPi
+    inoremap <S-Insert> <C-V>
+    cnoremap <C-V> <C-R>+
+    cnoremap <S-Insert> <C-R>+
 
     " Set colour scheme
     colorscheme darkspectrum
