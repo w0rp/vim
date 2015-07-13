@@ -295,4 +295,3 @@ let g:rainbow_active = 1
 let g:syntastic_always_populate_loc_list = 1
 
 let g:syntastic_d_include_dirs = glob('~/.dub/packages/*/source', 1, 1) + glob('~/.dub/packages/*/src', 1, 1) + ['./source', './src']
-

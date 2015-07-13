@@ -15,3 +15,5 @@ vmap <buffer> <C-,> :s/^\(\s*\)#/\1/<Return>
 " Map Ctrl+R to alignment.
 vmap <buffer> <C-r> :Align = :<Return>
 
+" Use the AutoPythonImport tool.
+map <buffer> <C-n> :call AutoPythonImport()<Return>
