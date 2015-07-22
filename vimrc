@@ -266,13 +266,8 @@ au BufNewFile,BufRead *.json set filetype=javascript
 " .md is a markdown file.
 au BufNewFile,BufRead *.md set filetype=markdown
 
-"au VimEnter * RainbowParenthesesToggle
-"au Syntax * RainbowParenthesesLoadRound
-"au Syntax * RainbowParenthesesLoadSquare
-"au Syntax * RainbowParenthesesLoadBraces
-
 " Use MySQL as the filetype for sql files.
-au BufRead *.sql set filetype=mysql
+au BufNewFile,BufRead *.sql set filetype=mysql
 
 " Disable the sass syntax checker, because it's slow and crap.
 let g:syntastic_enable_scss_sass_checker=0
@@ -298,3 +293,7 @@ let g:syntastic_d_include_dirs = glob('~/.dub/packages/*/source', 1, 1) + glob('
 
 " Don't use a diff for pep8 auto-formatting, just do it.
 let g:autopep8_disable_show_diff = 1
+
+" Bind keys for moving between warnings.
+noremap <C-S-k> :lprev <Return>
+noremap <C-S-j> :lnext <Return>
