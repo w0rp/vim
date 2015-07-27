@@ -192,6 +192,10 @@ set undofile
 set undolevels=1000 "maximum number of changes that can be undone
 set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 
+" Automatically re-open files after they have changed without prompting.
+" This can be a little more destructive, but a lot less annoying.
+set autoread
+
 " Set the right margin.
 set cc=80
 " Automatically split words at the margin.
