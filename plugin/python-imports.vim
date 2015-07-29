@@ -5,6 +5,7 @@ let g:loaded_python_imports = 1
 
 let s:import_dict = {
 \   "transaction": "from django.db import transaction",
+\   "timezone": "from django.utils import timezone",
 \   "Q": "from django.db.models import Q",
 \   "F": "from django.db.models import F",
 \   "Avg": "from django.db.models import Avg",
