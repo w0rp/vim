@@ -4,6 +4,7 @@ endif
 let g:loaded_python_imports = 1
 
 let s:import_dict = {
+\   "urlencode": "from urllib import urlencode",
 \   "transaction": "from django.db import transaction",
 \   "timezone": "from django.utils import timezone",
 \   "Q": "from django.db.models import Q",
@@ -25,6 +26,9 @@ let s:import_dict = {
 \   "url_reverse": "from django.core.urlresolvers import reverse as url_reverse",
 \   "Http404": "from django.http import Http404",
 \   "login_required": "from django.contrib.auth.decorators import login_required",
+\   "ObjectDoesNotExist": "from django.core.exceptions import ObjectDoesNotExist",
+\   "ValidationError": "from django.core.exceptions import ValidationError",
+\   "RegexValidator": "from django.core.validators import RegexValidator",
 \}
 
 function AutoPythonImport()

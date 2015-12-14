@@ -117,6 +117,15 @@ filetype plugin on
 " Enable syntax highlighting by default.
 if has("syntax")
     syntax on
+
+    " Reduce processing for syntax highlighting to make it less of a pain.
+    syntax sync minlines=200
+    syntax sync maxlines=500
+    set synmaxcol=200
+
+    " Use F12 to resync syntax from the start.
+    noremap <F12> <Esc>:syntax sync fromstart<CR>
+    inoremap <F12> <C-o>:syntax sync fromstart<CR>
 endif
 
 " Enable the status line at all times
@@ -278,9 +287,6 @@ let g:syntastic_enable_scss_sass_checker=0
 
 " Use pep8 to check Python files.
 let g:syntastic_python_checkers=['flake8']
-
-" Disable syntax for large files.
-autocmd BufWinEnter * if line2byte(line("$") + 1) > 1000000 | syntax clear | endif
 
 let g:rainbow_conf = {
 \   'guifgs': ['#3b81e7', '#dccb3e', '#de2020', '#0bff22'],
