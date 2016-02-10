@@ -9,12 +9,10 @@
 "             See http://sam.zoy.org/wtfpl/COPYING for more details.
 "============================================================================
 
-if exists("g:loaded_syntastic_cpp_clang_check_checker")
+if exists('g:loaded_syntastic_cpp_clang_check_checker')
   finish
 endif
 let g:loaded_syntastic_cpp_clang_check_checker = 1
-
-runtime! syntax_checkers/c/*.vim
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
     \ 'filetype': 'cpp',

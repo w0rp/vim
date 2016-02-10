@@ -10,12 +10,10 @@
 "
 "============================================================================
 
-if exists("g:loaded_syntastic_docbk_xmllint_checker")
+if exists('g:loaded_syntastic_docbk_xmllint_checker')
     finish
 endif
 let g:loaded_syntastic_docbk_xmllint_checker = 1
-
-runtime! syntax_checkers/xml/*.vim
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
     \ 'filetype': 'docbk',
