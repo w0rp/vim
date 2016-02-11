@@ -252,6 +252,48 @@ endfunction " }}}2
 function! s:_get_include_dirs(filetype) abort " {{{2
     let include_dirs = []
 
+    if a:filetype == 'd' && executable('dub')
+        " Use DUB for D to find the import paths.
+        let dub_paths = []
+
+        " If dub is installed, start searching for the project root,
+        " from the current source directory.
+        let path = expand('%:p:h')
+        let dub_command = 'dub describe --import-paths'
+
+        while 1
+            if len(globpath(path, 'dub.json')) > 0 || len(globpath(path, 'dub.sdl')) > 0 || len(globpath(path, 'package.json')) > 0
+                " We hit a directory with a dub package file.
+                " Run the command to find the paths.
+                let dub_paths = split(system('cd ' . shellescape(path) . ' && ' . dub_command), '\n')
+
+                if v:shell_error
+                    " The dub command failed, so clear the captured output.
+                    " Otherwise, we will capture some garbage.
+                    let dub_paths = []
+                endif
+
+                break
+            endif
+
+            let next_path = fnamemodify(path, ':h')
+
+            if path == next_path
+                " We just checked a root directory, so stop here.
+                break
+            endif
+
+            " Go up one directory.
+            let path = next_path
+        endwhile
+
+        if len(dub_paths) > 0
+            " We found the exact import paths through DUB, so use those.
+            return join(map(dub_paths, 'syntastic#util#shescape("-I" . v:val)'))
+        endif
+    endif
+    else
+
     if a:filetype =~# '\v^%(c|cpp|objc|objcpp)$' &&
                 \ (!exists('g:syntastic_'.a:filetype.'_no_default_include_dirs') ||
                 \ !g:syntastic_{a:filetype}_no_default_include_dirs)
