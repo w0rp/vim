@@ -282,11 +282,6 @@ au BufNewFile,BufRead *.md set filetype=markdown
 " Use MySQL as the filetype for sql files.
 au BufNewFile,BufRead *.sql set filetype=mysql
 
-if has("unix")
-    " Make scripts executable when we write them.
-    au BufWritePost * if getline(1) =~ "^#!" | silent !chmod ug+x % | endif
-endif
-
 " Disable the sass syntax checker, because it's slow and crap.
 let g:syntastic_enable_scss_sass_checker = 0
 
