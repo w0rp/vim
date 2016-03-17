@@ -6,6 +6,7 @@ let g:loaded_python_imports = 1
 let s:import_dict = {
 \   "urlencode": "from urllib import urlencode",
 \   "transaction": "from django.db import transaction",
+\   "connection": "from django.db import connection",
 \   "timezone": "from django.utils import timezone",
 \   "Q": "from django.db.models import Q",
 \   "F": "from django.db.models import F",

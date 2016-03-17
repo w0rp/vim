@@ -283,10 +283,10 @@ au BufNewFile,BufRead *.md set filetype=markdown
 au BufNewFile,BufRead *.sql set filetype=mysql
 
 " Disable the sass syntax checker, because it's slow and crap.
-let g:syntastic_enable_scss_sass_checker=0
+let g:syntastic_enable_scss_sass_checker = 0
 
 " Use pep8 to check Python files.
-let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_checkers = ['flake8']
 
 let g:rainbow_conf = {
 \   'guifgs': ['#3b81e7', '#dccb3e', '#de2020', '#0bff22'],
@@ -302,7 +302,10 @@ let g:syntastic_always_populate_loc_list = 1
 let g:autopep8_disable_show_diff = 1
 
 let g:syntastic_d_automatic_dub_include_dirs = 1
+let g:syntastic_javascript_checkers = ['eslint']
 
 " Bind keys for moving between warnings.
 noremap <C-S-k> :lprev <Return>
 noremap <C-S-j> :lnext <Return>
+
+set autochdir
