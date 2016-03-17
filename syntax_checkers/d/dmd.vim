@@ -35,6 +35,37 @@ function! SyntaxCheckers_d_dmd_IsAvailable() dict
     return executable(expand(g:syntastic_d_compiler, 1))
 endfunction
 
+function! SyntaxCheckers_d_dmd_DubImportPaths(base)
+    let where = escape(a:base, ' ') . ';'
+
+    let old_suffixesadd = &suffixesadd
+    let dirs = syntastic#util#unique(map(filter(
+        \   findfile('dub.json', where, -1) +
+        \   findfile('dub.sdl', where, -1) +
+        \   findfile('package.json', where, -1),
+        \ 'filereadable(v:val)'), 'fnamemodify(v:val, ":h")'))
+    let &suffixesadd = old_suffixesadd
+
+    let includes = []
+    for dir in dirs
+        try
+            execute 'silent lcd ' . fnameescape(dir)
+            call extend(includes, split(system('dub describe --import-paths', "\n")))
+            silent lcd -
+        catch /\m^Vim\%((\a\+)\)\=:E472/
+            " evil directory is evil
+        endtry
+    endfor
+
+    if empty(includes)
+        let includes = filter(glob($HOME . '/.dub/packages/*', 1, 1), 'isdirectory(v:val)')
+        call map(includes, 'isdirectory(v:val . "/source") ? v:val . "/source" : v:val')
+        call add(includes, './source')
+    endif
+
+    return syntastic#util#unique(includes)
+endfunction
+
 function! SyntaxCheckers_d_dmd_GetLocList() dict
     if !exists('g:syntastic_d_include_dirs')
         let g:syntastic_d_include_dirs = filter(glob($HOME . '/.dub/packages/*', 1, 1), 'isdirectory(v:val)')
@@ -49,6 +80,10 @@ function! SyntaxCheckers_d_dmd_GetLocList() dict
         \ 'main_flags': '-c -of' . syntastic#util#DevNull(),
         \ 'header_names': '\m\.di$' })
 endfunction
+
+if exists('g:syntastic_d_automatic_dub_include_dirs') && g:syntastic_d_automatic_dub_include_dirs == 1
+    autocmd BufRead,BufNewFile *.d,*.di let g:syntastic_d_include_dirs = SyntaxCheckers_d_dmd_DubImportPaths(expand('%:p:h', 1))
+endif
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
     \ 'filetype': 'd',

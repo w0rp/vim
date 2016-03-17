@@ -298,9 +298,10 @@ let g:rainbow_active = 1
 
 " Make :lprev and :lnext work in Syntastic
 let g:syntastic_always_populate_loc_list = 1
-
 " Don't use a diff for pep8 auto-formatting, just do it.
 let g:autopep8_disable_show_diff = 1
+
+let g:syntastic_d_automatic_dub_include_dirs = 1
 
 " Bind keys for moving between warnings.
 noremap <C-S-k> :lprev <Return>
