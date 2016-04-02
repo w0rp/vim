@@ -17,6 +17,10 @@ snippet for
 	for ${1:x} in ${2:"$@"}; do
 		${3}
 	done
+snippet while
+	while read line; do
+		${1}
+	done
 # Handy tricks
 snippet thispath
 	thispath=$(dirname "$(readlink -f "$0")")
