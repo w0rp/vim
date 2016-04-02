@@ -14,9 +14,14 @@ fun! UnixMode()
 endf
 
 " A function for setting the execute bit for scripts.
-fun! SetExecuteBit()
+fun! NewBashScript()
+    :0put =\"#!/bin/bash -eu\"
+    :w! %
     :silent !chmod ug+x %
+    :e! %
 endf
+
+command! Bash call NewBashScript()
 
 " Open the snippet file associated with this type of file.
 fun! EditSnippet()
