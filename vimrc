@@ -60,6 +60,17 @@ if has('gui_running')
     cnoremap <C-V> <C-R>+
     cnoremap <S-Insert> <C-R>+
 
+    " CTRL-S Saves the file.
+    command -nargs=0 -bar Update if &modified
+        \|    if empty(bufname('%'))
+        \|        browse confirm write
+        \|    else
+        \|        confirm write
+        \|    endif
+        \|endif
+    nnoremap <silent> <C-S> :<C-u>Update<CR>
+    inoremap <c-s> <c-o>:Update<CR>
+
     " Set colour scheme
     colorscheme darkspectrum
 
@@ -200,6 +211,8 @@ set undodir=~/.vimcrap/undo//
 set undofile
 set undolevels=1000 "maximum number of changes that can be undone
 set undoreload=10000 "maximum number lines to save for undo on a buffer reload
+
+set hidden
 
 " Automatically re-open files after they have changed without prompting.
 " This can be a little more destructive, but a lot less annoying.
