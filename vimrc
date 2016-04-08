@@ -88,7 +88,7 @@ if has('gui_running')
 
     if v:version > 703
         " This makes copy and paste also work better.
-        set clipboard=unnamedplus
+        set clipboard=unnamed
     endif
 
     " Always show the tab bar.
