@@ -248,18 +248,7 @@ command Q q
 set viminfo='100,<50,s10,h,\"100,:50,%
 
 " Restore cursor positions for edited files.
-function! ResCur()
-  if line("'\"") <= line("$")
-    normal! g`"
-    return 1
-  endif
-endfunction
-
-augroup resCur
-  autocmd!
-  autocmd BufWinEnter * call ResCur()
-augroup END
-
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " Create directories if needed.
 fun! RequireDirectory(directory)
