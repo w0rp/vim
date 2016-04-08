@@ -2,15 +2,30 @@
 set nocompatible
 
 " We must replace the runtimepath to make everything work.
-set runtimepath=~/.vim,$VIM/vimfiles/,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
+set runtimepath=~/.vim,$VIM/vimfiles/,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after,~/.vim/bundle/vundle
+
+" Add a command for loading .vimrc completely.
+command! ReloadVimrc source $MYVIMRC
+
+" Start loading Vundle, and turn most things off.
+filetype off
+call vundle#begin()
+
+Plugin 'shougo/unite.vim'
+
+" Stop loading Vundle and return plugins and such on.
+call vundle#end()
+filetype plugin indent on
 
 " Prefer unix format for files.
 set ffs=unix,dos
 
 if has("unix")
-    " Reset the terminal to work around stupid bullshit
-    set term=linux
-    set t_Co=256
+    if !has('gui_running')
+        " Reset the terminal to work around stupid bullshit
+        set term=linux
+        set t_Co=256
+    endif
 else
     " Windows fun times!
 
@@ -61,7 +76,7 @@ if has('gui_running')
     cnoremap <S-Insert> <C-R>+
 
     " CTRL-S Saves the file.
-    command -nargs=0 -bar Update if &modified
+    command! -nargs=0 -bar Update if &modified
         \|    if empty(bufname('%'))
         \|        browse confirm write
         \|    else
@@ -121,9 +136,6 @@ imap <C-E> <Esc> d?[A-Z]<Return>i
 
 " Bind Ctrl + t to opening new tabs.
 noremap <C-t> :tabnew <Return>
-
-" Enable plugins.
-filetype plugin on
 
 " Enable syntax highlighting by default.
 if has("syntax")
@@ -234,8 +246,8 @@ map! <S-Insert> <MiddleMouse>
 map Q <Nop>
 
 " Make :Q and :W work like :q and :w
-command W w
-command Q q
+command! W w
+command! Q q
 
 " viminfo settings
 " '100 : Remember marks for 100 previously edited files.
