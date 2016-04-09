@@ -13,16 +13,9 @@ vnoremap <C-C> "+y
 vnoremap <C-X> "+x
 
 " CTRL-V pastes from the clipboard
-noremap <C-V> "+gP
-inoremap <C-V> <Esc>"+gPa
-cnoremap <C-V> <C-R>*
-
-if has("unix")
-    " SHIFT-Insert from the X selection buffer
-    noremap <S-Insert> "+gP
-    inoremap <S-Insert> <Esc>"+gPa
-    cnoremap <S-Insert> <C-R>+
-endif
+noremap <C-V> "+gPk$
+inoremap <C-V> <Esc>"+gPk$
+cnoremap <C-V> <C-R>+
 
 " CTRL-S Saves the file.
 command! -nargs=0 -bar Update if &modified
@@ -73,3 +66,6 @@ noremap <C-S-j> :lnext <Return>
 " Search for files in the project with Ctrl+H
 noremap <C-h> :UniteWithProjectDir file_rec/async:<Return>:setlocal modifiable<Return>i
 noremap <C-f> :UniteWithProjectDir grep<Return>
+
+" Toggle the project NERD tree with F2
+noremap <F2> :ToggleNERDTree<CR>

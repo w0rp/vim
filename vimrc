@@ -5,6 +5,8 @@ set nocompatible
 set runtimepath=~/.vim,$VIM/vimfiles/,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
 
 let &runtimepath.=',~/.vim/bundle/unite'
+let &runtimepath.=',~/.vim/bundle/nerdtree'
+let &runtimepath.=',~/.vim/bundle/nerdtree-project'
 
 " Add a command for loading .vimrc completely.
 command! ReloadVimrc source $MYVIMRC
@@ -61,7 +63,7 @@ if has('gui_running')
 
     if v:version > 703
         " This makes copy and paste also work better.
-        set clipboard=unnamed
+        set clipboard=unnamedplus
     endif
 
     " Always show the tab bar.
@@ -238,5 +240,8 @@ let g:unite_source_grep_default_opts=''
 let g:unite_source_grep_recursive_opt=''
 
 set autochdir
+
+" Close NERDTree automatically after opening a file with it.
+let NERDTreeQuitOnOpen=1
 
 source ~/.vim/keybinds.vim
