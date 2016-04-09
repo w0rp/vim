@@ -4,6 +4,8 @@ set nocompatible
 " We must replace the runtimepath to make everything work.
 set runtimepath=~/.vim,$VIM/vimfiles/,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
 
+let &runtimepath.=',~/.vim/bundle/unite'
+
 " Add a command for loading .vimrc completely.
 command! ReloadVimrc source $MYVIMRC
 
@@ -32,51 +34,10 @@ else
 
     " backspace and cursor keys wrap to previous/next line
     set backspace=indent,eol,start whichwrap+=<,>,[,]
-
-    if has('gui_running')
-        " For CTRL-V to work autoselect must be off.
-        set guioptions-=a
-    endif
 endif
 
 if has('gui_running')
     " gvim specific settings.
-
-    " CTRL-A is Select all
-    " This works better than the default Windows script.
-    noremap <C-A> ggVG
-    inoremap <C-A> <Esc>ggVG
-    cnoremap <C-A> <Esc>ggVG
-    onoremap <C-A> <Esc>ggVG
-    snoremap <C-A> <Esc>ggVG
-    xnoremap <C-A> <Esc>ggVG
-
-    " CTRL-C and CTRL-Insert are Copy
-    vnoremap <C-C> "+y
-    vnoremap <C-Insert> "+y
-
-    " CTRL-X and SHIFT-Del are Cut
-    vnoremap <C-X> "+x
-    vnoremap <S-Del> "+x
-
-    " CTRL-V and SHIFT-Insert are Paste
-    noremap <C-V> "+gP
-    noremap <S-Insert> <C-V>
-    inoremap <C-V> <Esc> "+gPi
-    inoremap <S-Insert> <C-V>
-    cnoremap <C-V> <C-R>+
-    cnoremap <S-Insert> <C-R>+
-
-    " CTRL-S Saves the file.
-    command! -nargs=0 -bar Update if &modified
-        \|    if empty(bufname('%'))
-        \|        browse confirm write
-        \|    else
-        \|        confirm write
-        \|    endif
-        \|endif
-    nnoremap <silent> <C-S> :<C-u>Update<CR>
-    inoremap <c-s> <c-o>:Update<CR>
 
     " Set colour scheme
     colorscheme darkspectrum
@@ -90,8 +51,13 @@ if has('gui_running')
     " Use console dialogs instead of dialog windows.
     set guioptions+=c
 
-    " Make copy and paste work and not be shit.
-    set guioptions+=a
+    if has("unix")
+        " Add autoselect so copy and paste will work.
+        set guioptions+=a
+    else
+        " Remove autoselect on other OSes.
+        set guioptions+=a
+    endif
 
     if v:version > 703
         " This makes copy and paste also work better.
@@ -115,20 +81,6 @@ else
     set nospell
 endif
 
-" Bind Ctrl + Tab to switch tabs
-map <C-tab> :tabn <Return>
-imap <C-tab> <Esc> :tabn <Return>
-
-" Ctrl + Shift + Tab to go back.
-map <C-S-tab> :tabp <Return>
-imap <C-S-tab> <Esc> :tabp <Return>
-
-map <C-E> d?[A-Z]<Return>
-imap <C-E> <Esc> d?[A-Z]<Return>i
-
-" Bind Ctrl + t to opening new tabs.
-noremap <C-t> :tabnew <Return>
-
 " Enable syntax highlighting by default.
 if has("syntax")
     syntax on
@@ -136,11 +88,7 @@ if has("syntax")
     " Reduce processing for syntax highlighting to make it less of a pain.
     syntax sync minlines=200
     syntax sync maxlines=500
-    set synmaxcol=200
-
-    " Use F12 to resync syntax from the start.
-    noremap <F12> <Esc>:syntax sync fromstart<CR>
-    inoremap <F12> <C-o>:syntax sync fromstart<CR>
+    set synmaxcol=400
 endif
 
 " Enable the status line at all times
@@ -159,9 +107,6 @@ set backspace=indent,eol,start
 " set lazyredraw
 
 set scrolloff=999
-
-" Make Ctrl+B do exactly the same thing as Ctrl+U.
-nnoremap <C-B> <C-U>
 
 " Default to spaces instead of tabs
 set expandtab
@@ -190,16 +135,6 @@ set list
 " These are files we are not likely to want to edit or read
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 
-" Map Ctrl-B to delete to the end of line in insert mode.
-imap <C-b> <Esc>lDa
-
-" Movement left and right in insert mode with Ctrl.
-inoremap <C-l> <Esc>la
-inoremap <C-h> <Esc>i
-
-inoremap <C-n> <C-x><C-o>
-inoremap <C-p> <C-x><C-o>
-
 " Change the status based on mode
 au InsertEnter * hi StatusLine term=reverse ctermbg=5 guisp=Magenta
 au InsertLeave * hi StatusLine term=reverse ctermfg=0 ctermbg=2 gui=bold,reverse
@@ -216,8 +151,6 @@ set undofile
 set undolevels=1000 "maximum number of changes that can be undone
 set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 
-set hidden
-
 " Automatically re-open files after they have changed without prompting.
 " This can be a little more destructive, but a lot less annoying.
 set autoread
@@ -229,13 +162,6 @@ set wrap
 
 " Disable automatic wrapping.
 set textwidth=0
-
-" Make shift-insert work like in Xterm (Nicked from archlinux.vim)
-map <S-Insert> <MiddleMouse>
-map! <S-Insert> <MiddleMouse>
-
-" Disable Ex mode, because fuck Ex mode.
-map Q <Nop>
 
 " Make :Q and :W work like :q and :w
 command! W w
@@ -285,9 +211,6 @@ au BufNewFile,BufRead *.json set filetype=javascript
 " .md is a markdown file.
 au BufNewFile,BufRead *.md set filetype=markdown
 
-" Use MySQL as the filetype for sql files.
-au BufNewFile,BufRead *.sql set filetype=mysql
-
 " Disable the sass syntax checker, because it's slow and crap.
 let g:syntastic_enable_scss_sass_checker = 0
 
@@ -310,8 +233,10 @@ let g:autopep8_disable_show_diff = 1
 let g:syntastic_d_automatic_dub_include_dirs = 1
 let g:syntastic_javascript_checkers = ['eslint']
 
-" Bind keys for moving between warnings.
-noremap <C-S-k> :lprev <Return>
-noremap <C-S-j> :lnext <Return>
+let g:unite_source_grep_command=expand('~/.vim/ag-search-command')
+let g:unite_source_grep_default_opts=''
+let g:unite_source_grep_recursive_opt=''
 
 set autochdir
+
+source ~/.vim/keybinds.vim
