@@ -243,5 +243,11 @@ set autochdir
 
 " Close NERDTree automatically after opening a file with it.
 let NERDTreeQuitOnOpen=1
+let NERDTreeMapActivateNode='<Space>'
+
+let NERDTreeIgnore = [
+\   '\.pyc$',
+\   '^__pycache__$',
+\]
 
 source ~/.vim/keybinds.vim
