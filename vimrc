@@ -2,20 +2,12 @@
 set nocompatible
 
 " We must replace the runtimepath to make everything work.
-set runtimepath=~/.vim,$VIM/vimfiles/,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after,~/.vim/bundle/vundle
+set runtimepath=~/.vim,$VIM/vimfiles/,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
 
 " Add a command for loading .vimrc completely.
 command! ReloadVimrc source $MYVIMRC
 
-" Start loading Vundle, and turn most things off.
-filetype off
-call vundle#begin()
-
-Plugin 'shougo/unite.vim'
-
-" Stop loading Vundle and return plugins and such on.
-call vundle#end()
-filetype plugin indent on
+filetype plugin on
 
 " Prefer unix format for files.
 set ffs=unix,dos
