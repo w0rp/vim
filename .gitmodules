@@ -1,0 +1,9 @@
+[submodule "bundle/nerdtree"]
+	path = bundle/nerdtree
+	url = git@github.com:scrooloose/nerdtree.git
+[submodule "bundle/nerdtree-project"]
+	path = bundle/nerdtree-project
+	url = git@github.com:janlay/NERD-tree-project.git
+[submodule "bundle/unite"]
+	path = bundle/unite
+	url = git@github.com:Shougo/unite.vim.git
