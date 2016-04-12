@@ -4,6 +4,13 @@ set nocompatible
 " We must replace the runtimepath to make everything work.
 set runtimepath=~/.vim,$VIM/vimfiles/,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
 
+let s:ag_opts='--nocolor --nogroup --hidden'
+let s:ag_opts.=' --ignore=.git --ignore=.svn --ignore=.hg --ignore=.bzr'
+
+" Use ag for searching for files themselves.
+let g:unite_source_rec_async_command=['ag'] + split(s:ag_opts) + ['-g']
+let g:unite_source_rec_command=g:unite_source_rec_async_command
+
 let &runtimepath.=',~/.vim/bundle/unite'
 let &runtimepath.=',~/.vim/bundle/nerdtree'
 let &runtimepath.=',~/.vim/bundle/nerdtree-project'
@@ -235,9 +242,13 @@ let g:autopep8_disable_show_diff = 1
 let g:syntastic_d_automatic_dub_include_dirs = 1
 let g:syntastic_javascript_checkers = ['eslint']
 
-let g:unite_source_grep_command=expand('~/.vim/ag-search-command')
-let g:unite_source_grep_default_opts=''
+" Use ag for search inside files.
+let g:unite_source_grep_command='ag'
+let g:unite_source_grep_default_opts=s:ag_opts . ' --line-numbers'
 let g:unite_source_grep_recursive_opt=''
+
+" Who the fuck knows what this does, but it makes things less slow.
+let g:unite_redraw_hold_candidates = 50000
 
 set autochdir
 

@@ -1,9 +1,4 @@
 #!/bin/bash -eu
 
-# Only print the first 10,000 lines of an ag search, so we don't crash Vim.
-ag --line-numbers --nocolor --nogroup --hidden \
-    --ignore=.git \
-    --ignore=.svn \
-    --ignore=.hg \
-    --ignore=.bzr \
-    "$@" | head -n 10000
+# Only print the first 2000 lines of an ag search, so we don't crash Vim.
+ag "$@" | head -n 2000
