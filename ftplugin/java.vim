@@ -1,6 +1,5 @@
-setlocal noexpandtab
 " Use more space for Java code.
-setlocal cc=132
+setlocal cc=80
 
 if has('gui_running')
     setlocal spell
