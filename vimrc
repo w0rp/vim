@@ -149,7 +149,7 @@ au InsertEnter * hi StatusLine term=reverse ctermbg=5 guisp=Magenta
 au InsertLeave * hi StatusLine term=reverse ctermfg=0 ctermbg=2 gui=bold,reverse
 
 " Automatically set the title to the full path.
-au BufEnter * set titlestring=%{expand(\"%:p\")}
+set titlestring=%(\ %{expand(\"%:p\")}\ %a%)
 
 " Use Blowfish for encryption, because it's awesome.
 set cryptmethod=blowfish
