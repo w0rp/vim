@@ -23,6 +23,16 @@ endf
 
 command! Bash call NewBashScript()
 
+" A function for setting the execute bit for scripts.
+fun! NewPythonScript()
+    :0put =\"#!/usr/bin/env python \"
+    :w! %
+    :silent !chmod ug+x %
+    :e! %
+endf
+
+command! Python call NewPythonScript()
+
 " Open the snippet file associated with this type of file.
 fun! EditSnippet()
     exec 'tabnew ' . g:snippets_dir . '/' . &l:filetype . '.snippets'

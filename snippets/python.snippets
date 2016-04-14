@@ -10,8 +10,11 @@ snippet join
 	"${1}".join(${2})
 # Main block
 snippet main
-	if __name__ == "__main__":
+	def main():
 		${1}
+
+	if __name__ == "__main__":
+		main()
 ## Functions and classes ##
 # doc string
 snippet doc
