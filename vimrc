@@ -6,10 +6,8 @@ set runtimepath=~/.vim,$VIM/vimfiles/,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/aft
 
 let s:ag_opts='--nocolor --nogroup --hidden'
 let s:ag_opts.=' --ignore=.git --ignore=.svn --ignore=.hg --ignore=.bzr'
-
 " Use ag for searching for files themselves.
-let g:unite_source_rec_async_command=['ag'] + split(s:ag_opts) + ['-g']
-let g:unite_source_rec_command=g:unite_source_rec_async_command
+let g:unite_source_rec_async_command=['ag'] + split(s:ag_opts) + ['-g', '']
 
 let &runtimepath.=',~/.vim/bundle/unite'
 let &runtimepath.=',~/.vim/bundle/nerdtree'
@@ -246,6 +244,9 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:unite_source_grep_command='ag'
 let g:unite_source_grep_default_opts=s:ag_opts . ' --line-numbers'
 let g:unite_source_grep_recursive_opt=''
+
+" Allow up to 2000 results to be displayed for grep.
+:call unite#custom#source('grep', 'max_candidates', 2000)
 
 " Who the fuck knows what this does, but it makes things less slow.
 let g:unite_redraw_hold_candidates = 50000
