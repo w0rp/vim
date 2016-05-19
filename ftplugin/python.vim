@@ -18,4 +18,5 @@ vmap <buffer> <C-r> :Align = :<Return>
 " Use the AutoPythonImport tool.
 map <buffer> <C-n> :call AutoPythonImport()<Return>
 
-vmap <buffer> <C-f> :call Autopep8(" --range " . line("'>") . " " . line("'>"))
+map <buffer> <F8> :call Autopep8()<Return>
+vmap <buffer> <F8> :call Autopep8(" --range " . line("'>") . " " . line("'>"))<Return>
