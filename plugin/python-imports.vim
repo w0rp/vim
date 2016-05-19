@@ -39,5 +39,6 @@ function AutoPythonImport()
     if !empty(l:line)
         " Insert the import line at the beginning of the file.
         call append(0, l:line)
+        python isort_file()
     endif
 endfunction
