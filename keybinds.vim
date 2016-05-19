@@ -60,8 +60,8 @@ inoremap <C-h> <Esc>i
 noremap Q <Nop>
 
 " Bind keys for moving between warnings.
-noremap <C-S-k> :lprev <Return>
-noremap <C-S-j> :lnext <Return>
+noremap <C-k> :PreviousError<Return>
+noremap <C-j> :NextError<Return>
 
 " Search for files in the project with Ctrl+H
 noremap <C-h> :UniteWithProjectDir file_rec/async:<Return>:setlocal modifiable<Return>i
