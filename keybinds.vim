@@ -67,6 +67,7 @@ noremap <C-S-j> :lnext <Return>
 noremap <C-h> :UniteWithProjectDir file_rec/async:<Return>:setlocal modifiable<Return>i
 noremap <C-S-h> :execute "normal \<Plug>(unite_redraw)"<Return>
 noremap <C-f> :UniteWithProjectDir grep<Return>
+noremap <F3> :UniteResume<Return>
 
 " Toggle the project NERD tree with F2
 noremap <F2> :ToggleNERDTree<CR>
