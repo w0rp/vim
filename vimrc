@@ -212,8 +212,6 @@ set nofoldenable
 
 " Treat lzz files like cpp files.
 au BufNewFile,BufRead *.lzz set filetype=cpp
-" Treat JSON files like JavaScript files.
-au BufNewFile,BufRead *.json set filetype=javascript
 
 " .md is a markdown file.
 au BufNewFile,BufRead *.md set filetype=markdown
