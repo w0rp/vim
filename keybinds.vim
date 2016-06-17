@@ -56,6 +56,10 @@ inoremap <C-b> <Esc>lDa
 inoremap <C-l> <Esc>la
 inoremap <C-h> <Esc>i
 
+" Bind Ctrl + [ to captialising the previous word for cruise control.
+inoremap <C-[> <Esc>gUiwwi
+noremap <C-[> gUiww
+
 " Disable Ex mode, because fuck Ex mode.
 noremap Q <Nop>
 
@@ -65,7 +69,6 @@ noremap <C-j> :NextError<Return>
 
 " Search for files in the project with Ctrl+H
 noremap <C-h> :UniteWithProjectDir file_rec/async:<Return>:setlocal modifiable<Return>i
-noremap <C-S-h> :execute "normal \<Plug>(unite_redraw)"<Return>
 noremap <C-f> :UniteWithProjectDir grep<Return>
 noremap <F3> :UniteResume<Return>
 
