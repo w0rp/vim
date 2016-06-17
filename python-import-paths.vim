@@ -27,4 +27,10 @@ let g:python_import_dict = {
 \   "RegexValidator": "from django.core.validators import RegexValidator",
 \   "AnonymousUser": "from django.contrib.auth.models import AnonymousUser",
 \   "status": "from rest_framework import status",
+\   "datetime": "import datetime",
+\   "deepcopy": "from copy import deepcopy",
+\   "json": "import json",
+\   "itertools": "import itertools",
+\   "operator": "import operator",
+\   "os": "import os",
 \}

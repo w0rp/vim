@@ -29,6 +29,9 @@ function AutoPythonImport()
         " Insert the import line at the beginning of the file.
         call append(0, l:line)
         python isort_file()
+        echo 'Import added!'
+    else
+        echo 'Import not found!'
     endif
 endfunction
 
