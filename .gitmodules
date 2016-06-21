@@ -7,3 +7,6 @@
 [submodule "bundle/unite"]
 	path = bundle/unite
 	url = git@github.com:Shougo/unite.vim.git
+[submodule "bundle/vim-pug"]
+	path = bundle/vim-pug
+	url = git@github.com:digitaltoad/vim-pug.git

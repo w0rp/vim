@@ -12,6 +12,7 @@ let g:unite_source_rec_async_command=['ag'] + split(s:ag_opts) + ['-g', '']
 let &runtimepath.=',~/.vim/bundle/unite'
 let &runtimepath.=',~/.vim/bundle/nerdtree'
 let &runtimepath.=',~/.vim/bundle/nerdtree-project'
+let &runtimepath.=',~/.vim/bundle/vim-pug'
 
 " Add a command for loading .vimrc completely.
 command! ReloadVimrc source $MYVIMRC
