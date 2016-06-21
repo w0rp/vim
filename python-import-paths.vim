@@ -33,4 +33,7 @@ let g:python_import_dict = {
 \   "itertools": "import itertools",
 \   "operator": "import operator",
 \   "os": "import os",
+\   "Manager": "from django.db.models import Manager",
+\   "SearchQuerySet": "from .base import SearchQuerySet",
+\   "CommunityObjectQuerySet": "from .base import CommunityObjectQuerySet",
 \}
