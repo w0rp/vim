@@ -262,3 +262,5 @@ let NERDTreeIgnore = [
 \]
 
 source ~/.vim/keybinds.vim
+
+let g:path_prefixes_to_trim = []

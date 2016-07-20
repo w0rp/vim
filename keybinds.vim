@@ -74,3 +74,25 @@ noremap <F3> :UniteResume<Return>
 
 " Toggle the project NERD tree with F2
 noremap <F2> :ToggleNERDTree<CR>
+
+fun! CopyFilenameToClipboard()
+    let l:current_filename = expand("%:p")
+
+    " Look through a configured array of prefixes to remove, and remove
+    " them from the filename if any match.
+    for prefix in g:path_prefixes_to_trim
+        if l:current_filename =~ '\V\^' . prefix
+            let l:current_filename = l:current_filename[len(prefix):]
+            " Remove additional leading slashes if removing prefixes.
+            let l:current_filename = substitute(l:current_filename, '^/*', '', '')
+
+            break
+        endif
+    endfor
+
+    let @+ = l:current_filename
+    echo 'Filename copied to clipboard'
+endf
+
+" Map F4 to copying the current filename to the clipboard.
+noremap <F4> :call CopyFilenameToClipboard()<CR>
