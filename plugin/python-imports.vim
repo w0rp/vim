@@ -26,9 +26,12 @@ function AutoPythonImport()
     let l:line = get(l:import_dict, expand("<cword>"), "")
 
     if !empty(l:line)
-        " Insert the import line at the beginning of the file.
-        call append(0, l:line)
+        " Insert the import line at the end of the file. isort will sort it
+        " out.
+        call append('$', l:line)
         python isort_file()
+        silent! %s#\($\n\s*\)\+\%$##
+        silent! normal ``
         echo 'Import added!'
     else
         echo 'Import not found!'
