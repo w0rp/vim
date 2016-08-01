@@ -1,3 +1,4 @@
+" FILE: ErrorListJumping.vim
 " Author: w0rp <devw0rp[at]gmail.com>
 " Copyright: Public Domain
 "
@@ -13,7 +14,7 @@ let g:loaded_error_list_jumping = 1
 
 " A function to find all current line numbers for quickfix and loclist
 " together in one list of lines.
-function g:ErrorListJumping#AllLineNumbers()
+function g:ErrorListJumpingAllLineNumbers()
     let numberList = []
 
     for result in getloclist(winnr()) + getqflist()
@@ -32,8 +33,8 @@ endfunction
 " Search for the nearest line either up or down the list.
 " If there are no lines in the quickfix list or loclist, then -1 will
 " be returned.
-function g:ErrorListJumping#FindNearest(direction)
-    let numberList = g:ErrorListJumping#AllLineNumbers()
+function g:ErrorListJumpingFindNearest(direction)
+    let numberList = g:ErrorListJumpingAllLineNumbers()
 
     if len(numberList) == 0
         return -1
@@ -72,21 +73,21 @@ function g:ErrorListJumping#FindNearest(direction)
     return nearest
 endfunction
 
-function g:ErrorListJumping#JumpToNextLine()
-    let nearest = g:ErrorListJumping#FindNearest("down")
+function g:ErrorListJumpingJumpToNextLine()
+    let nearest = g:ErrorListJumpingFindNearest("down")
 
     if nearest >= 0
         execute nearest
     endif
 endfunction
 
-function g:ErrorListJumping#JumpToPreviousLine()
-    let nearest = g:ErrorListJumping#FindNearest("up")
+function g:ErrorListJumpingJumpToPreviousLine()
+    let nearest = g:ErrorListJumpingFindNearest("up")
 
     if nearest >= 0
         execute nearest
     endif
 endfunction
 
-command NextError :call g:ErrorListJumping#JumpToNextLine()
-command PreviousError :call g:ErrorListJumping#JumpToPreviousLine()
+command NextError :call g:ErrorListJumpingJumpToNextLine()
+command PreviousError :call g:ErrorListJumpingJumpToPreviousLine()
