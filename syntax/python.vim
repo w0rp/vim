@@ -303,9 +303,5 @@ if version >= 508 || !exists("did_python_syn_inits")
   delcommand HiLink
 endif
 
-" Make Python syntax faster.
-syntax sync minlines=1000
-syntax sync maxlines=2000
-
 let b:current_syntax = "python"
 
