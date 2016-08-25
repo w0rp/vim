@@ -26,12 +26,20 @@ function AutoPythonImport()
     let l:line = get(l:import_dict, expand("<cword>"), "")
 
     if !empty(l:line)
+        " Save the current position.
+        let l:line_number=line('.')
+        let l:column_number=col('.')
+
         " Insert the import line at the end of the file. isort will sort it
         " out.
         call append('$', l:line)
         python isort_file()
+        " Remove any additional newlines isort mistakenly added to the end of
+        " the file.
         silent! %s#\($\n\s*\)\+\%$##
-        silent! normal ``
+        " Jump back to the line number and cursor before, which might be a
+        " little off.
+        call cursor(l:line_number, l:column_number)
         echo 'Import added!'
     else
         echo 'Import not found!'
