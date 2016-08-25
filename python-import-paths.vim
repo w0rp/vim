@@ -35,4 +35,8 @@ let g:python_import_dict = {
 \   "os": "import os",
 \   "Manager": "from django.db.models import Manager",
 \   "six": "import six",
+\   "partial": "from functools import partial",
+\   "io": "import io",
+\   "HttpResponse": "from django.http import HttpResponse",
+\   "unittest": "import unittest",
 \}
