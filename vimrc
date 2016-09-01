@@ -239,6 +239,9 @@ let g:autopep8_disable_show_diff = 1
 let g:syntastic_d_automatic_dub_include_dirs = 1
 let g:syntastic_javascript_checkers = ['eslint']
 
+" Tell Syntastic not to bother with Java files.
+let g:syntastic_java_checkers=['']
+
 " Use ag for search inside files.
 let g:unite_source_grep_command='ag'
 let g:unite_source_grep_default_opts=s:ag_opts . ' --line-numbers'
