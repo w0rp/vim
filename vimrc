@@ -13,6 +13,7 @@ let &runtimepath.=',~/.vim/bundle/unite'
 let &runtimepath.=',~/.vim/bundle/nerdtree'
 let &runtimepath.=',~/.vim/bundle/nerdtree-project'
 let &runtimepath.=',~/.vim/bundle/vim-pug'
+let &runtimepath.=',~/.vim/bundle/vim-autopep8'
 
 " Add a command for loading .vimrc completely.
 command! ReloadVimrc source $MYVIMRC
