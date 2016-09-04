@@ -10,6 +10,3 @@
 [submodule "bundle/vim-pug"]
 	path = bundle/vim-pug
 	url = git@github.com:digitaltoad/vim-pug.git
-[submodule "bundle/vim-autopep8"]
-	path = bundle/vim-autopep8
-	url = git@github.com:tell-k/vim-autopep8.git
