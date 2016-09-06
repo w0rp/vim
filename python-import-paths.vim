@@ -20,6 +20,7 @@ let g:python_import_dict = {
 \   "connection": "from django.db import connection",
 \   "datetime": "import datetime",
 \   "deepcopy": "from copy import deepcopy",
+\   "force_text": "from django.utils.encoding import force_text",
 \   "get_object_or_404": "from django.shortcuts import get_object_or_404",
 \   "io": "import io",
 \   "itertools": "import itertools",
@@ -39,4 +40,5 @@ let g:python_import_dict = {
 \   "unittest": "import unittest",
 \   "url_reverse": "from django.core.urlresolvers import reverse as url_reverse",
 \   "urlencode": "from urllib import urlencode",
+\   "Decimal": "from decimal import Decimal",
 \}
