@@ -144,10 +144,6 @@ set list
 " These are files we are not likely to want to edit or read
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 
-" Change the status based on mode
-au InsertEnter * hi StatusLine term=reverse ctermbg=5 guisp=Magenta
-au InsertLeave * hi StatusLine term=reverse ctermfg=0 ctermbg=2 gui=bold,reverse
-
 " Automatically set the title to the full path.
 set titlestring=%(\ %{expand(\"%:p\")}\ %a%)
 
@@ -186,9 +182,6 @@ command! Q q
 " %    : Save and restore the buffer list.
 set viminfo='100,<50,s10,h,\"100,:50,%
 
-" Restore cursor positions for edited files.
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-
 " Create directories if needed.
 fun! RequireDirectory(directory)
     if !isdirectory(a:directory)
@@ -211,12 +204,6 @@ endf
 
 " Disable folding because it's annoying.
 set nofoldenable
-
-" Treat lzz files like cpp files.
-au BufNewFile,BufRead *.lzz set filetype=cpp
-
-" .md is a markdown file.
-au BufNewFile,BufRead *.md set filetype=markdown
 
 " Disable the sass syntax checker, because it's slow and crap.
 let g:syntastic_enable_scss_sass_checker = 0
@@ -265,6 +252,7 @@ let NERDTreeIgnore = [
 \   '^__pycache__$',
 \]
 
-source ~/.vim/keybinds.vim
-
 let g:path_prefixes_to_trim = []
+
+source ~/.vim/keybinds.vim
+source ~/.vim/autocmd.vim

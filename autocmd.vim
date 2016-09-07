@@ -1,0 +1,13 @@
+augroup RestoreCursorPositionGroup
+    autocmd!
+    " Restore cursor positions for edited files.
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+augroup END
+
+augroup FiletypeGroup
+    autocmd!
+    " Treat lzz files like cpp files.
+    au BufNewFile,BufRead *.lzz set filetype=cpp
+    " .md is a markdown file.
+    au BufNewFile,BufRead *.md set filetype=markdown
+augroup END
