@@ -25,6 +25,11 @@
 " 2. Copy script pythonhelper.vim to the $HOME/.vim/plugin directory
 " 3. Run Vim and open any python file.
 "
+if !has('python')
+    " Give up if there is no Python support.
+    finish
+endif
+
 python << EOS
 
 # import of required modules {{{
