@@ -29,6 +29,9 @@ noremap <silent> <C-S> :<C-u>Update<CR>
 inoremap <c-s> <Esc><C-s>
 cnoremap <c-s> <Esc>
 
+" Bind gV so we can re-select pasted text.
+nnoremap <expr> gV "`[".getregtype(v:register)[0]."`]"
+
 " Bind Ctrl + Tab to switch tabs
 noremap <C-tab> :tabn <Return>
 inoremap <C-tab> <Esc> :tabn <Return>
