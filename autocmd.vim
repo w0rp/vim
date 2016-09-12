@@ -13,7 +13,7 @@ augroup FiletypeGroup
 augroup END
 
 " Automatically create directories on save.
-function s:MkNonExDir(file, buf)
+function! s:MkNonExDir(file, buf)
     if empty(getbufvar(a:buf, '&buftype')) && a:file !~# '\v^\w+\:\/'
         let dir = fnamemodify(a:file, ':h')
 

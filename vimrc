@@ -4,6 +4,9 @@ set nocompatible
 " We must replace the runtimepath to make everything work.
 set runtimepath=~/.vim,$VIM/vimfiles/,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
 
+" Add a command for loading .vimrc completely.
+command! ReloadVimrc source $MYVIMRC
+
 let s:ag_opts='--nocolor --nogroup --hidden'
 let s:ag_opts.=' --ignore=.git --ignore=.svn --ignore=.hg --ignore=.bzr'
 " Use ag for searching for files themselves.
@@ -14,9 +17,9 @@ let &runtimepath.=',~/.vim/bundle/nerdtree'
 let &runtimepath.=',~/.vim/bundle/nerdtree-project'
 let &runtimepath.=',~/.vim/bundle/vim-pug'
 let &runtimepath.=',~/.vim/bundle/vim-autopep8'
-
-" Add a command for loading .vimrc completely.
-command! ReloadVimrc source $MYVIMRC
+let &runtimepath.=',~/.vim/bundle/vim-addon-mw-utils'
+let &runtimepath.=',~/.vim/bundle/tlib_vim'
+let &runtimepath.=',~/.vim/bundle/snipmate'
 
 filetype plugin on
 
