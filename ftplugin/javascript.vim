@@ -8,7 +8,7 @@ endif
 " Map Ctrl+R to alignment.
 vmap <buffer> <C-r> :Align = :<Return>
 
-function! b:AutoFormatJavaScript()
+function! AutoFormatJavaScript()
     " Save the current position.
     let l:line_number=line('.')
     let l:column_number=col('.')
@@ -35,4 +35,4 @@ function! b:AutoFormatJavaScript()
     echo "Re-formatted code"
 endfunction
 
-map <buffer> <F8> :call b:AutoFormatJavaScript()<Return>
+map <buffer> <F8> :call AutoFormatJavaScript()<Return>

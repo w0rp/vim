@@ -18,7 +18,7 @@ vmap <buffer> <C-r> :Align = :<Return>
 " Use the AutoPythonImport tool.
 map <buffer> <C-n> :call AutoPythonImport()<Return>
 
-function! b:ApplyAutopep8()
+function! ApplyAutopep8()
     " Save the current position.
     let l:line_number=line('.')
     let l:column_number=col('.')
@@ -33,4 +33,4 @@ function! b:ApplyAutopep8()
     echo "Re-formatted code with autopep8"
 endfunction
 
-map <buffer> <F8> :call b:ApplyAutopep8()<Return>
+map <buffer> <F8> :call ApplyAutopep8()<Return>
