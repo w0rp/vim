@@ -1,20 +1,4 @@
 ## Control flow ###
-snippet for
-	for (var ${1:i} = ${2:0}; $1 < ${3:len}; ++$1) {
-		${4}
-	}
-snippet forr
-	for (var ${1:i} = ${2:len}; $1--;) {
-		${3}
-	}
-snippet each
-	foreach(${3:collection}, function(${1:_}, ${2:value}) {
-		${4}
-	});
-snippet foreach
-	foreach(${3:collection}, function(${1:_}, ${2:value}) {
-		${4}
-	});
 snippet forin
 	for (var ${1:variable} in ${2:sequence}) {
 		if ($2.hasOwnProperty($1)) {
@@ -33,10 +17,6 @@ snippet else
 	else {
 		${1}
 	}
-snippet debug
-	if (__debug__) {
-		${1}
-	}
 snippet switch
 	switch (${1:var}) {
 	${2}
@@ -45,10 +25,6 @@ snippet case
 	case ${1:val}:
 		${2}
 	break;
-snippet do
-	do {
-		${2}
-	} while (${1:condition})
 snippet while
 	while (${1:condition}) {
 		${2}
@@ -63,28 +39,6 @@ snippet try
 snippet ready
 	$(function() {
 		${1}
-	});
-## Classes ##
-snippet newclass
-	function ${1:Class} () {
-		"use strict";
-	}
-
-	defineclass($1, function(cls) {
-		"use strict";
-
-		${2}
-	});
-snippet class
-	function ${1:Class} () {
-		"use strict";
-		${2:SuperClass}.apply(this, arguments);
-	}
-
-	inherit($1, $2, function(cls, sup) {
-		"use strict";
-
-		${3}
 	});
 snippet module
 	function ${1:Module}() {
@@ -101,28 +55,29 @@ snippet /**
 	/**
 	 * ${1}
 	 */
+snippet =>
+	(${1}) => $2
 snippet {
 	{
-		${1}
+		${0}
 	}
+snippet (
+	{${0}
+	)
+snippet describe
+	describe('${1:Thing}', () => {
+		${0}
+	});
+snippet it
+	it('should ${1:message}', () => {
+		${0}
+	});
 snippet has
 	if (${1:object}.hasOwnProperty(${2:key})) {
 		continue;
 	}${3}
-snippet apply
-	apply(this, arguments);
 snippet func
 	function${1}() {
-		${2}
-	};
-snippet meth
-	cls.${1:meth} = function() {
-		${2}
-	};
-snippet over
-	cls.${1:meth} = function() {
-		sup.$1.apply(this, arguments);
-
 		${2}
 	};
 snippet use
