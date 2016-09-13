@@ -29,6 +29,7 @@ let g:python_import_dict = {
 \   "itertools": "import itertools",
 \   "json": "import json",
 \   "login_required": "from django.contrib.auth.decorators import login_required",
+\   "mock": "import mock",
 \   "operator": "import operator",
 \   "os": "import os",
 \   "partial": "from functools import partial",
