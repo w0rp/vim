@@ -5,6 +5,8 @@ if has('gui_running')
     setlocal spell
 endif
 
+let b:syntastic_javascript_eslint_exe = 'eslint_d'
+
 " Map Ctrl+R to alignment.
 vmap <buffer> <C-r> :Align = :<Return>
 
