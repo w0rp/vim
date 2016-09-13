@@ -73,7 +73,7 @@ noremap <C-j> :NextError<Return>
 " Search for files in the project with Ctrl+H
 noremap <C-h> :UniteWithProjectDir file_rec/async:<Return>:setlocal modifiable<Return>i
 noremap <C-f> :UniteWithProjectDir grep -no-empty<Return>
-noremap <F3> :UniteResume<Return>
+noremap <F3> :UniteResume<Return>:execute "normal \<Plug>(unite_redraw)"<Return>
 
 " Toggle the project NERD tree with F2
 noremap <F2> :ToggleNERDTree<CR>
