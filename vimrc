@@ -20,6 +20,7 @@ let &runtimepath.=',~/.vim/bundle/vim-autopep8'
 let &runtimepath.=',~/.vim/bundle/vim-addon-mw-utils'
 let &runtimepath.=',~/.vim/bundle/tlib_vim'
 let &runtimepath.=',~/.vim/bundle/snipmate'
+let &runtimepath.=',~/.vim/bundle/ale'
 
 filetype plugin on
 
