@@ -15,7 +15,7 @@ if !exists('g:vim_isort_map')
 endif
 
 if g:vim_isort_map != ''
-    execute "vnoremap <buffer>" g:vim_isort_map s:available_short_python "isort_visual()<CR>"
+    execute "vnoremap <silent> <buffer>" g:vim_isort_map s:available_short_python "isort_visual()<CR>"
 endif
 
 AvailablePython <<EOF
