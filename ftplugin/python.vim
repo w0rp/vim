@@ -34,3 +34,30 @@ function! ApplyAutopep8()
 endfunction
 
 map <buffer> <F8> :call ApplyAutopep8()<Return>
+
+function! GeneratePythonSuperCall()
+    let class_line = search('^class', 'bn')
+    let def_line = search('^\s*def', 'bn')
+
+    if class_line <= 0 or def_line <= 0
+        return ''
+    fi
+
+    let class_match = matchlist(getline(class_line), '^class \+\([^(]\+\)(')
+
+    if len(class_match) == 0
+        return ''
+    endif
+
+    let class_name = class_match[1]
+
+    let def_match = matchlist(getline(class_line), '^\s*def \+\([^(]\+\)(')
+
+    if len(def_match) == 0
+        return ''
+    endif
+
+    let method_name = def_match[1]
+
+    return 'super(' . class_name ', self).' . method_name
+endfunction
