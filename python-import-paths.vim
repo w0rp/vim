@@ -46,4 +46,5 @@ let g:python_import_dict = {
 \   "unittest": "import unittest",
 \   "url_reverse": "from django.core.urlresolvers import reverse as url_reverse",
 \   "urlencode": "from urllib import urlencode",
+\   "time": "import time",
 \}
