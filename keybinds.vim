@@ -60,8 +60,8 @@ inoremap <C-l> <Esc>la
 inoremap <C-h> <Esc>i
 
 " Bind Ctrl + [ to captialising the previous word for cruise control.
-inoremap <C-[> <Esc>gUiwwi
-noremap <C-[> gUiww
+inoremap <C-[> <Esc>gUiwea
+noremap <C-[> gUiwe
 
 " Disable Ex mode, because fuck Ex mode.
 noremap Q <Nop>
