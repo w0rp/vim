@@ -4,7 +4,7 @@ endif
 
 let g:loaded_python_imports = 1
 
-function AutoPythonImport()
+function AutoPythonImport(word)
     " Load the file with the import paths again, so we can modify the
     " dictionary while the file is still open.
     source ~/.vim/python-import-paths.vim
@@ -23,7 +23,19 @@ function AutoPythonImport()
         call extend(l:import_dict, g:user_python_import_dict)
     endif
 
-    let l:line = get(l:import_dict, expand("<cword>"), "")
+    let l:line = get(l:import_dict, a:word, "")
+
+    " from imports should have values like 'from some_module'
+    " We will automatically add on ' import something' based on the key.
+    " The imports can also be written 'from some_module import x as'
+    " for aliased imports.
+    if l:line =~# '^from'
+        if l:line =~# 'as$'
+            let l:line .= ' ' . a:word
+        else
+            let l:line .= ' import ' . a:word
+        endif
+    endif
 
     if !empty(l:line)
         " Save the current position.

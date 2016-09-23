@@ -16,7 +16,7 @@ vmap <buffer> <C-,> :s/^\(\s*\)#/\1/<Return>
 vmap <buffer> <C-r> :Align = :<Return>
 
 " Use the AutoPythonImport tool.
-map <buffer> <C-n> :call AutoPythonImport()<Return>
+map <buffer> <C-n> :call AutoPythonImport(expand("<cword>"))<Return>
 
 function! ApplyAutopep8()
     " Save the current position.
