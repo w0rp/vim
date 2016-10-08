@@ -1,2 +1,46 @@
 # Nothing here!
 
+snippet ale_linter
+	" Author: w0rp - <devw0rp@gmail.com>
+	" Description: Describe this!
+
+	if exists('g:loaded_ale_linters_${1:`expand('%:p:h:t')`}_${2:`expand('%:p:t:r')`}')
+		finish
+	endif
+
+	let g:loaded_ale_linters_$1_$2 = 1
+
+	function! ale_linters#$1#$2#Handle(buffer, lines)
+		" Matches patterns like the following:
+		"
+		" EXAMPLE HERE
+		let pattern = '^.\+:\(\d\+\):\(\d\+\): \(.\+\)'
+		let output = []
+
+		for line in a:lines
+			let l:match = matchlist(line, pattern)
+
+			if len(l:match) == 0
+				continue
+			endif
+
+			call add(output, {
+			\   'bufnr': a:buffer,
+			\   'lnum': l:match[1] + 0,
+			\   'vcol': 0,
+			\   'col': l:match[2] + 0,
+			\   'text': l:match[3],
+			\   'type': 'E',
+			\   'nr': -1,
+			\})
+		endfor
+
+		return output
+	endfunction
+
+	call ALEAddLinter('$1', {
+	\   'name': '$2',
+	\   'executable': '$2',
+	\   'command': '$2',
+	\   'callback': 'ale_linters#$1#$2#Handle',
+	\})
