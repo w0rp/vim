@@ -24,6 +24,9 @@ let &runtimepath.=',~/.vim/bundle/ale'
 
 filetype plugin on
 
+" Automatically regenerate help tags.
+silent! helptags ALL
+
 " Prefer unix format for files.
 set ffs=unix,dos
 
