@@ -261,5 +261,7 @@ let g:path_prefixes_to_trim = []
 " Disable ALE warnings about trailing whitespace.
 let g:ale_warn_about_trailing_whitespace = 0
 
+let g:ale_linters = {'javascript': ['eslint']}
+
 source ~/.vim/keybinds.vim
 source ~/.vim/autocmd.vim
