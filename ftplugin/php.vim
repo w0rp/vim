@@ -7,9 +7,6 @@ setlocal formatoptions+=cro
 " continuation problems.
 setlocal cindent
 
-vmap <buffer> <C-r> :Align => =<Return>
-
 if has('gui_running')
     setlocal spell
 endif
-
