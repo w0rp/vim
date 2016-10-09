@@ -20,6 +20,8 @@ let &runtimepath.=',~/.vim/bundle/vim-autopep8'
 let &runtimepath.=',~/.vim/bundle/vim-addon-mw-utils'
 let &runtimepath.=',~/.vim/bundle/tlib_vim'
 let &runtimepath.=',~/.vim/bundle/snipmate'
+let &runtimepath.=',~/.vim/bundle/vim-airline'
+let &runtimepath.=',~/.vim/bundle/vim-airline-themes'
 let &runtimepath.=',~/.vim/bundle/ale'
 
 filetype plugin on
@@ -57,6 +59,8 @@ if has('gui_running')
 
     " Set colour scheme
     colorscheme darkspectrum
+
+    set guifont=Inconsolata\ for\ Powerline\ Medium\ 18
 
     " remove menu bar from gvim
     set guioptions-=m
@@ -260,6 +264,24 @@ let NERDTreeIgnore = [
 \]
 
 let g:path_prefixes_to_trim = []
+
+" Disable the spelling marker for airline.
+let g:airline_detect_spell = 0
+
+let g:airline_theme = 'luna'
+
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+
+let g:airline_powerline_fonts = 1
+
+" Disable the airline section which shows the file encoding mode.
+let g:airline_section_y = ''
+" Show just the line and column number in section z
+let g:airline_section_z = '%L:%v'
+let g:airline_section_error = '%{ALEGetStatusLine()}'
 
 " Disable ALE warnings about trailing whitespace.
 let g:ale_warn_about_trailing_whitespace = 0
