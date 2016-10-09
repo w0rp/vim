@@ -268,6 +268,9 @@ let NERDTreeIgnore = [
 
 let g:path_prefixes_to_trim = []
 
+" Do not echo the mode airline will display it instead.
+set noshowmode
+
 " Disable the spelling marker for airline.
 let g:airline_detect_spell = 0
 
@@ -285,6 +288,21 @@ let g:airline_section_y = ''
 " Show just the line and column number in section z
 let g:airline_section_z = '%L:%v'
 let g:airline_section_error = '%{ALEGetStatusLine()}'
+
+" Use single characters for modes.
+let g:airline_mode_map = {
+\   '__' : '-',
+\   'n'  : 'N',
+\   'i'  : 'I',
+\   'R'  : 'R',
+\   'c'  : 'C',
+\   'v'  : 'V',
+\   'V'  : 'V',
+\   '' : 'V',
+\   's'  : 'S',
+\   'S'  : 'S',
+\   '' : 'S',
+\}
 
 " Disable ALE warnings about trailing whitespace.
 let g:ale_warn_about_trailing_whitespace = 0
