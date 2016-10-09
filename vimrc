@@ -1,3 +1,6 @@
+" vint: -ProhibitSetNoCompatible
+scriptencoding utf-8
+
 " Make the VIM happen.
 set nocompatible
 
@@ -32,7 +35,7 @@ silent! helptags ALL
 " Prefer unix format for files.
 set ffs=unix,dos
 
-if has("unix")
+if has('unix')
     if !has('gui_running')
         " Reset the terminal to work around stupid bullshit
         set term=linux
@@ -71,7 +74,7 @@ if has('gui_running')
     " Use console dialogs instead of dialog windows.
     set guioptions+=c
 
-    if has("unix")
+    if has('unix')
         " Add autoselect so copy and paste will work.
         set guioptions+=a
     else
@@ -102,7 +105,7 @@ else
 endif
 
 " Enable syntax highlighting by default.
-if has("syntax")
+if has('syntax')
     syntax on
 
     " Reduce processing for syntax highlighting to make it less of a pain.
@@ -201,13 +204,13 @@ fun! RequireDirectory(directory)
 endf
 
 " Make the needed directories
-call RequireDirectory(expand("~") . "/.vimcrap")
-call RequireDirectory(expand("~") . "/.vimcrap/swp")
-call RequireDirectory(expand("~") . "/.vimcrap/backup")
-call RequireDirectory(expand("~") . "/.vimcrap/undo")
+call RequireDirectory(expand('~') . '/.vimcrap')
+call RequireDirectory(expand('~') . '/.vimcrap/swp')
+call RequireDirectory(expand('~') . '/.vimcrap/backup')
+call RequireDirectory(expand('~') . '/.vimcrap/undo')
 
 fun! OpenHpp()
-    if expand("%:e") == "cpp"
+    if expand('%:e') ==# 'cpp'
         " Open hpp files in a split view when opening cpp files.
         new +res\ 12 %:r.hpp
     endif
