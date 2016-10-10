@@ -51,4 +51,5 @@ let g:python_import_dict = {
 \   "url_reverse": "from django.core.urlresolvers import reverse as",
 \   "urlencode": "from six.moves.urllib.parse",
 \   "urlparse": "from six.moves.urllib.parse",
+\   "call_command": "from django.core.management",
 \}
