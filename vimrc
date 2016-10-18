@@ -26,6 +26,7 @@ let &runtimepath.=',~/.vim/bundle/snipmate'
 let &runtimepath.=',~/.vim/bundle/vim-airline'
 let &runtimepath.=',~/.vim/bundle/vim-airline-themes'
 let &runtimepath.=',~/.vim/bundle/ale'
+let &runtimepath.=',~/.vim/bundle/vader'
 
 filetype plugin on
 
@@ -33,7 +34,7 @@ filetype plugin on
 silent! helptags ALL
 
 " Prefer unix format for files.
-set ffs=unix,dos
+set fileformats=unix,dos
 
 if has('unix')
     if !has('gui_running')
@@ -48,7 +49,7 @@ else
     if 1 " only do this when compiled with expression evaluation
       let s:save_cpo = &cpoptions
     endif
-    set cpo&vim
+    set cpoptions&vim
 
     " set 'selection', 'selectmode', 'mousemodel' and 'keymodel' for MS-Windows
     behave mswin
@@ -99,7 +100,7 @@ else
     " When the GUI is not running...
 
     " Use simple highlighting.
-    set bg=dark
+    set background=dark
 
     set nospell
 endif
@@ -175,7 +176,7 @@ set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 set autoread
 
 " Set the right margin.
-set cc=80
+set colorcolumn=80
 " Automatically split words at the margin.
 set wrap
 
@@ -258,10 +259,10 @@ let g:unite_redraw_hold_candidates = 50000
 set autochdir
 
 " Close NERDTree automatically after opening a file with it.
-let NERDTreeQuitOnOpen=1
-let NERDTreeMapActivateNode='<Space>'
+let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeMapActivateNode = '<Space>'
 
-let NERDTreeIgnore = [
+let g:NERDTreeIgnore = [
 \   '\.pyc$',
 \   '^__pycache__$',
 \]
