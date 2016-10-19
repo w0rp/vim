@@ -312,3 +312,11 @@ let g:ale_linters = {'javascript': ['eslint']}
 
 source ~/.vim/keybinds.vim
 source ~/.vim/autocmd.vim
+
+" Warn about not being able to write to .viminfo, which messes up restoring
+" the cursor position when editing.
+let s:info_filename = expand('~/.viminfo')
+
+if !empty(glob(s:info_filename)) && !filewritable(s:info_filename)
+    echoerr 'The .viminfo file cannot be written to!'
+endif
