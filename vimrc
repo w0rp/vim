@@ -277,10 +277,19 @@ let g:airline_detect_spell = 0
 
 let g:airline_theme = 'luna'
 
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
+if has('gui_running')
+    " Use fancy separators for airline in GVim
+    let g:airline_left_sep = ''
+    let g:airline_left_alt_sep = ''
+    let g:airline_right_sep = ''
+    let g:airline_right_alt_sep = ''
+else
+    " Don't use fancy symbols which render like shit in terminals
+    let g:airline_left_sep = ''
+    let g:airline_left_alt_sep = ''
+    let g:airline_right_sep = ''
+    let g:airline_right_alt_sep = ''
+endif
 
 let g:airline_powerline_fonts = 1
 
