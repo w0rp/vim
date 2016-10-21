@@ -320,3 +320,6 @@ let s:info_filename = expand('~/.viminfo')
 if !empty(glob(s:info_filename)) && !filewritable(s:info_filename)
     echoerr 'The .viminfo file cannot be written to!'
 endif
+
+" Disable replace mode, which turns on in bad terminals for some reason.
+nnoremap R <Esc>
