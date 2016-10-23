@@ -43,7 +43,7 @@ inoremap <C-S-tab> <Esc> :tabp <Return>
 " Bind Ctrl + t to opening new tabs.
 noremap <C-t> :tabnew <Return>
 
-if has("syntax")
+if has('syntax')
     " Use F12 to resync syntax from the start.
     noremap <F12> <Esc>:syntax sync fromstart<CR>
     inoremap <F12> <C-o>:syntax sync fromstart<CR>
@@ -67,8 +67,8 @@ noremap <C-[> gUiwe
 noremap Q <Nop>
 
 " Bind keys for moving between warnings.
-noremap <C-k> :PreviousError<Return>
-noremap <C-j> :NextError<Return>
+noremap <silent> <C-k> :PreviousError<Return>
+noremap <silent> <C-j> :NextError<Return>
 
 " Search for files in the project with Ctrl+H
 noremap <C-h> :UniteWithProjectDir file_rec/async:<Return>:setlocal modifiable<Return>i
@@ -79,13 +79,13 @@ noremap <F3> :UniteResume<Return>:execute "normal \<Plug>(unite_redraw)"<Return>
 noremap <F2> :ToggleNERDTree<CR>
 
 fun! CopyFilenameToClipboard()
-    let l:current_filename = expand("%:p")
+    let l:current_filename = expand('%:p')
 
     " Look through a configured array of prefixes to remove, and remove
     " them from the filename if any match.
-    for prefix in g:path_prefixes_to_trim
-        if l:current_filename =~ '\V\^' . prefix
-            let l:current_filename = l:current_filename[len(prefix):]
+    for l:prefix in g:path_prefixes_to_trim
+        if l:current_filename =~ '\V\^' . l:prefix
+            let l:current_filename = l:current_filename[len(l:prefix):]
             " Remove additional leading slashes if removing prefixes.
             let l:current_filename = substitute(l:current_filename, '^/*', '', '')
 
