@@ -293,10 +293,51 @@ endif
 
 let g:airline_powerline_fonts = 1
 
+function! ShowClasses() abort
+    let l:text = ''
+
+    if &filetype ==# 'python'
+        let l:class_line = search('^class ', 'bnW')
+        let l:class_name = ''
+        let l:def_line = search('^\(\|    \|\t\)def ', 'bnW')
+        let l:def_name = ''
+
+        if l:class_line
+            let l:class_name = substitute(
+            \   getline(l:class_line),
+            \   'class \([a-zA-Z0-9]\+\).*',
+            \   '\1',
+            \   ''
+            \)
+        endif
+
+        if l:def_line && (!l:class_line || l:def_line > l:class_line)
+            let l:def_name = substitute(
+            \   getline(l:def_line),
+            \   '.*def \([a-zA-Z0-9_]\+\).*',
+            \   '\1',
+            \   ''
+            \)
+        endif
+
+        if !empty(l:class_name)
+            if !empty(l:def_name)
+                let l:text = l:class_name . '.' . l:def_name
+            else
+                let l:text = l:class_name
+            endif
+        elseif !empty(l:def_name)
+            let l:text = l:def_name
+        endif
+    endif
+
+    return l:text
+endfunction
+
 " Disable the airline section which shows the file encoding mode.
-let g:airline_section_y = ''
+let g:airline_section_y = '%{ShowClasses()}'
 " Show just the line and column number in section z
-let g:airline_section_z = '%L:%v'
+let g:airline_section_z = '%l:%v'
 let g:airline_section_error = '%{ALEGetStatusLine()}'
 
 " Use single characters for modes.
