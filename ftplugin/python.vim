@@ -1,5 +1,5 @@
 setlocal expandtab
-setlocal cc=80
+setlocal colorcolumn=80
 " Enable comment continuation.
 setlocal formatoptions+=cro
 setlocal foldmethod=indent
@@ -28,46 +28,8 @@ function! ApplyAutopep8()
     " little off.
     call cursor(l:line_number, l:column_number)
 
-    echo "Re-formatted code with autopep8"
+    echo 'Re-formatted code with autopep8'
 endfunction
 
 map <buffer> <F8> :call ApplyAutopep8()<Return>
-
-function! GeneratePythonSuperCall()
-    let class_line = search('^class', 'bn')
-    let def_line = search('^\s*def', 'bn')
-
-    if class_line <= 0 || def_line <= 0
-        return ''
-    endif
-
-    let class_match = matchlist(getline(class_line), '^class \+\([^(]\+\)(')
-
-    if len(class_match) == 0
-        return ''
-    endif
-
-    let class_name = class_match[1]
-
-    let def_match = matchlist(getline(def_line), '^\s*def \+\([^(]\+\)(')
-
-    if len(def_match) == 0
-        return ''
-    endif
-
-    let method_name = def_match[1]
-
-    let def_closing_line = def_line
-
-    while def_closing_line != line('$') && len(matchlist(getline(def_closing_line), '):')) == 0
-        def_closing_line += 1
-    endwhile
-
-    if def_closing_line == line('$')
-        return ''
-    endif
-
-    " TODO Use line range to extract arguments.
-
-    return 'super(' . class_name . ', self).' . method_name
-endfunction
+map <buffer> <C-y> <Plug>(python_tools_run_pytest_on_class_at_cursor)

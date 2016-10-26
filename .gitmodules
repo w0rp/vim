@@ -31,3 +31,6 @@
 [submodule "bundle/vader"]
 	path = bundle/vader
 	url = git@github.com:junegunn/vader.vim.git
+[submodule "bundle/python-tools"]
+	path = bundle/python-tools
+	url = git@github.com:w0rp/python_tools.git
