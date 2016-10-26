@@ -67,8 +67,8 @@ noremap <C-[> gUiwe
 noremap Q <Nop>
 
 " Bind keys for moving between warnings.
-noremap <silent> <C-k> :PreviousError<Return>
-noremap <silent> <C-j> :NextError<Return>
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " Search for files in the project with Ctrl+H
 noremap <C-h> :UniteWithProjectDir file_rec/async:<Return>:setlocal modifiable<Return>i
