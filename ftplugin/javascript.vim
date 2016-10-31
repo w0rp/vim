@@ -1,5 +1,9 @@
 setlocal expandtab
-setlocal cc=80
+setlocal colorcolumn=80
+" Use 2 space tabs for JavaScript
+setlocal tabstop=2
+setlocal shiftwidth=2
+setlocal softtabstop=2
 
 if has('gui_running')
     setlocal spell
@@ -31,7 +35,7 @@ function! AutoFormatJavaScript()
     " little off.
     call cursor(l:line_number, l:column_number)
 
-    echo "Re-formatted code"
+    echo 'Re-formatted code'
 endfunction
 
 map <buffer> <F8> :call AutoFormatJavaScript()<Return>
