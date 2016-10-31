@@ -32,4 +32,5 @@ function! ApplyAutopep8()
 endfunction
 
 map <buffer> <F8> :call ApplyAutopep8()<Return>
-map <buffer> <C-y> <Plug>(python_tools_run_pytest_on_class_at_cursor)
+map <buffer> <F9> <Plug>(python_tools_pytest_class_reuse_db)
+map <buffer> <C-F9> <Plug>(python_tools_pytest_class)
