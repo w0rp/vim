@@ -29,6 +29,10 @@ noremap <silent> <C-S> :<C-u>Update<CR>
 inoremap <c-s> <Esc><C-s>
 cnoremap <c-s> <Esc>
 
+" Make using Ctrl+C to exit insert mode also send a keybind to switch back
+" to latin mode in Anthy.
+inoremap <silent> <C-c> <C-c>:silent !xdotool key Ctrl+8<Return>
+
 " Bind gV so we can re-select pasted text.
 nnoremap <expr> gV "`[".getregtype(v:register)[0]."`]"
 
