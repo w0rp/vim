@@ -67,11 +67,15 @@ snippet (
 snippet describe
 	describe('${1:Thing}', () => {
 		${0}
-	});
+	})
 snippet it
 	it('should ${1:message}', () => {
 		${0}
-	});
+	})
+snippet beforeEach
+	beforeEach(() => {
+		${0}
+	})
 snippet has
 	if (${1:object}.hasOwnProperty(${2:key})) {
 		continue;
