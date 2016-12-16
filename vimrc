@@ -318,7 +318,7 @@ let g:airline_mode_map = {
 " Disable ALE warnings about trailing whitespace.
 let g:ale_warn_about_trailing_whitespace = 0
 
-let g:ale_linters = {'javascript': ['eslint']}
+let g:ale_linters = {'javascript': ['eslint'], 'html': []}
 
 source ~/.vim/keybinds.vim
 source ~/.vim/autocmd.vim
