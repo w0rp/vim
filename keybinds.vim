@@ -18,16 +18,9 @@ inoremap <C-V> <Esc>"+gPk$
 cnoremap <C-V> <C-R>+
 
 " CTRL-S Saves the file.
-command! -nargs=0 -bar Update if &modified
-    \|    if empty(bufname('%'))
-    \|        browse confirm write
-    \|    else
-    \|        confirm write
-    \|    endif
-    \|endif
-noremap <silent> <C-S> :<C-u>Update<CR>
-inoremap <c-s> <Esc><C-s>
-cnoremap <c-s> <Esc>
+noremap <silent> <C-S> :w<CR>
+vnoremap <silent> <C-S> <C-C>:w<CR>
+inoremap <silent> <C-S> <C-C>:w<CR>
 
 " Make using Ctrl+C to exit insert mode also send a keybind to switch back
 " to latin mode in Anthy.
