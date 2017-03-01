@@ -3,4 +3,4 @@
 noremap <buffer> <space> <C-]>
 noremap <buffer> <BS> <C-O>
 " Quit help windows by just pressing q
-noremap <buffer> q :q<Return>
+noremap <buffer> q :q!<Return>
