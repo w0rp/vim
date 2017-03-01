@@ -68,7 +68,7 @@ nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " Search for files in the project with Ctrl+H
-noremap <C-h> :UniteWithProjectDir file_rec/async:<Return>:setlocal modifiable<Return>i
+noremap <C-h> :UniteWithProjectDir file_rec/git:<Return>:setlocal modifiable<Return>i
 noremap <C-f> :UniteWithProjectDir grep -no-empty<Return>
 noremap <F3> :UniteResume<Return>:execute "normal \<Plug>(unite_redraw)"<Return>
 
