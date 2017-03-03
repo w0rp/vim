@@ -1,6 +1,6 @@
 #!/bin/bash -eu
 
-function faketty { script -qfc "$(printf "%q " "$@")"; }
+function faketty { script -qfc "$(printf "%q " "$@")" /dev/null; }
 
 # Run the ag command in a fake TTY and sort the output.
 # This will let us get predictable results, and quickly.
