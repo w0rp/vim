@@ -6,4 +6,4 @@ function faketty { script -qfc "$(printf "%q " "$@")"; }
 # This will let us get predictable results, and quickly.
 faketty ag --nocolor --nogroup --hidden --line-numbers --filename \
     --ignore=.git --ignore=.svn --ignore=.hg --ignore=.bzr \
-    "$@" | sort
+    -- "$@" | sort
