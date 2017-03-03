@@ -10,6 +10,10 @@ set runtimepath=~/.vim,$VIM/vimfiles/,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/aft
 " Add a command for loading .vimrc completely.
 command! ReloadVimrc source $MYVIMRC
 
+let s:ag_opts='--nocolor --nogroup --hidden'
+let s:ag_opts.=' --ignore=.git --ignore=.svn --ignore=.hg --ignore=.bzr'
+let g:unite_source_rec_async_command=['ag'] + split(s:ag_opts) + ['-g', '']
+
 let &runtimepath.=',~/.vim/bundle/unite'
 let &runtimepath.=',~/.vim/bundle/nerdtree'
 let &runtimepath.=',~/.vim/bundle/nerdtree-project'
