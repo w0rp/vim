@@ -1,4 +1,9 @@
 #!/bin/bash -eu
 
-# Only print the first 2000 lines of an ag search, so we don't crash Vim.
-ag "$@" | head -n 2000
+function faketty { script -qfc "$(printf "%q " "$@")"; }
+
+# Run the ag command in a fake TTY and sort the output.
+# This will let us get predictable results, and quickly.
+faketty ag --nocolor --nogroup --hidden --line-numbers --filename \
+    --ignore=.git --ignore=.svn --ignore=.hg --ignore=.bzr \
+    "$@" | sort

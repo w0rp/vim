@@ -10,11 +10,6 @@ set runtimepath=~/.vim,$VIM/vimfiles/,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/aft
 " Add a command for loading .vimrc completely.
 command! ReloadVimrc source $MYVIMRC
 
-let s:ag_opts='--nocolor --nogroup --hidden'
-let s:ag_opts.=' --ignore=.git --ignore=.svn --ignore=.hg --ignore=.bzr'
-" Use ag for searching for files themselves.
-let g:unite_source_rec_async_command=['ag'] + split(s:ag_opts) + ['-g', '']
-
 let &runtimepath.=',~/.vim/bundle/unite'
 let &runtimepath.=',~/.vim/bundle/nerdtree'
 let &runtimepath.=',~/.vim/bundle/nerdtree-project'
@@ -246,9 +241,10 @@ let g:syntastic_javascript_checkers = ['eslint']
 " Tell Syntastic not to bother with Java files.
 let g:syntastic_java_checkers=['']
 
+
 " Use ag for search inside files.
-let g:unite_source_grep_command='ag'
-let g:unite_source_grep_default_opts=s:ag_opts . ' --line-numbers'
+let g:unite_source_grep_command=expand('<sfile>:p:h') . '/ag-search-command'
+let g:unite_source_grep_default_opts=''
 let g:unite_source_grep_recursive_opt=''
 
 " Allow up to 2000 results to be displayed for grep.
