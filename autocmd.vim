@@ -12,4 +12,6 @@ augroup FiletypeGroup
     au BufNewFile,BufRead *.md set filetype=markdown
     " .pug is a Pug file.
     au BufNewFile,BufRead *.pug set filetype=pug
+    " .vader is a Vader file
+    au BufNewFile,BufRead *.vader set filetype=vader
 augroup END
