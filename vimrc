@@ -14,6 +14,8 @@ let s:ag_opts='--nocolor --nogroup --hidden'
 let s:ag_opts.=' --ignore=.git --ignore=.svn --ignore=.hg --ignore=.bzr'
 let g:unite_source_rec_async_command=['ag'] + split(s:ag_opts) + ['-g', '']
 
+let &runtimepath.=',~/.vim/bundle/vim-misc'
+let &runtimepath.=',~/.vim/bundle/vim-reload'
 let &runtimepath.=',~/.vim/bundle/unite'
 let &runtimepath.=',~/.vim/bundle/nerdtree'
 let &runtimepath.=',~/.vim/bundle/nerdtree-project'

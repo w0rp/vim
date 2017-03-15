@@ -34,3 +34,9 @@
 [submodule "bundle/python-tools"]
 	path = bundle/python-tools
 	url = git@github.com:w0rp/python_tools.git
+[submodule "bundle/vim-misc"]
+	path = bundle/vim-misc
+	url = git@github.com:xolox/vim-misc.git
+[submodule "bundle/vim-reload"]
+	path = bundle/vim-reload
+	url = git@github.com:xolox/vim-reload.git
