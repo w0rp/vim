@@ -10,4 +10,6 @@ augroup FiletypeGroup
     au BufNewFile,BufRead *.lzz set filetype=cpp
     " .md is a markdown file.
     au BufNewFile,BufRead *.md set filetype=markdown
+    " .pug is a Pug file.
+    au BufNewFile,BufRead *.pug set filetype=pug
 augroup END
