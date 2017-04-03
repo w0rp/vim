@@ -65,4 +65,5 @@ let g:python_import_dict = {
 \   'urlencode': 'from six.moves.urllib.parse',
 \   'urlparse': 'from six.moves.urllib.parse',
 \   'uuid': 'import uuid',
+\   'freezegun': 'import freezegun',
 \}
