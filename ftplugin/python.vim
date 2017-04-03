@@ -18,15 +18,15 @@ map <buffer> <C-n> :call AutoPythonImport(expand("<cword>"))<Return>
 
 function! ApplyAutopep8()
     " Save the current position.
-    let l:line_number=line('.')
-    let l:column_number=col('.')
+    let l:pos = getcurpos()[1:]
+
+    python isort_file()
 
     " Run autopep8 on every line.
     silent 0,$!autopep8 -
 
-    " Jump back to the line number and cursor before, which might be a
-    " little off.
-    call cursor(l:line_number, l:column_number)
+    " Jump back to the previous position.
+    call cursor(l:pos)
 
     echo 'Re-formatted code with autopep8'
 endfunction
