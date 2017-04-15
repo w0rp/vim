@@ -22,6 +22,9 @@ noremap <silent> <C-S> :w<CR>
 vnoremap <silent> <C-S> <C-C>:w<CR>
 inoremap <silent> <C-S> <C-C>:w<CR>
 
+" Quit files by typing fjfj quickly, which requires less stretching.
+noremap fjfj :q<CR>
+
 " Make using Ctrl+C to exit insert mode also send a keybind to switch back
 " to latin mode in Anthy.
 inoremap <silent> <C-c> <C-c>:silent !xdotool key Ctrl+8<Return>
