@@ -66,7 +66,11 @@ if has('gui_running')
     " Set colour scheme
     colorscheme darkspectrum
 
-    set guifont=Inconsolata\ for\ Powerline\ Medium\ 18
+    if has('osx')
+        set guifont=Inconsolata\ for\ Powerline:h18
+    else
+        set guifont=Inconsolata\ for\ Powerline\ Medium\ 18
+    endif
 
     " remove menu bar from gvim
     set guioptions-=m
