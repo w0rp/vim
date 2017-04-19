@@ -27,7 +27,7 @@ noremap fjfj :q<CR>
 
 " Make using Ctrl+C to exit insert mode also send a keybind to switch back
 " to latin mode in Anthy.
-inoremap <silent> <C-c> <C-c>:silent !xdotool key Ctrl+8<Return>
+" inoremap <silent> <C-c> <C-c>:silent !xdotool key Ctrl+8<Return>
 
 " Bind gV so we can re-select pasted text.
 nnoremap <expr> gV "`[".getregtype(v:register)[0]."`]"
