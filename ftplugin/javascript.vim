@@ -13,8 +13,7 @@ let b:syntastic_javascript_eslint_exe = 'eslint_d'
 
 function! AutoFormatJavaScript()
     " Save the current position.
-    let l:line_number=line('.')
-    let l:column_number=col('.')
+    let l:save = winsaveview()
 
     " Run js-beautify on every line.
     silent 0,$!js-beautify -
@@ -31,9 +30,12 @@ function! AutoFormatJavaScript()
         silent !rm -f %.eslintfix
     endtry
 
+    " Fix }, ], and }, ] problems that jsbeautify causes.
+    silent execute ':%s/\v^( +)  \}, \](,?)/\1  \},\r\1]\2/g'
+
     " Jump back to the line number and cursor before, which might be a
     " little off.
-    call cursor(l:line_number, l:column_number)
+    call winrestview(l:save)
 
     echo 'Re-formatted code'
 endfunction
