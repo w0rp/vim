@@ -154,8 +154,8 @@ set autoindent
 set autochdir
 
 " Put all special files in the right place
-set backupdir=~/.vimcrap/backup//
-set directory=~/.vimcrap/swp//
+set backupdir=~/.vim/.backup//
+set directory=~/.vim/.swp//
 
 " Draw tabs and trailing spaces.
 set listchars=tab:>~
@@ -172,7 +172,7 @@ set titlestring=%(\ %{expand(\"%:p\")}\ %a%)
 set cryptmethod=blowfish
 
 " Enable persistent undo
-set undodir=~/.vimcrap/undo//
+set undodir=~/.vim/.undo//
 set undofile
 set undolevels=1000 "maximum number of changes that can be undone
 set undoreload=10000 "maximum number lines to save for undo on a buffer reload
@@ -202,19 +202,6 @@ command! Q q
 " :50  : Remember 50 lines of command history
 " %    : Save and restore the buffer list.
 set viminfo='100,<50,s10,h,\"100,:50,%
-
-" Create directories if needed.
-fun! RequireDirectory(directory)
-    if !isdirectory(a:directory)
-        call mkdir(a:directory)
-    endif
-endf
-
-" Make the needed directories
-call RequireDirectory(expand('~') . '/.vimcrap')
-call RequireDirectory(expand('~') . '/.vimcrap/swp')
-call RequireDirectory(expand('~') . '/.vimcrap/backup')
-call RequireDirectory(expand('~') . '/.vimcrap/undo')
 
 fun! OpenHpp()
     if expand('%:e') ==# 'cpp'
