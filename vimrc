@@ -5,7 +5,7 @@ scriptencoding utf-8
 set nocompatible
 
 " We must replace the runtimepath to make everything work.
-set runtimepath=~/.vim,$VIM/vimfiles/,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
+set runtimepath=~/.vim,$VIM/vimfiles/,$VIMRUNTIME,$VIM/vimfiles/after
 
 " Add a command for loading .vimrc completely.
 command! ReloadVimrc source $MYVIMRC
@@ -29,6 +29,8 @@ let &runtimepath.=',~/.vim/bundle/vim-airline-themes'
 let &runtimepath.=',~/.vim/bundle/ale'
 let &runtimepath.=',~/.vim/bundle/vader'
 let &runtimepath.=',~/.vim/bundle/python-tools'
+" Set our after directory after everything.
+let &runtimepath.=',~/.vim/after'
 
 filetype plugin on
 
