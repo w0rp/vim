@@ -67,6 +67,8 @@ endif
 
 " Disable Ex mode, because fuck Ex mode.
 noremap Q <Nop>
+" Use semicolons for what colon does.
+noremap ; :
 
 " Bind keys for moving between warnings.
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
