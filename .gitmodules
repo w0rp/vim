@@ -22,6 +22,7 @@
 [submodule "bundle/ale"]
 	path = bundle/ale
 	url = git@github.com:w0rp/ale.git
+	ignore = all
 [submodule "bundle/vim-airline"]
 	path = bundle/vim-airline
 	url = https://github.com/vim-airline/vim-airline
