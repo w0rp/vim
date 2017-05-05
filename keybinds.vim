@@ -59,9 +59,11 @@ inoremap <C-b> <Esc>lDa
 inoremap <C-l> <Esc>la
 inoremap <C-h> <Esc>i
 
-" Bind Ctrl + [ to captialising the previous word for cruise control.
-inoremap <C-[> <Esc>gUiwea
-noremap <C-[> gUiwe
+if has('gui_running')
+    " Bind Ctrl + [ to captialising the previous word for cruise control.
+    inoremap <C-[> <Esc>gUiwea
+    noremap <C-[> gUiwe
+endif
 
 " Disable Ex mode, because fuck Ex mode.
 noremap Q <Nop>
