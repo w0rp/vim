@@ -35,6 +35,7 @@
 [submodule "bundle/python-tools"]
 	path = bundle/python-tools
 	url = git@github.com:w0rp/python_tools.git
+	ignore = all
 [submodule "bundle/vim-misc"]
 	path = bundle/vim-misc
 	url = git@github.com:xolox/vim-misc.git
