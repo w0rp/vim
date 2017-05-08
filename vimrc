@@ -202,8 +202,7 @@ command! Q q
 " h    : ???
 " "100 : Save 100 lines for each register
 " :50  : Remember 50 lines of command history
-" %    : Save and restore the buffer list.
-set viminfo='100,<50,s10,h,\"100,:50,%
+set viminfo='100,<50,s10,h,\"100,:50
 
 fun! OpenHpp()
     if expand('%:e') ==# 'cpp'
