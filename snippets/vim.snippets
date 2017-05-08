@@ -44,3 +44,8 @@ snippet ale_linter
 	\   'command': '$2',
 	\   'callback': 'ale_linters#$1#$2#Handle',
 	\})
+
+snippet func
+	function! ${1:Name}() abort
+		${0}
+	endfunction
