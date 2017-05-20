@@ -46,6 +46,11 @@ snippet ale_linter
 	\})
 
 snippet func
-	function! ${1:Name}() abort
+	function! `snippet_functions#VimFunctionPrefix()`${1:Name}() abort
+		${0}
+	endfunction
+
+snippet sfunc
+	function! s:${1:Name}() abort
 		${0}
 	endfunction
