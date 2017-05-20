@@ -62,6 +62,8 @@ else
     set backspace=indent,eol,start whichwrap+=<,>,[,]
 endif
 
+set nospell
+
 if has('gui_running')
     " gvim specific settings.
 
@@ -109,8 +111,6 @@ else
 
     " Use simple highlighting.
     set background=dark
-
-    set nospell
 endif
 
 " Enable syntax highlighting by default.
@@ -334,3 +334,5 @@ nnoremap R <Esc>
 
 " Don't run migrations for pytest runs in python_tools
 let g:python_tools_pytest_no_migrations = 1
+
+let g:ale_history_log_output = 1
