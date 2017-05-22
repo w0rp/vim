@@ -31,6 +31,5 @@ function! ApplyAutopep8()
     echo 'Re-formatted code with autopep8'
 endfunction
 
-map <buffer> <F8> :call ApplyAutopep8()<Return>
 map <buffer> <F9> <Plug>(python_tools_pytest_class_reuse_db)
 map <buffer> <C-F9> <Plug>(python_tools_pytest_class)
