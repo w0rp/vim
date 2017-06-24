@@ -14,4 +14,6 @@ augroup FiletypeGroup
     au BufNewFile,BufRead *.pug set filetype=pug
     " .vader is a Vader file
     au BufNewFile,BufRead *.vader set filetype=vader
+    " .ts is a Typescript file
+    au BufNewFile,BufRead *.ts set filetype=typescript
 augroup END

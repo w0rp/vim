@@ -42,3 +42,6 @@
 [submodule "bundle/vim-reload"]
 	path = bundle/vim-reload
 	url = git@github.com:xolox/vim-reload.git
+[submodule "bundle/typescript-vim"]
+	path = bundle/typescript-vim
+	url = git@github.com:leafgarland/typescript-vim.git
