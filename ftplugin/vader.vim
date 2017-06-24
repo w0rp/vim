@@ -1,6 +1,9 @@
 function! RunVader() abort
-    Vader
-    cclose
+    try
+        Vader
+    finally
+        cclose
+    endtry
 endfunction
 
 " Map F9 to running Vader tests.
