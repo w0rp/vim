@@ -5,4 +5,10 @@ let g:ale_fixers = {
 \       'isort',
 \       'autopep8',
 \   ],
+\   'javascript': [
+\       'eslint',
+\   ],
+\   'typescript': [
+\       'eslint',
+\   ],
 \}
