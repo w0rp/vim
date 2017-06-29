@@ -80,6 +80,10 @@ snippet beforeEach
 	beforeEach(() => {
 		${0}
 	})
+snippet provide
+	beforeEach(angular.mock.module($provide => {
+		${0}
+	}))
 snippet has
 	if (${1:object}.hasOwnProperty(${2:key})) {
 		continue;
