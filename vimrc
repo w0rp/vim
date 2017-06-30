@@ -294,7 +294,8 @@ let g:airline_powerline_fonts = 1
 let g:airline_section_y = '%{python_tools#statusline#GetStatus()}'
 " Show just the line and column number in section z
 let g:airline_section_z = '%l:%v'
-let g:airline_section_error = '%{ale#statusline#Status()}'
+
+let g:airline#extensions#ale#enabled = 1
 
 " Use single characters for modes.
 let g:airline_mode_map = {
