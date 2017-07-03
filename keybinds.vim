@@ -25,9 +25,8 @@ inoremap <silent> <C-S> <C-C>:w<CR>
 " Quit files by typing fjfj quickly, which requires less stretching.
 noremap fjfj :q<CR>
 
-" Make using Ctrl+C to exit insert mode also send a keybind to switch back
-" to latin mode in Anthy.
-" inoremap <silent> <C-c> <C-c>:silent !xdotool key Ctrl+8<Return>
+" Make using Ctrl+C do the same as Escape, to trigger autocmd commands
+inoremap <C-c> <Esc>
 
 " Bind gV so we can re-select pasted text.
 nnoremap <expr> gV "`[".getregtype(v:register)[0]."`]"
@@ -58,12 +57,6 @@ inoremap <C-b> <Esc>lDa
 " Movement left and right in insert mode with Ctrl.
 inoremap <C-l> <Esc>la
 inoremap <C-h> <Esc>i
-
-if has('gui_running')
-    " Bind Ctrl + [ to captialising the previous word for cruise control.
-    inoremap <C-[> <Esc>gUiwea
-    noremap <C-[> gUiwe
-endif
 
 " Disable Ex mode, because fuck Ex mode.
 noremap Q <Nop>
