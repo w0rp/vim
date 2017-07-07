@@ -318,7 +318,7 @@ let g:ale_warn_about_trailing_whitespace = 0
 let g:ale_linters = {
 \   'html': [],
 \   'javascript': ['eslint'],
-\   'python': ['flake8'],
+\   'python': ['flake8', 'pylint'],
 \}
 
 source ~/.vim/keybinds.vim
