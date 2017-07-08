@@ -14,4 +14,7 @@ let g:ale_fixers = {
 \   'typescript': [
 \       'eslint',
 \   ],
+\   'ruby': [
+\       'rubocop',
+\   ],
 \}
