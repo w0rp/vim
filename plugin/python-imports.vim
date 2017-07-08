@@ -1,16 +1,16 @@
-if exists("g:loaded_python_imports")
+if exists('g:loaded_python_imports')
     finish
 endif
 
 let g:loaded_python_imports = 1
 
-function AutoPythonImport(word)
+function! AutoPythonImport(word)
     " Load the file with the import paths again, so we can modify the
     " dictionary while the file is still open.
     source ~/.vim/python-import-paths.vim
 
     " Load custom user import paths if they are there.
-    if filereadable(expand("~/.python-import-paths.vim"))
+    if filereadable(expand('~/.python-import-paths.vim'))
         source ~/.python-import-paths.vim
     endif
 
@@ -19,11 +19,11 @@ function AutoPythonImport(word)
     call extend(l:import_dict, g:python_import_dict)
 
     " Add in extra user mappings.
-    if exists("g:user_python_import_dict")
+    if exists('g:user_python_import_dict')
         call extend(l:import_dict, g:user_python_import_dict)
     endif
 
-    let l:line = get(l:import_dict, a:word, "")
+    let l:line = get(l:import_dict, a:word, '')
 
     " from imports should have values like 'from some_module'
     " We will automatically add on ' import something' based on the key.
@@ -45,7 +45,7 @@ function AutoPythonImport(word)
         " Insert the import line at the end of the file. isort will sort it
         " out.
         call append('$', l:line)
-        python isort_file()
+        ALEFix
         " Remove any additional newlines isort mistakenly added to the end of
         " the file.
         silent! %s#\($\n\s*\)\+\%$##
@@ -59,10 +59,10 @@ function AutoPythonImport(word)
 endfunction
 
 " Add functions for quickly opening import files to edit them.
-function EditGlobalPythonImports()
+function! EditGlobalPythonImports()
     :tabnew ~/.vim/python-import-paths.vim
 endfunction
 
-function EditLocalPythonImports()
+function! EditLocalPythonImports()
     :tabnew ~/.python-import-paths.vim
 endfunction

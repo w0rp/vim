@@ -16,20 +16,5 @@ vmap <buffer> <C-,> :s/^\(\s*\)#/\1/<Return>
 " Use the AutoPythonImport tool.
 map <buffer> <C-n> :call AutoPythonImport(expand("<cword>"))<Return>
 
-function! ApplyAutopep8()
-    " Save the current position.
-    let l:pos = getcurpos()[1:]
-
-    python isort_file()
-
-    " Run autopep8 on every line.
-    silent 0,$!autopep8 -
-
-    " Jump back to the previous position.
-    call cursor(l:pos)
-
-    echo 'Re-formatted code with autopep8'
-endfunction
-
 map <buffer> <F9> <Plug>(python_tools_pytest_class_reuse_db)
 map <buffer> <C-F9> <Plug>(python_tools_pytest_class)
