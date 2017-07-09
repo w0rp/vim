@@ -257,6 +257,8 @@ set autochdir
 
 " Close NERDTree automatically after opening a file with it.
 let g:NERDTreeQuitOnOpen = 1
+" Use a single click for opening things in NERDTree
+let g:NERDTreeMouseMode = 3
 let g:NERDTreeMapActivateNode = '<Space>'
 
 let g:NERDTreeIgnore = [
