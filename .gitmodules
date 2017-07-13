@@ -45,6 +45,3 @@
 [submodule "bundle/typescript-vim"]
 	path = bundle/typescript-vim
 	url = git@github.com:leafgarland/typescript-vim.git
-[submodule "bundle/supertab"]
-	path = bundle/supertab
-	url = git@github.com:ervandew/supertab.git

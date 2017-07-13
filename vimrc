@@ -31,7 +31,6 @@ let &runtimepath.=',~/.vim/bundle/typescript-vim'
 let &runtimepath.=',~/.vim/bundle/ale'
 let &runtimepath.=',~/.vim/bundle/vader'
 let &runtimepath.=',~/.vim/bundle/python-tools'
-let &runtimepath.=',~/.vim/bundle/supertab'
 " Set our after directory after everything.
 let &runtimepath.=',~/.vim/after'
 
@@ -312,12 +311,6 @@ let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'python': ['flake8'],
 \}
-
-" --- supertab settings ---
-
-" Configure supertab so it moves down the completion list, instead of up.
-let g:SuperTabDefaultCompletionType = '<c-n>'
-let g:SuperTabContextDefaultCompletionType = '<c-n>'
 
 " --- python-tools settings ---
 
