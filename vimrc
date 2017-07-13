@@ -223,6 +223,8 @@ set autochdir
 " Do not echo the mode, airline will display it instead.
 set noshowmode
 
+set shortmess=filnxtToOc
+
 " --- rainbow parens settings ---
 
 let g:rainbow_conf = {
