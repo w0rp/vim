@@ -312,6 +312,15 @@ let g:ale_linters = {
 \   'python': ['flake8'],
 \}
 
+let g:ale_pattern_options = {
+\   'python-to-typescript/python_to_typescript/.*$': {
+\       'ale_linters': {'python': ['flake8', 'pylint']},
+\   },
+\   'site-packages/.*$': {
+\       'ale_enabled': 0,
+\       '&modifiable': 0,
+\   },
+\}
 " --- python-tools settings ---
 
 " Don't run migrations for pytest runs in python_tools
