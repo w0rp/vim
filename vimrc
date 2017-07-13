@@ -31,6 +31,7 @@ let &runtimepath.=',~/.vim/bundle/typescript-vim'
 let &runtimepath.=',~/.vim/bundle/ale'
 let &runtimepath.=',~/.vim/bundle/vader'
 let &runtimepath.=',~/.vim/bundle/python-tools'
+let &runtimepath.=',~/.vim/bundle/supertab'
 " Set our after directory after everything.
 let &runtimepath.=',~/.vim/after'
 
@@ -216,31 +217,22 @@ endf
 " Disable folding because it's annoying.
 set nofoldenable
 
-" Disable the sass syntax checker, because it's slow and crap.
-let g:syntastic_enable_scss_sass_checker = 0
+" Switch to the directory files are in automatically.
+set autochdir
 
-" Use pep8 to check Python files.
-let g:syntastic_python_checkers = ['flake8']
+" Do not echo the mode, airline will display it instead.
+set noshowmode
+
+" --- rainbow parens settings ---
 
 let g:rainbow_conf = {
 \   'guifgs': ['#3b81e7', '#dccb3e', '#de2020', '#0bff22'],
 \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
 \   'operators': '_,_'
 \}
-
 let g:rainbow_active = 1
 
-" Make :lprev and :lnext work in Syntastic
-let g:syntastic_always_populate_loc_list = 1
-" Don't use a diff for pep8 auto-formatting, just do it.
-let g:autopep8_disable_show_diff = 1
-
-let g:syntastic_d_automatic_dub_include_dirs = 1
-let g:syntastic_javascript_checkers = ['eslint']
-
-" Tell Syntastic not to bother with Java files.
-let g:syntastic_java_checkers=['']
-
+" --- Unite.vim settings ---
 
 " Use ag for search inside files.
 let g:unite_source_grep_command=expand('<sfile>:p:h') . '/ag-search-command'
@@ -253,27 +245,22 @@ let g:unite_source_grep_recursive_opt=''
 " Who the fuck knows what this does, but it makes things less slow.
 let g:unite_redraw_hold_candidates = 50000
 
-set autochdir
+" --- NERDTree settings ---
 
 " Close NERDTree automatically after opening a file with it.
 let g:NERDTreeQuitOnOpen = 1
 " Use a single click for opening things in NERDTree
 let g:NERDTreeMouseMode = 3
 let g:NERDTreeMapActivateNode = '<Space>'
-
 let g:NERDTreeIgnore = [
 \   '\.pyc$',
 \   '^__pycache__$',
 \]
 
-let g:path_prefixes_to_trim = []
-
-" Do not echo the mode airline will display it instead.
-set noshowmode
+" --- vim-airline settings ---
 
 " Disable the spelling marker for airline.
 let g:airline_detect_spell = 0
-
 let g:airline_theme = 'luna'
 
 if has('gui_running')
@@ -283,7 +270,7 @@ if has('gui_running')
     let g:airline_right_sep = ''
     let g:airline_right_alt_sep = ''
 else
-    " Don't use fancy symbols which render like shit in terminals
+    " Don't use fancy symbols, which render like shit in terminals
     let g:airline_left_sep = ''
     let g:airline_left_alt_sep = ''
     let g:airline_right_sep = ''
@@ -291,12 +278,10 @@ else
 endif
 
 let g:airline_powerline_fonts = 1
-
 " Disable the airline section which shows the file encoding mode.
 let g:airline_section_y = '%{python_tools#statusline#GetStatus()}'
 " Show just the line and column number in section z
 let g:airline_section_z = '%l:%v'
-
 let g:airline#extensions#ale#enabled = 1
 
 " Use single characters for modes.
@@ -314,14 +299,31 @@ let g:airline_mode_map = {
 \   '' : 'S',
 \}
 
+" --- ALE settings ---
+"
 " Disable ALE warnings about trailing whitespace.
 let g:ale_warn_about_trailing_whitespace = 0
-
+let g:ale_maximum_file_size = 1024 * 1024
+let g:ale_completion_enabled = 1
 let g:ale_linters = {
 \   'html': [],
 \   'javascript': ['eslint'],
 \   'python': ['flake8'],
 \}
+
+" --- supertab settings ---
+
+" Configure supertab so it moves down the completion list, instead of up.
+let g:SuperTabDefaultCompletionType = '<c-n>'
+let g:SuperTabContextDefaultCompletionType = '<c-n>'
+
+" --- python-tools settings ---
+
+" Don't run migrations for pytest runs in python_tools
+let g:python_tools_pytest_no_migrations = 1
+
+" --- Extra custom settings ---
+let g:path_prefixes_to_trim = []
 
 source ~/.vim/keybinds.vim
 source ~/.vim/autocmd.vim
@@ -333,13 +335,3 @@ let s:info_filename = expand('~/.viminfo')
 if !empty(glob(s:info_filename)) && !filewritable(s:info_filename)
     echoerr 'The .viminfo file cannot be written to!'
 endif
-
-" Disable replace mode, which turns on in bad terminals for some reason.
-nnoremap R <Esc>
-
-" Don't run migrations for pytest runs in python_tools
-let g:python_tools_pytest_no_migrations = 1
-
-let g:ale_history_log_output = 1
-
-let g:ale_maximum_file_size = 1024 * 1024

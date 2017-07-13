@@ -1,5 +1,8 @@
 " This script holds all keybinding settings.
 
+" Disable replace mode, which turns on in bad terminals for some reason.
+nnoremap R <Nop>
+
 " CTRL-A is Select all
 " This works better than the default Windows script.
 noremap <C-A> ggVG
