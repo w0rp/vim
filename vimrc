@@ -339,3 +339,9 @@ let s:info_filename = expand('~/.viminfo')
 if !empty(glob(s:info_filename)) && !filewritable(s:info_filename)
     echoerr 'The .viminfo file cannot be written to!'
 endif
+
+" Automatically reload vimrc on save
+augroup ReloadVimrcGroup
+    autocmd!
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END
