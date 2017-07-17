@@ -90,22 +90,12 @@ if has('gui_running')
         set guifont=Inconsolata\ for\ Powerline\ Medium\ 18
     endif
 
-    " remove menu bar from gvim
-    set guioptions-=m
-
-    " remove toolbar from gvim
-    set guioptions-=T
-
-    " Use console dialogs instead of dialog windows.
-    set guioptions+=c
-
-    if has('unix')
-        " Add autoselect so copy and paste will work.
-        set guioptions+=a
-    else
-        " Remove autoselect on other OSes.
-        set guioptions+=a
-    endif
+    " Set guioptions
+    " No 'm' removes the menu bar
+    " No 'T' removes the toolbar
+    " 'c' uses console dialogs instead of windows.
+    " 'a' uses autoselect
+    set guioptions=egirLtca
 
     if v:version > 703
         " This makes copy and paste also work better.
