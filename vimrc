@@ -1,4 +1,5 @@
 " vint: -ProhibitSetNoCompatible
+set encoding=utf-8
 scriptencoding utf-8
 
 " Make the VIM happen.
