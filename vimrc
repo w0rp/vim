@@ -331,8 +331,8 @@ let g:python_tools_pytest_no_migrations = 1
 " --- Extra custom settings ---
 let g:path_prefixes_to_trim = []
 
-source ~/.vim/keybinds.vim
-source ~/.vim/autocmd.vim
+source $VIMHOME/keybinds.vim
+source $VIMHOME/autocmd.vim
 
 " Warn about not being able to write to .viminfo, which messes up restoring
 " the cursor position when editing.
