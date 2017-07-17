@@ -74,8 +74,15 @@ set nospell
 if has('gui_running')
     " gvim specific settings.
 
-    " Set colour scheme
-    colorscheme darkspectrum
+    let s:colorscheme = ''
+    redir => s:colorscheme
+        silent colorscheme
+    redir end
+
+    if s:colorscheme !=# 'darkspectrum'
+        " Set colour scheme
+        colorscheme darkspectrum
+    endif
 
     if has('osx')
         set guifont=Inconsolata\ for\ Powerline:h18
