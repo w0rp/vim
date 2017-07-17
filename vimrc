@@ -84,7 +84,7 @@ if has('gui_running')
         colorscheme darkspectrum
     endif
 
-    if has('osx')
+    if has('osx') || has('win32')
         set guifont=Inconsolata\ for\ Powerline:h18
     else
         set guifont=Inconsolata\ for\ Powerline\ Medium\ 18
