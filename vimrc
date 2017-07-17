@@ -4,8 +4,14 @@ scriptencoding utf-8
 " Make the VIM happen.
 set nocompatible
 
+if has('win32')
+    let $VIMHOME = expand('~\vimfiles')
+else
+    let $VIMHOME = expand('~/.vim')
+endif
+
 " We must replace the runtimepath to make everything work.
-set runtimepath=~/.vim,$VIM/vimfiles/,$VIMRUNTIME,$VIM/vimfiles/after
+set runtimepath=$VIMHOME,$VIM/vimfiles/,$VIMRUNTIME,$VIM/vimfiles/after
 
 " Add a command for loading .vimrc completely.
 command! ReloadVimrc source $MYVIMRC
@@ -14,25 +20,24 @@ let s:ag_opts='--nocolor --nogroup --hidden'
 let s:ag_opts.=' --ignore=.git --ignore=.svn --ignore=.hg --ignore=.bzr'
 let g:unite_source_rec_async_command=['ag'] + split(s:ag_opts) + ['-g', '']
 
-let &runtimepath.=',~/.vim/bundle/vim-misc'
-let &runtimepath.=',~/.vim/bundle/vim-reload'
-let &runtimepath.=',~/.vim/bundle/unite'
-let &runtimepath.=',~/.vim/bundle/nerdtree'
-let &runtimepath.=',~/.vim/bundle/nerdtree-project'
-let &runtimepath.=',~/.vim/bundle/vim-pug'
-let &runtimepath.=',~/.vim/bundle/typescript-vim'
-let &runtimepath.=',~/.vim/bundle/vim-autopep8'
-let &runtimepath.=',~/.vim/bundle/vim-addon-mw-utils'
-let &runtimepath.=',~/.vim/bundle/tlib_vim'
-let &runtimepath.=',~/.vim/bundle/snipmate'
-let &runtimepath.=',~/.vim/bundle/vim-airline'
-let &runtimepath.=',~/.vim/bundle/vim-airline-themes'
-let &runtimepath.=',~/.vim/bundle/typescript-vim'
-let &runtimepath.=',~/.vim/bundle/ale'
-let &runtimepath.=',~/.vim/bundle/vader'
-let &runtimepath.=',~/.vim/bundle/python-tools'
+let &runtimepath.=',' . $VIMHOME . '/bundle/vim-misc'
+let &runtimepath.=',' . $VIMHOME . '/bundle/vim-reload'
+let &runtimepath.=',' . $VIMHOME . '/bundle/unite'
+let &runtimepath.=',' . $VIMHOME . '/bundle/nerdtree'
+let &runtimepath.=',' . $VIMHOME . '/bundle/nerdtree-project'
+let &runtimepath.=',' . $VIMHOME . '/bundle/vim-pug'
+let &runtimepath.=',' . $VIMHOME . '/bundle/vim-addon-mw-utils'
+let &runtimepath.=',' . $VIMHOME . '/bundle/tlib_vim'
+let &runtimepath.=',' . $VIMHOME . '/bundle/snipmate'
+let &runtimepath.=',' . $VIMHOME . '/bundle/vim-airline'
+let &runtimepath.=',' . $VIMHOME . '/bundle/vim-airline-themes'
+let &runtimepath.=',' . $VIMHOME . '/bundle/vim-airline-themes'
+let &runtimepath.=',' . $VIMHOME . '/bundle/typescript-vim'
+let &runtimepath.=',' . $VIMHOME . '/bundle/ale'
+let &runtimepath.=',' . $VIMHOME . '/bundle/vader'
+let &runtimepath.=',' . $VIMHOME . '/bundle/python-tools'
 " Set our after directory after everything.
-let &runtimepath.=',~/.vim/after'
+let &runtimepath.=',' . $VIMHOME . '/after'
 
 filetype plugin on
 
