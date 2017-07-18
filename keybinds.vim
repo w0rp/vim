@@ -103,6 +103,22 @@ endf
 " Map F4 to copying the current filename to the clipboard.
 noremap <F4> :call CopyFilenameToClipboard()<CR>
 
-" Set up keybinds for Snipmate, which doesn't work by itself for some reason.
-inoremap <silent> <Tab> <C-R>=snipMate#TriggerSnippet()<CR>
-inoremap <silent> <S-Tab> <C-R>=snipMate#BackwardsSnippet()<CR>
+" Use Tab and Shift+Tab for either completion or SnipMate.
+function! SmartTab() abort
+    if pumvisible()
+        return "\<C-n>"
+    endif
+
+    return snipMate#TriggerSnippet()
+endfunction
+
+function! SmartShiftTab() abort
+    if pumvisible()
+        return "\<C-p>"
+    endif
+
+    return snipMate#BackwardsSnippet()
+endfunction
+
+inoremap <silent> <Tab> <C-R>=SmartTab()<CR>
+inoremap <silent> <S-Tab> <C-R>=SmartShiftTab()<CR>
