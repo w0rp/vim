@@ -259,21 +259,32 @@ let g:NERDTreeIgnore = [
 \   '^__pycache__$',
 \]
 
-let g:lightline = {}
 
 " --- vim-lightline settings ---
-let g:lightline.mode_map = {
-\   'n': 'N',
-\   'i': 'I',
-\   'R': 'R',
-\   'v': 'V',
-\   'V': 'V',
-\   "\<C-v>": 'VV',
-\   'c' : 'C',
-\   's' : 'S',
-\   'S' : 'S-LINE',
-\   "\<C-s>": 'S-BLOCK',
-\   't': 'TERMINAL',
+let g:lightline = {
+\   'mode_map': {
+\       'n': 'N',
+\       'i': 'I',
+\       'R': 'R',
+\       'v': 'V',
+\       'V': 'V',
+\       "\<C-v>": 'VV',
+\       'c' : 'C',
+\       's' : 'S',
+\       'S' : 'S-LINE',
+\       "\<C-s>": 'S-BLOCK',
+\       't': 'TERMINAL',
+\   },
+\   'active': {
+\       'left': [
+\           ['mode', 'paste'],
+\           ['readonly', 'filename', 'modified'],
+\       ],
+\       'right': [
+\           ['lineinfo'],
+\           ['filetype'],
+\       ],
+\   },
 \}
 
 " --- ALE settings ---
