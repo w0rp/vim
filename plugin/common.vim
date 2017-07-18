@@ -34,9 +34,9 @@ endf
 command! Python call NewPythonScript()
 
 " Open the snippet file associated with this type of file.
-fun! EditSnippet()
-    exec 'tabnew ' . g:snippets_dir . '/' . &l:filetype . '.snippets'
-endf
+function! EditSnippet() abort
+    exec 'tabnew ' expand('~/.vim/snippets/' . &filetype . '.snippets')
+endfunction
 
 fun! EditSyntax()
     exec 'tabnew ' . $HOME . '/.vim/syntax/' . &l:filetype . '.vim'
