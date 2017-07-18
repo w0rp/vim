@@ -30,9 +30,7 @@ let &runtimepath.=',' . $VIMHOME . '/bundle/vim-pug'
 let &runtimepath.=',' . $VIMHOME . '/bundle/vim-addon-mw-utils'
 let &runtimepath.=',' . $VIMHOME . '/bundle/tlib_vim'
 let &runtimepath.=',' . $VIMHOME . '/bundle/snipmate'
-let &runtimepath.=',' . $VIMHOME . '/bundle/vim-airline'
-let &runtimepath.=',' . $VIMHOME . '/bundle/vim-airline-themes'
-let &runtimepath.=',' . $VIMHOME . '/bundle/vim-airline-themes'
+let &runtimepath.=',' . $VIMHOME . '/bundle/lightline'
 let &runtimepath.=',' . $VIMHOME . '/bundle/typescript-vim'
 let &runtimepath.=',' . $VIMHOME . '/bundle/ale'
 let &runtimepath.=',' . $VIMHOME . '/bundle/vader'
@@ -222,7 +220,7 @@ set nofoldenable
 " Switch to the directory files are in automatically.
 set autochdir
 
-" Do not echo the mode, airline will display it instead.
+" Do not echo the mode, lightline will display it instead.
 set noshowmode
 
 set shortmess=filnxtToOc
@@ -261,46 +259,21 @@ let g:NERDTreeIgnore = [
 \   '^__pycache__$',
 \]
 
-" --- vim-airline settings ---
+let g:lightline = {}
 
-" Disable the spelling marker for airline.
-let g:airline_detect_spell = 0
-let g:airline_theme = 'luna'
-
-if has('gui_running')
-    " Use fancy separators for airline in GVim
-    let g:airline_left_sep = ''
-    let g:airline_left_alt_sep = ''
-    let g:airline_right_sep = ''
-    let g:airline_right_alt_sep = ''
-else
-    " Don't use fancy symbols, which render like shit in terminals
-    let g:airline_left_sep = ''
-    let g:airline_left_alt_sep = ''
-    let g:airline_right_sep = ''
-    let g:airline_right_alt_sep = ''
-endif
-
-let g:airline_powerline_fonts = 1
-" Disable the airline section which shows the file encoding mode.
-let g:airline_section_y = '%{python_tools#statusline#GetStatus()}'
-" Show just the line and column number in section z
-let g:airline_section_z = '%l:%v'
-let g:airline#extensions#ale#enabled = 1
-
-" Use single characters for modes.
-let g:airline_mode_map = {
-\   '__' : '-',
-\   'n'  : 'N',
-\   'i'  : 'I',
-\   'R'  : 'R',
-\   'c'  : 'C',
-\   'v'  : 'V',
-\   'V'  : 'V',
-\   '' : 'V',
-\   's'  : 'S',
-\   'S'  : 'S',
-\   '' : 'S',
+" --- vim-lightline settings ---
+let g:lightline.mode_map = {
+\   'n': 'N',
+\   'i': 'I',
+\   'R': 'R',
+\   'v': 'V',
+\   'V': 'V',
+\   "\<C-v>": 'VV',
+\   'c' : 'C',
+\   's' : 'S',
+\   'S' : 'S-LINE',
+\   "\<C-s>": 'S-BLOCK',
+\   't': 'TERMINAL',
 \}
 
 " --- ALE settings ---
