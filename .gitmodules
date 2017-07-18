@@ -41,4 +41,4 @@
 	url = git@github.com:leafgarland/typescript-vim.git
 [submodule "bundle/lightline"]
 	path = bundle/lightline
-	url = git@github.com:itchyny/lightline.vim.git
+	url = git@github.com:w0rp/lightline.vim.git
