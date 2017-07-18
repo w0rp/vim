@@ -78,3 +78,13 @@ snippet get_model
 	get_model('`expand('%:p:h:h:t')`', '`matchlist(getline('.'), '\(\w\+\) =')[1]`')${0}
 snippet super
 	`python_tools#cursor_info#GenerateSuperCall()`(${0})
+snippet utest
+	from unittest import TestCase
+
+	class ${1:SomeTestCase}(TestCase):
+
+		def setUp(self):
+			super($1, self).setUp()
+
+		def tearDown(self):
+			super($1, self).tearDown()
