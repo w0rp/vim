@@ -1,5 +1,6 @@
 setlocal expandtab
 setlocal colorcolumn=80
+setlocal textwidth=79
 " Enable comment continuation.
 setlocal formatoptions+=cro
 setlocal foldmethod=indent
@@ -26,11 +27,18 @@ function! ChangeLineLength() abort
         \)
             let l:line_length = str2nr(l:match[1])
             let &colorcolumn = l:line_length + 1
+            let &textwidth = l:line_length
         endfor
     else
         " Reset settings back to defaults when configuration files are not
         " found.
         setlocal colorcolumn=80
+        setlocal textwidth=79
+    endif
+
+    " Don't automatically split long lines for Django migration files.
+    if expand('%:p') =~# '/migrations/'
+        setlocal textwidth=0
     endif
 endfunction
 
