@@ -21,20 +21,6 @@ let s:ag_opts='--nocolor --nogroup --hidden'
 let s:ag_opts.=' --ignore=.git --ignore=.svn --ignore=.hg --ignore=.bzr'
 let g:unite_source_rec_async_command=['ag'] + split(s:ag_opts) + ['-g', '']
 
-let &runtimepath.=',' . $VIMHOME . '/bundle/vim-misc'
-let &runtimepath.=',' . $VIMHOME . '/bundle/vim-reload'
-let &runtimepath.=',' . $VIMHOME . '/bundle/unite'
-let &runtimepath.=',' . $VIMHOME . '/bundle/nerdtree'
-let &runtimepath.=',' . $VIMHOME . '/bundle/nerdtree-project'
-let &runtimepath.=',' . $VIMHOME . '/bundle/vim-pug'
-let &runtimepath.=',' . $VIMHOME . '/bundle/vim-addon-mw-utils'
-let &runtimepath.=',' . $VIMHOME . '/bundle/tlib_vim'
-let &runtimepath.=',' . $VIMHOME . '/bundle/snipmate'
-let &runtimepath.=',' . $VIMHOME . '/bundle/lightline'
-let &runtimepath.=',' . $VIMHOME . '/bundle/typescript-vim'
-let &runtimepath.=',' . $VIMHOME . '/bundle/ale'
-let &runtimepath.=',' . $VIMHOME . '/bundle/vader'
-let &runtimepath.=',' . $VIMHOME . '/bundle/python-tools'
 " Set our after directory after everything.
 let &runtimepath.=',' . $VIMHOME . '/after'
 
@@ -240,9 +226,6 @@ let g:rainbow_active = 1
 let g:unite_source_grep_command=expand('<sfile>:p:h') . '/ag-search-command'
 let g:unite_source_grep_default_opts=''
 let g:unite_source_grep_recursive_opt=''
-
-" Allow up to 2000 results to be displayed for grep.
-:call unite#custom#source('grep', 'max_candidates', 2000)
 
 " Who the fuck knows what this does, but it makes things less slow.
 let g:unite_redraw_hold_candidates = 50000
