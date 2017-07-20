@@ -26,9 +26,6 @@ let &runtimepath.=',' . $VIMHOME . '/after'
 
 filetype plugin on
 
-" Automatically regenerate help tags.
-silent! helptags ALL
-
 " Prefer unix format for files.
 set fileformats=unix,dos
 
@@ -315,3 +312,8 @@ augroup ReloadVimrcGroup
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END
+
+packloadall
+
+" Automatically regenerate help tags.
+silent! helptags ALL
