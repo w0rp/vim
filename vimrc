@@ -262,10 +262,14 @@ let g:lightline = {
 \       ],
 \       'right': [
 \           ['lineinfo'],
-\           ['filetype'],
+\           ['python_status', 'filetype'],
 \       ],
 \   },
+\   'component_function': {
+\       'python_status': 'python_tools#statusline#GetStatus'
+\   },
 \}
+
 
 " --- ALE settings ---
 "
