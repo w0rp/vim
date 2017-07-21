@@ -26,8 +26,8 @@ function! ChangeLineLength() abort
         \   '\v^ *max-line-length *\= *(\d+)',
         \)
             let l:line_length = str2nr(l:match[1])
-            let &colorcolumn = l:line_length + 1
-            let &textwidth = l:line_length
+            let &l:colorcolumn = l:line_length + 1
+            let &l:textwidth = l:line_length
         endfor
     else
         " Reset settings back to defaults when configuration files are not
