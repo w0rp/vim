@@ -56,5 +56,5 @@ endfunction
 
 augroup PythonInsertEvents
     autocmd!
-    autocmd InsertCharPre <buffer> call DisableTextWidthForCertainLines()
+    autocmd InsertCharPre,CompleteDone <buffer> call DisableTextWidthForCertainLines()
 augroup END
