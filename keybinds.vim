@@ -122,3 +122,19 @@ endfunction
 
 inoremap <silent> <Tab> <C-R>=SmartTab()<CR>
 inoremap <silent> <S-Tab> <C-R>=SmartShiftTab()<CR>
+
+" Close split windows just by pressing 'q', but record macros if there is only
+" one window open.
+"
+" I never record macros while working with split windows.
+function! CloseSplitWindowsWithQ() abort
+    let l:tab_info = gettabinfo(tabpagenr())[0]
+
+    if len(l:tab_info.windows) > 1
+        :q
+    else
+        call feedkeys('q', 'n')
+    endif
+endfunction
+
+nnoremap <silent> q :call CloseSplitWindowsWithQ()<CR>
