@@ -70,6 +70,7 @@ snippet RunPython
 			${0}migrations.RunPython(
 				$1,
 				$2,
+				elidable=True,
 			),
 snippet cursor
 	with connection.cursor() as cursor:
