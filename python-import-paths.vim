@@ -36,6 +36,7 @@ let g:python_import_dict = {
 \   'call_command': 'from django.core.management',
 \   'connection': 'from django.db',
 \   'datetime': 'import datetime',
+\   'decimal': 'import decimal',
 \   'deepcopy': 'from copy',
 \   'force_text': 'from django.utils.encoding',
 \   'freezegun': 'import freezegun',
