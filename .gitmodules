@@ -42,3 +42,6 @@
 [submodule "bundle/lightline"]
 	path = pack/git-plugins/start/lightline
 	url = git@github.com:w0rp/lightline.vim.git
+[submodule "pack/git-plugins/start/jasmine-test-runner"]
+	path = pack/git-plugins/start/jasmine-test-runner
+	url = git@github.com:w0rp/jasmine-test-runner.git
