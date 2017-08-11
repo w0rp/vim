@@ -16,4 +16,6 @@ augroup FiletypeGroup
     au BufNewFile,BufRead *.vader set filetype=vader
     " .ts is a Typescript file
     au BufNewFile,BufRead *.ts set filetype=typescript
+    " .pyi is a Python interface file.
+    au BufNewFile,BufRead *.pyi set filetype=python
 augroup END
