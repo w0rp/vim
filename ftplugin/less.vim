@@ -1,17 +1,6 @@
-" Vim filetype plugin
-" Language:	less
-" Maintainer:	Alessandro Vioni <jenoma@gmail.com>
-" URL: https://github.com/genoma/vim-less
-" Last Change:	2014 November 24
-
-" Only do this when not done yet for this buffer
-if exists('b:did_ftplugin')
-  finish
-endif
-
-let b:did_ftplugin = 1
-let b:undo_ftplugin = 'setl cms< def< inc< inex< ofu< sua<'
-
+setlocal tabstop=2
+setlocal shiftwidth=2
+setlocal softtabstop=2
 setlocal formatoptions-=t formatoptions+=croql
 
 setlocal comments=:// commentstring=//\ %s
