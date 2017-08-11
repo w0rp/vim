@@ -76,3 +76,4 @@ augroup END
 " Left brace for snippets.
 let g:left_brace = "\n{"
 
+command -nargs=0 CloseTabsToTheRight :silent! .+1,$tabdo :tabc
