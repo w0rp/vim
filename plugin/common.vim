@@ -1,35 +1,35 @@
-if exists("g:loaded_common_functions")
-  finish
+if exists('g:loaded_common_functions')
+    finish
 endif
 
 let g:loaded_common_functions = 1
 
-fun! FixNewlines()
+function! FixNewlines() abort
     %s/\r//g
-endf
+endfunction
 
 " A function because I can never remember what to type for this.
-fun! UnixMode()
+function! UnixMode() abort
     :e ++ff=unix
-endf
+endfunction
 
 " A function for setting the execute bit for scripts.
-fun! NewBashScript()
+function! NewBashScript() abort
     :0put =\"#!/bin/bash -eu\"
     :w! %
     :silent !chmod ug+x %
     :e! %
-endf
+endfunction
 
 command! Bash call NewBashScript()
 
 " A function for setting the execute bit for scripts.
-fun! NewPythonScript()
+function! NewPythonScript() abort
     :0put =\"#!/usr/bin/env python \"
     :w! %
     :silent !chmod ug+x %
     :e! %
-endf
+endfunction
 
 command! Python call NewPythonScript()
 
@@ -38,36 +38,40 @@ function! EditSnippet() abort
     exec 'tabnew ' expand('~/.vim/snippets/' . &filetype . '.snippets')
 endfunction
 
-fun! EditSyntax()
+function! EditSyntax() abort
     exec 'tabnew ' . $HOME . '/.vim/syntax/' . &l:filetype . '.vim'
-endf
+endfunction
 
-fun! EditFtPlugin()
+function! EditFtPlugin() abort
     exec 'tabnew ' . $HOME . '/.vim/ftplugin/' . &l:filetype . '.vim'
-endf
+endfunction
 
 " This is created for the benefit of snippet magic.
-func! WriteReload()
+function! WriteReload() abort
     exec 'w'
     exec 'e'
 
     return ''
-endf
+endfunction
 
-fun! TrimWhitespace()
-    let line_no = line('.')
-    let col_no = col('.')
+function! TrimWhitespace() abort
+    let l:line_no = line('.')
+    let l:col_no = col('.')
 
     %s/\s*$//
 
-    call cursor(line_no, col_no)
-endf
+    call cursor(l:line_no, l:col_no)
+endfunction
 
 " Do auto whitespace trimming.
-autocmd FileWritePre * :call TrimWhitespace()
-autocmd FileAppendPre * :call TrimWhitespace()
-autocmd FilterWritePre * :call TrimWhitespace()
-autocmd BufWritePre * :call TrimWhitespace()
+
+augroup TrimWhiteSpaceGroup
+    autocmd!
+    autocmd FileWritePre * :call TrimWhitespace()
+    autocmd FileAppendPre * :call TrimWhitespace()
+    autocmd FilterWritePre * :call TrimWhitespace()
+    autocmd BufWritePre * :call TrimWhitespace()
+augroup END
 
 " Left brace for snippets.
 let g:left_brace = "\n{"
