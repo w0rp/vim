@@ -138,3 +138,6 @@ function! CloseSplitWindowsWithQ() abort
 endfunction
 
 nnoremap <silent> q :call CloseSplitWindowsWithQ()<CR>
+
+" Run macros with \, which is easier to press.
+nnoremap \ @
