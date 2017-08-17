@@ -211,9 +211,6 @@ set shortmess=filnxtToOc
 " Find search matches as they are typed.
 set incsearch
 
-" Do not automatically select or insert things with completion, etc.
-set completeopt=menu,preview,noselect,noinsert
-
 " --- rainbow parens settings ---
 
 let g:rainbow_conf = {
