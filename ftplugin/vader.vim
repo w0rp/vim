@@ -4,6 +4,8 @@ function! RunVader() abort
     finally
         cclose
     endtry
+
+    call vader_tools#TryAndMakeEverythingBetter()
 endfunction
 
 " Map F9 to running Vader tests.
