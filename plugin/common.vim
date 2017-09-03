@@ -63,6 +63,18 @@ function! TrimWhitespace() abort
     call cursor(l:line_no, l:col_no)
 endfunction
 
+function! StartProfiling() abort
+    profile start ~/profile.log
+    profile func *
+    profile file *
+endfunction
+
+function! StopProfiling() abort
+    if v:profiling
+        profile pause
+    endif
+endfunction
+
 " Do auto whitespace trimming.
 
 augroup TrimWhiteSpaceGroup
@@ -71,6 +83,12 @@ augroup TrimWhiteSpaceGroup
     autocmd FileAppendPre * :call TrimWhitespace()
     autocmd FilterWritePre * :call TrimWhitespace()
     autocmd BufWritePre * :call TrimWhitespace()
+augroup END
+
+" Automatically stop profiling when Vim exits.
+augroup StopProfilingGroup
+    autocmd!
+    autocmd VimLeavePre :call StopProfiling()
 augroup END
 
 " Left brace for snippets.
