@@ -283,7 +283,7 @@ let g:ale_completion_enabled = 1
 let g:ale_linters = {
 \   'html': [],
 \   'javascript': ['eslint'],
-\   'python': ['flake8'],
+\   'python': ['flake8', 'mypy'],
 \}
 
 let g:ale_pattern_options = {
