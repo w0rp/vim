@@ -101,6 +101,11 @@ endfunction
 "  or else return an empty string to indicate "no active window")...
 "
 function! AS_DetectActiveWindow (filename)
+  " This isn't defined for Windows
+  if has('win32')
+    return ''
+  endif
+
 	if has('macunix')
 		let active_window = AS_DetectActiveWindow_Mac(a:filename)
 	elseif has('unix')
