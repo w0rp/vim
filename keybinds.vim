@@ -9,8 +9,12 @@ noremap <C-A> ggVG
 inoremap <C-A> <Esc>ggvG
 vnoremap <C-A> <Esc>ggVG
 
+" Make Shift+V switch from selection to visual line mode on Windows, etc.
+snoremap V <ESC>gvV
+
 " CTRL-C is copy to the clipboard
 vnoremap <C-C> "+y
+snoremap <C-C> <ESC>gv"+y<ESC>
 
 " CTRL-X is cut to the clipboard
 vnoremap <C-X> "+x
