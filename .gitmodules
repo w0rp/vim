@@ -45,3 +45,6 @@
 [submodule "pack/git-plugins/start/jasmine-test-runner"]
 	path = pack/git-plugins/start/jasmine-test-runner
 	url = git@github.com:w0rp/jasmine-test-runner.git
+[submodule "pack/git-plugins/start/vim-ps1"]
+	path = pack/git-plugins/start/vim-ps1
+	url = git@github.com:PProvost/vim-ps1.git
