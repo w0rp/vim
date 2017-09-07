@@ -67,9 +67,10 @@ if has('gui_running')
     endif
 
     if has('osx') || has('win32')
-        set guifont=Inconsolata\ for\ Powerline:h18
+        " Windows - http://levien.com/type/myfonts/inconsolata.html
+        set guifont=Inconsolata:h18:cANSI:qDRAFT
     else
-        set guifont=Inconsolata\ for\ Powerline\ Medium\ 18
+        set guifont=Inconsolata\ 18
     endif
 
     " Set guioptions
