@@ -1,50 +1,50 @@
 [submodule "bundle/nerdtree"]
 	path = pack/git-plugins/start/nerdtree
-	url = git@github.com:scrooloose/nerdtree.git
+	url = https://github.com/scrooloose/nerdtree.git
 [submodule "bundle/nerdtree-project"]
 	path = pack/git-plugins/start/nerdtree-project
-	url = git@github.com:janlay/NERD-tree-project.git
+	url = https://github.com/janlay/NERD-tree-project.git
 [submodule "bundle/unite"]
 	path = pack/git-plugins/start/unite
-	url = git@github.com:Shougo/unite.vim.git
+	url = https://github.com/Shougo/unite.vim.git
 [submodule "bundle/vim-pug"]
 	path = pack/git-plugins/start/vim-pug
-	url = git@github.com:digitaltoad/vim-pug.git
+	url = https://github.com/digitaltoad/vim-pug.git
 [submodule "bundle/tlib_vim"]
 	path = pack/git-plugins/start/tlib_vim
-	url = git@github.com:tomtom/tlib_vim.git
+	url = https://github.com/tomtom/tlib_vim.git
 [submodule "bundle/vim-addon-mw-utils"]
 	path = pack/git-plugins/start/vim-addon-mw-utils
-	url = git@github.com:MarcWeber/vim-addon-mw-utils.git
+	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
 [submodule "bundle/snipmate"]
 	path = pack/git-plugins/start/snipmate
-	url = git@github.com:garbas/vim-snipmate.git
+	url = https://github.com/garbas/vim-snipmate.git
 [submodule "bundle/ale"]
 	path = pack/git-plugins/start/ale
-	url = git@github.com:w0rp/ale.git
+	url = https://github.com/w0rp/ale.git
 	ignore = all
 [submodule "bundle/vader"]
 	path = pack/git-plugins/start/vader
-	url = git@github.com:junegunn/vader.vim.git
+	url = https://github.com/junegunn/vader.vim.git
 [submodule "bundle/python-tools"]
 	path = pack/git-plugins/start/python-tools
-	url = git@github.com:w0rp/python_tools.git
+	url = https://github.com/w0rp/python_tools.git
 	ignore = all
 [submodule "bundle/vim-misc"]
 	path = pack/git-plugins/start/vim-misc
-	url = git@github.com:xolox/vim-misc.git
+	url = https://github.com/xolox/vim-misc.git
 [submodule "bundle/vim-reload"]
 	path = pack/git-plugins/start/vim-reload
-	url = git@github.com:xolox/vim-reload.git
+	url = https://github.com/xolox/vim-reload.git
 [submodule "bundle/typescript-vim"]
 	path = pack/git-plugins/start/typescript-vim
-	url = git@github.com:leafgarland/typescript-vim.git
+	url = https://github.com/leafgarland/typescript-vim.git
 [submodule "bundle/lightline"]
 	path = pack/git-plugins/start/lightline
-	url = git@github.com:w0rp/lightline.vim.git
+	url = https://github.com/w0rp/lightline.vim.git
 [submodule "pack/git-plugins/start/jasmine-test-runner"]
 	path = pack/git-plugins/start/jasmine-test-runner
-	url = git@github.com:w0rp/jasmine-test-runner.git
+	url = https://github.com/w0rp/jasmine-test-runner.git
 [submodule "pack/git-plugins/start/vim-ps1"]
 	path = pack/git-plugins/start/vim-ps1
-	url = git@github.com:PProvost/vim-ps1.git
+	url = https://github.com/PProvost/vim-ps1.git
