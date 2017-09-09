@@ -74,3 +74,17 @@ Expect(The inner expression should be indented properly):
     \     }
     \   }),
     \ ])
+
+Given(A file with a line to fix with keys out of order):
+  let g:some_json = '{"c": 0, "b": 0, "a": 0}'
+
+Execute(Make the nested expression pretty):
+  call setpos('.', [bufnr(''), 1, 1, 0])
+  call json#MakeStringPretty(2)
+
+Expect(The keys should be sorted appropriately):
+  let g:some_json = json_encode({
+  \ 'a': 0,
+  \ 'b': 0,
+  \ 'c': 0
+  \})

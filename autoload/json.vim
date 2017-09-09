@@ -1,10 +1,22 @@
+function! s:KeyCmp(left, right) abort
+    if a:left[0] < a:right[0]
+        return -1
+    endif
+
+    if a:left[0] > a:right[0]
+        return 1
+    endif
+
+    return 0
+endfunction
+
 function! s:PrettyLinesImpl(json_object, level) abort
     let l:items = []
 
     if type(a:json_object) == type({})
         call add(l:items, [a:level, '{'])
 
-        for [l:key, l:value] in items(a:json_object)
+        for [l:key, l:value] in sort(items(a:json_object), function('s:KeyCmp'))
             " Add commas between items.
             if len(l:items) > 1
                 let l:items[-1][1] = l:items[-1][1] . ','
