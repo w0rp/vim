@@ -69,13 +69,22 @@ function! json#MakeStringPretty(spaces) abort
     let l:json_string = l:match[2]
     let l:tail = l:match[3]
 
+    let l:cont = matchstr(l:head, '^ *\\ *')
+
+    if empty(l:cont)
+        let l:cont = '\'
+    endif
+
     let l:json_object = json_decode(l:json_string)
 
     let l:json_lines = json#PrettyLines(l:json_object, a:spaces)
 
     let l:formatted_lines = [l:head . 'json_encode(' . l:json_lines[0]]
-    call extend(l:formatted_lines, map(l:json_lines[1:-2], '''\'' . v:val[1:]'))
-    call add(l:formatted_lines, '\' . l:json_lines[-1] . ')' . l:tail)
+    call extend(l:formatted_lines, map(
+    \   l:json_lines[1:-2],
+    \   l:cont is# '\' ? 'l:cont . v:val[1:]' : 'l:cont . v:val'
+    \))
+    call add(l:formatted_lines, l:cont . l:json_lines[-1] . ')' . l:tail)
 
     call setline(1,
     \   getline(1, l:line_number - 1)

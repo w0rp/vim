@@ -40,3 +40,37 @@ Expect(The different spacing should be used):
   \   }
   \})
   " Don't mess up this line either
+
+Given(A file with some ugly JSON string in a larger expression):
+  Execute('bla bla bla'):
+    AssertEqual
+    \ [
+    \  {},
+    \ ],
+    \ ale#handlers#foo#HandleAThing(bufnr(''), [
+    \   '{"x": {"a": true, "b": false, "c": null}, "wat": [347, "foo"]}',
+    \ ])
+
+Execute(Make the nested expression pretty):
+  call search('wat.*347')
+  call json#MakeStringPretty(2)
+
+Expect(The inner expression should be indented properly):
+  Execute('bla bla bla'):
+    AssertEqual
+    \ [
+    \  {},
+    \ ],
+    \ ale#handlers#foo#HandleAThing(bufnr(''), [
+    \   json_encode({
+    \     'wat': [
+    \       347,
+    \       'foo'
+    \     ],
+    \     'x': {
+    \       'a': v:true,
+    \       'b': v:false,
+    \       'c': v:null
+    \     }
+    \   }),
+    \ ])
