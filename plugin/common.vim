@@ -95,3 +95,4 @@ augroup END
 let g:left_brace = "\n{"
 
 command -nargs=0 CloseTabsToTheRight :silent! .+1,$tabdo :tabc
+command -nargs=0 PrettyJSON :silent call json#MakeStringPretty(2)
