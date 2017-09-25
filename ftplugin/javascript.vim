@@ -5,3 +5,5 @@ setlocal tabstop=2
 setlocal shiftwidth=2
 setlocal softtabstop=2
 setlocal nospell
+
+map <buffer> <F9> :w<CR><Plug>(run_jasmine_tests)
