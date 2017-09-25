@@ -96,3 +96,13 @@ let g:left_brace = "\n{"
 
 command -nargs=0 CloseTabsToTheRight :silent! .+1,$tabdo :tabc
 command -nargs=0 PrettyJSON :silent call json#MakeStringPretty(2)
+
+function! WordDiffLines(line1, line2) abort
+    unsilent echom 'Differences:' system(printf(
+    \   'wdiff <(echo %s) <(echo %s)',
+    \   shellescape(getline(a:line1)),
+    \   shellescape(getline(a:line2)),
+    \))[:-2]
+endfunction
+
+command! -range=% WordDiff :silent call WordDiffLines(<line1>, <line2>)
