@@ -298,7 +298,21 @@ let g:ale_pattern_options = {
 \       'ale_enabled': 0,
 \       '&modifiable': 0,
 \   },
+\   '\.pyi$': {
+\       'ale_linters': {'python': ['mypy']},
+\   },
+\   '\.min\.js$': {
+\       'ale_enabled': 0,
+\   },
 \}
+
+" Options for different linters.
+let g:ale_python_mypy_ignore_parse_errors = 1
+let g:ale_python_mypy_options = '--incremental'
+let g:ale_typescript_tslint_ignore_empty_files = 1
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+
 " --- python-tools settings ---
 
 " Don't run migrations for pytest runs in python_tools
