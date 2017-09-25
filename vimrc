@@ -212,6 +212,9 @@ set shortmess=filnxtToOc
 " Find search matches as they are typed.
 set incsearch
 
+" Configure the delay for custom chained keybinds.
+set timeoutlen=250
+
 " --- rainbow parens settings ---
 
 let g:rainbow_conf = {
