@@ -5,7 +5,7 @@ endif
 let g:loaded_common_functions = 1
 
 function! FixNewlines() abort
-    %s/\r//g
+    execute '%s/\r//g'
 endfunction
 
 " A function because I can never remember what to type for this.
@@ -54,15 +54,6 @@ function! WriteReload() abort
     return ''
 endfunction
 
-function! TrimWhitespace() abort
-    let l:line_no = line('.')
-    let l:col_no = col('.')
-
-    %s/\s*$//
-
-    call cursor(l:line_no, l:col_no)
-endfunction
-
 function! StartProfiling() abort
     profile start ~/profile.log
     profile func *
@@ -76,6 +67,12 @@ function! StopProfiling() abort
 endfunction
 
 " Do auto whitespace trimming.
+
+function! TrimWhitespace() abort
+    let l:pos = getcurpos()
+    execute '%s/\s*$//'
+    call setpos('.', l:pos)
+endfunction
 
 augroup TrimWhiteSpaceGroup
     autocmd!
