@@ -4,3 +4,6 @@ Facebook
 lexed
 linters
 virtualenv
+filetype
+BufEnter
+BufWrite
