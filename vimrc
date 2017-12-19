@@ -290,22 +290,6 @@ let g:ale_linters = {
 \   'python': ['flake8', 'mypy'],
 \}
 
-let g:ale_pattern_options = {
-\   'python-to-typescript/python_to_typescript/.*$': {
-\       'ale_linters': {'python': ['flake8', 'pylint']},
-\   },
-\   'site-packages/.*$': {
-\       'ale_enabled': 0,
-\       '&modifiable': 0,
-\   },
-\   '\.pyi$': {
-\       'ale_linters': {'python': ['mypy']},
-\   },
-\   '\.min\.js$': {
-\       'ale_enabled': 0,
-\   },
-\}
-
 " Options for different linters.
 let g:ale_python_mypy_ignore_parse_errors = 1
 let g:ale_python_mypy_options = '--incremental'
