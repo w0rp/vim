@@ -18,4 +18,6 @@ augroup FiletypeGroup
     au BufNewFile,BufRead *.ts set filetype=typescript
     " .pyi is a Python interface file.
     au BufNewFile,BufRead *.pyi set filetype=python
+    " .dart is a Dart file
+    au BufNewFile,BufRead *.dart set filetype=dart
 augroup END
