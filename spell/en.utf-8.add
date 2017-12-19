@@ -7,3 +7,13 @@ virtualenv
 filetype
 BufEnter
 BufWrite
+loclist
+quickfix
+filetypes
+linter
+javascript
+ESLint
+eslint
+ALEGoToDefinition
+ALEGoToDefinitionInTab
+LSP
