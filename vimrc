@@ -88,8 +88,18 @@ if has('gui_running')
     " Always show the tab bar.
     set showtabline=2
 
+    function! GetTabLabel() abort
+        let l:title = expand('%:t')
+
+        if l:title is# 'index.ts' || l:title is# '__init__.py'
+            let l:title = expand('%:p:h:t') . '/' . l:title
+        endif
+
+        return l:title
+    endfunction
+
     " Make only filenames appear in gvim tabs.
-    set guitablabel=%!expand(\"\%:t\")
+    set guitablabel=%{GetTabLabel()}
 
     " Set maximum number of tabs to 20.
     set tabpagemax=20
