@@ -23,3 +23,5 @@ snippet py
 
 	if __name__ == "__main__":
 		main()
+snippet uuid
+	`split(execute('python import uuid; print(uuid.uuid4().hex)'))[0]`${0}
