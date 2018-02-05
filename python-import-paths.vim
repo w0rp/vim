@@ -9,6 +9,7 @@ let g:python_import_dict = {
 \   'Concat': 'from django.db.models.functions',
 \   'ContentType': 'from django.contrib.contenttypes.models',
 \   'Count': 'from django.db.models',
+\   'Subquery': 'from django.db.models',
 \   'Decimal': 'from decimal',
 \   'F': 'from django.db.models',
 \   'FloatField': 'from django.db.models',
