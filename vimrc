@@ -297,7 +297,7 @@ let g:ale_completion_enabled = 1
 let g:ale_linters = {
 \   'html': [],
 \   'javascript': ['eslint'],
-\   'python': ['flake8', 'mypy'],
+\   'python': ['flake8'],
 \}
 
 " Options for different linters.
