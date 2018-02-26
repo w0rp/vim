@@ -291,6 +291,10 @@ let g:lightline = {
 " --- ALE settings ---
 "
 " Disable ALE warnings about trailing whitespace.
+let g:ale_sign_error = '◉'
+let g:ale_sign_warning = '◉'
+highlight ALEErrorSign ctermfg=9 ctermbg=15 guifg=#C30500 guibg=#F5F5F5
+highlight ALEWarningSign ctermfg=11 ctermbg=15 guifg=#ED6237 guibg=#F5F5F5
 let g:ale_warn_about_trailing_whitespace = 0
 let g:ale_maximum_file_size = 1024 * 1024
 let g:ale_completion_enabled = 1
