@@ -77,6 +77,9 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 " Bind F8 to fixing problems with ALE
 nmap <F8> <Plug>(ale_fix)
 
+" Bind F1 to showing details of ALE errors.
+noremap <F1> :ALEDetail<CR>
+
 " Search for files in the project with Ctrl+H
 noremap <C-h> :UniteWithProjectDir file_rec/async:<Return>:setlocal modifiable<Return>i
 noremap <C-f> :UniteWithProjectDir grep -no-empty<Return>
