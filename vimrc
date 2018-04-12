@@ -305,7 +305,7 @@ let g:ale_linters = {
 \}
 
 " Options for different linters.
-let g:ale_python_mypy_ignore_parse_errors = 1
+let g:ale_python_mypy_ignore_invalid_syntax = 1
 let g:ale_python_mypy_options = '--incremental'
 let g:ale_typescript_tslint_ignore_empty_files = 1
 let g:ale_lint_on_text_changed = 'normal'
