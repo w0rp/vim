@@ -89,3 +89,5 @@ snippet utest
 
 		def tearDown(self):
 			super($1, self).tearDown()
+snippet .save(u
+	.save(update_fields=[${0}])

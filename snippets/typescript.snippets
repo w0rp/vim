@@ -10,3 +10,31 @@ snippet beforeEach
 	beforeEach(() => {
 		${0}
 	})
+snippet provide
+	beforeEach(angular.mock.module($provide => {
+		$provide.constant('USER', USER)
+	}))
+snippet inject
+	beforeEach(inject((
+		_$httpBackend_: ng.IHttpBackendService,
+		_$rootScope_: ng.IRootScopeService,
+	) => {
+		$httpBackend = _$httpBackend_
+		$rootScope = _$rootScope_
+	}))
+snippet $httpBackend:
+	$httpBackend: ng.IHttpBackendService
+snippet _$httpBackend_:
+	_$httpBackend_: ng.IHttpBackendService
+snippet $timeout:
+	$timeout: ng.ITimeoutService
+snippet _$timeout_:
+	_$timeout_: ng.ITimeoutService
+snippet $location:
+	$location: ng.ILocationService
+snippet _$location_:
+	_$location_: ng.ILocationService
+snippet {key
+	{[key: string]: ${0}
+snippet import
+	import {${2}} from '${1}'${0}
