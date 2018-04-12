@@ -1,4 +1,9 @@
 " vint: -ProhibitSetNoCompatible
+
+" Set a variable to prevent some parts of vimrc from being run again
+" when reloading it.
+let g:vimrc_loaded = get(g:, 'vimrc_loaded', 0)
+
 set encoding=utf-8
 scriptencoding utf-8
 
@@ -12,17 +17,18 @@ else
 endif
 
 " We must replace the runtimepath to make everything work.
-set runtimepath=$VIMHOME,$VIM/vimfiles/,$VIMRUNTIME,$VIM/vimfiles/after
-
-" Add a command for loading .vimrc completely.
-command! ReloadVimrc source $MYVIMRC
+if !g:vimrc_loaded
+    set runtimepath=$VIMHOME,$VIM/vimfiles/,$VIMRUNTIME,$VIM/vimfiles/after
+endif
 
 let s:ag_opts='--nocolor --nogroup --hidden'
 let s:ag_opts.=' --ignore=.git --ignore=.svn --ignore=.hg --ignore=.bzr'
 let g:unite_source_rec_async_command=['ag'] + split(s:ag_opts) + ['-g', '']
 
 " Set our after directory after everything.
-let &runtimepath.=',' . $VIMHOME . '/after'
+if !g:vimrc_loaded
+    let &runtimepath.=',' . $VIMHOME . '/after'
+endif
 
 filetype plugin on
 
@@ -61,7 +67,7 @@ if has('gui_running')
         silent colorscheme
     redir end
 
-    if s:colorscheme !=# 'darkspectrum'
+    if s:colorscheme !~# 'darkspectrum'
         " Set colour scheme
         colorscheme darkspectrum
     endif
@@ -112,7 +118,9 @@ endif
 
 " Enable syntax highlighting by default.
 if has('syntax')
-    syntax on
+    if !g:vimrc_loaded
+        syntax on
+    endif
 
     " Reduce processing for syntax highlighting to make it less of a pain.
     syntax sync minlines=200
@@ -336,7 +344,11 @@ augroup ReloadVimrcGroup
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END
 
-packloadall
+if !g:vimrc_loaded
+    execute 'packloadall'
 
-" Automatically regenerate help tags.
-silent! helptags ALL
+    " Automatically regenerate help tags.
+    silent! helptags ALL
+endif
+
+let g:vimrc_loaded = 1
