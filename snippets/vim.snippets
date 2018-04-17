@@ -54,3 +54,12 @@ snippet sfunc
 	function! s:${1:Name}() abort
 		${0}
 	endfunction
+snippet redir
+	let l:output = ''
+	redir => l:output
+		silent ${0}
+	redir END
+	let l:output_list = split(l:output, "\n")
+snippet if
+	if ${0}
+	endif
