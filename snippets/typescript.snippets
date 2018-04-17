@@ -25,15 +25,19 @@ snippet inject
 snippet $httpBackend:
 	$httpBackend: ng.IHttpBackendService
 snippet _$httpBackend_:
-	_$httpBackend_: ng.IHttpBackendService
+	_$httpBackend_: ng.IHttpBackendService,
 snippet $timeout:
 	$timeout: ng.ITimeoutService
 snippet _$timeout_:
-	_$timeout_: ng.ITimeoutService
+	_$timeout_: ng.ITimeoutService,
 snippet $location:
 	$location: ng.ILocationService
 snippet _$location_:
-	_$location_: ng.ILocationService
+	_$location_: ng.ILocationService,
+snippet $q:
+	$q: ng.IQService
+snippet _$q_:
+	_$q_: ng.IQService,
 snippet {key
 	{[key: string]: ${0}
 snippet keyany
