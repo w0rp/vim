@@ -78,6 +78,7 @@ noremap <F2> :ToggleNERDTree<CR>
 " Search for files in the project with Ctrl+H
 noremap <F3> :UniteResume<Return>:execute "normal \<Plug>(unite_redraw)"<Return>
 noremap <F5> :UniteWithProjectDir grep -no-empty<Return>
+noremap <C-f> :UniteWithProjectDir grep -no-empty<Return>
 noremap <F6> :UniteWithProjectDir file_rec/async:<Return>:setlocal modifiable<Return>i
 
 " Bind F8 to fixing problems with ALE
@@ -114,7 +115,7 @@ noremap <F4> :call CopyFilenameToClipboard()<CR>
 " Make pressing Enter accept a completion entry.
 function! SmartEnter()
     if pumvisible()
-        return "\<Esc>"
+        return "\<C-y>"
     endif
 
     return "\<CR>"
@@ -164,3 +165,6 @@ nnoremap \\ @@
 
 " Bind // so it sets up an expression for replacing the previous match.
 noremap // :%s//
+
+function! startup#keybinds#Init() abort
+endfunction

@@ -21,3 +21,6 @@ augroup FiletypeGroup
     " .dart is a Dart file
     au BufNewFile,BufRead *.dart set filetype=dart
 augroup END
+
+function! startup#autocmd#Init() abort
+endfunction

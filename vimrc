@@ -327,8 +327,11 @@ let g:python_tools_pytest_no_migrations = 1
 " --- Extra custom settings ---
 let g:path_prefixes_to_trim = []
 
-source $VIMHOME/keybinds.vim
-source $VIMHOME/autocmd.vim
+" Run mostly blank init functions for loading extra settings, which can
+" be automatically reloaded when edited.
+call startup#keybinds#Init()
+call startup#autocmd#Init()
+call startup#spelling_corrections#Init()
 
 " Warn about not being able to write to .viminfo, which messes up restoring
 " the cursor position when editing.
