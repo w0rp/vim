@@ -77,6 +77,8 @@ noremap <F1> :ALEDetail<CR>
 noremap <F2> :ToggleNERDTree<CR>
 " Search for files in the project with Ctrl+H
 noremap <F3> :UniteResume<Return>:execute "normal \<Plug>(unite_redraw)"<Return>
+" Map F4 to copying the current filename to the clipboard.
+noremap <F4> :call startup#keybinds#CopyNameToClipboard()<CR>
 noremap <F5> :UniteWithProjectDir grep -no-empty<Return>
 noremap <C-f> :UniteWithProjectDir grep -no-empty<Return>
 noremap <F6> :UniteWithProjectDir file_rec/async:<Return>:setlocal modifiable<Return>i
@@ -90,7 +92,7 @@ if has('syntax')
     inoremap <F12> <C-o>:syntax sync fromstart<CR>
 endif
 
-fun! CopyFilenameToClipboard()
+function! startup#keybinds#CopyNameToClipboard() abort
     let l:current_filename = expand('%:p')
 
     " Look through a configured array of prefixes to remove, and remove
@@ -105,12 +107,24 @@ fun! CopyFilenameToClipboard()
         endif
     endfor
 
-    let @+ = l:current_filename
-    echo 'Filename copied to clipboard'
-endf
+    let l:text = l:current_filename
 
-" Map F4 to copying the current filename to the clipboard.
-noremap <F4> :call CopyFilenameToClipboard()<CR>
+    if &filetype =~# 'python'
+        let l:info = python_tools#cursor_info#GetInfo()
+
+        if !empty(get(l:info, 'class', ''))
+            let l:text .= '::' . l:info.class
+        endif
+
+        if !empty(get(l:info, 'def', ''))
+            let l:text .= '::' . l:info.def
+        endif
+    endif
+
+
+    let @+ = l:text
+    echo 'Filename and function name copied to clipboard'
+endfunction
 
 " Make pressing Enter accept a completion entry.
 function! SmartEnter()
