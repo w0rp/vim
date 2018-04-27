@@ -9,6 +9,11 @@ noremap <C-A> ggVG
 inoremap <C-A> <Esc>ggvG
 vnoremap <C-A> <Esc>ggVG
 
+" Make double-tapping ESC in normal mode quit a file.
+nnoremap <ESC><ESC> :q<CR>
+" Triple-tapping ESC forces quitting.
+nnoremap <ESC><ESC> :q!<CR>
+
 " Make Shift+V switch from selection to visual line mode on Windows, etc.
 snoremap V <ESC>gvV
 
@@ -42,10 +47,18 @@ nnoremap <expr> gV "`[".getregtype(v:register)[0]."`]"
 noremap <C-tab> :tabn <Return>
 noremap <Tab> :tabn <Return>
 inoremap <C-tab> <Esc> :tabn <Return>
+" Ctrl + k goes to the tab to the right.
+noremap <C-k> :tabn <Return>
+" Ctrl + l goes to the tab to the right.
+noremap <C-l> :tabn <Return>
 
 " Ctrl + Shift + Tab to go back.
 noremap <C-S-tab> :tabp <Return>
 inoremap <C-S-tab> <Esc> :tabp <Return>
+" Ctrl + j goes to the tab to the left.
+noremap <C-j> :tabp <Return>
+" Ctrl + h goes to the tab to the left.
+noremap <C-h> :tabp <Return>
 
 " Bind Ctrl + t to opening new tabs.
 noremap <C-t> :tabnew <Return>
