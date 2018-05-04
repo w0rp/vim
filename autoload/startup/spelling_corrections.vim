@@ -10,6 +10,7 @@ iab templatse templates
 iab suppport support
 iab supprot support
 iab getitng getting
+iab needeed needed
 
 function! startup#spelling_corrections#FixCurrentMistakes() abort
     let l:output = ''
