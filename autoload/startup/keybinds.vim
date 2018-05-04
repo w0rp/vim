@@ -1,4 +1,23 @@
+function! startup#keybinds#TryToOpenLink() abort
+    let l:pos = getcurpos()
+    let l:lnum = l:pos[1]
+    let l:col = l:pos[2]
+    let l:line = getline(l:lnum)
+
+    " TODO: handle multiple lines on a single line better.
+    let l:index = match(l:line[0 : l:col], '\vhttps?://')
+
+    if l:index >= 0 && l:index < l:col
+        let l:link = matchstr(l:line[l:index :], '\v[^ ]+')
+
+        call job_start(['xdg-open', l:link])
+    endif
+endfunction
+
 " This script holds all keybinding settings.
+
+nnoremap <silent> <C-LeftMouse> <LeftMouse> :call startup#keybinds#TryToOpenLink()<CR>
+nnoremap <C-RightMouse> <Nop>
 
 " Disable replace mode, which turns on in bad terminals for some reason.
 nnoremap R <Nop>
