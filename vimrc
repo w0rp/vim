@@ -200,6 +200,10 @@ set textwidth=0
 command! W w
 command! Q q
 
+" Make completion smarter.
+set ignorecase
+set smartcase
+
 " viminfo settings
 " '100 : Remember marks for 100 previously edited files.
 " <50  : ???
