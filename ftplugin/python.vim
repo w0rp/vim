@@ -36,3 +36,5 @@ function! ChangePythonLineLength() abort
 endfunction
 
 call ChangePythonLineLength()
+
+let b:ale_linters = ['flake8', 'mypy']
