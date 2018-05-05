@@ -97,7 +97,9 @@ if has('gui_running')
     function! GetTabLabel() abort
         let l:title = expand('%:t')
 
-        if l:title is# 'index.ts' || l:title is# '__init__.py'
+        if l:title is# 'index.ts'
+        \|| l:title is# '__init__.py'
+        \|| l:title is# '__init__.pyi'
             let l:title = expand('%:p:h:t') . '/' . l:title
         endif
 
