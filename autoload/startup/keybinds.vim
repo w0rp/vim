@@ -53,6 +53,9 @@ noremap <silent> <C-S> :w<CR>
 vnoremap <silent> <C-S> <C-C>:w<CR>
 inoremap <silent> <C-S> <C-C>:w<CR>
 
+" SHIFT-S Saves the file.
+noremap <silent> S :w<CR>
+
 " Quit files by typing fjfj quickly, which requires less stretching.
 noremap fjfj :q<CR>
 
