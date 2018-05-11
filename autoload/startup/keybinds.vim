@@ -121,6 +121,7 @@ noremap <F6> :UniteWithProjectDir file_rec/async:<Return>:setlocal modifiable<Re
 
 " Bind F8 to fixing problems with ALE
 nmap <F8> <Plug>(ale_fix)
+inoremap <F8> <C-c><Plug>(ale_fix)
 
 " Use Ctrl+m to go to the definition of something.
 noremap <C-m> :ALEGoToDefinition<CR>
