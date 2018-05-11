@@ -7,9 +7,6 @@ let g:ale_pattern_options = {
 \       'ale_enabled': 0,
 \       '&modifiable': 0,
 \   },
-\   '\.pyi$': {
-\       'ale_linters': ['mypy'],
-\   },
 \   '\v\.min\.(js|css)$': {
 \       'ale_linters': [],
 \       'ale_fixers': [],

@@ -85,9 +85,9 @@ snippet utest
 	class ${1:SomeTestCase}(TestCase):
 
 		def setUp(self):
-			super($1, self).setUp()
+			super().setUp()
 
 		def tearDown(self):
-			super($1, self).tearDown()
+			super().tearDown()
 snippet .save(u
 	.save(update_fields=[${0}])

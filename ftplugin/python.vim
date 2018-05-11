@@ -37,4 +37,16 @@ endfunction
 
 call ChangePythonLineLength()
 
-let b:ale_linters = ['flake8', 'mypy']
+let b:ale_linters = ['flake8', 'pyls']
+let b:ale_fixers = [
+\   'remove_trailing_lines',
+\   'isort',
+\   'extra_ale_fixers#AutomaticallyFixJSONDiffOutput',
+\   'ale#fixers#generic_python#BreakUpLongLines',
+\   'autopep8',
+\]
+let b:ale_completion_excluded_words = ['and', 'or', 'if']
+
+if expand('%:e') is# 'pyi'
+    let b:ale_linters = ['mypy', 'pyls']
+endif
