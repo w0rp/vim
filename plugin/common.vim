@@ -103,3 +103,6 @@ function! WordDiffLines(line1, line2) abort
 endfunction
 
 command! -range=% WordDiff :silent call WordDiffLines(<line1>, <line2>)
+
+" A command for dumping Vim variables for debugging.
+command! -nargs=+ Dump :echom <q-args> . ': ' . string(<f-args>[0])
