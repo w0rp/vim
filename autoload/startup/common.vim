@@ -1,9 +1,3 @@
-if exists('g:loaded_common_functions')
-    finish
-endif
-
-let g:loaded_common_functions = 1
-
 function! FixNewlines() abort
     execute '%s/\r//g'
 endfunction
@@ -60,12 +54,6 @@ function! StartProfiling() abort
     profile file *
 endfunction
 
-function! StopProfiling() abort
-    if v:profiling
-        profile pause
-    endif
-endfunction
-
 " Do auto whitespace trimming.
 
 function! TrimWhitespace() abort
@@ -82,17 +70,8 @@ augroup TrimWhiteSpaceGroup
     autocmd BufWritePre * :call TrimWhitespace()
 augroup END
 
-" Automatically stop profiling when Vim exits.
-augroup StopProfilingGroup
-    autocmd!
-    autocmd VimLeavePre :call StopProfiling()
-augroup END
-
-" Left brace for snippets.
-let g:left_brace = "\n{"
-
-command -nargs=0 CloseTabsToTheRight :silent! .+1,$tabdo :tabc
-command -nargs=0 PrettyJSON :silent call json#MakeStringPretty(2)
+command! -nargs=0 CloseTabsToTheRight :silent! .+1,$tabdo :tabc
+command! -nargs=0 PrettyJSON :silent call json#MakeStringPretty(2)
 
 function! WordDiffLines(line1, line2) abort
     unsilent echom 'Differences:' system(printf(
@@ -106,3 +85,6 @@ command! -range=% WordDiff :silent call WordDiffLines(<line1>, <line2>)
 
 " A command for dumping Vim variables for debugging.
 command! -nargs=+ Dump :echom <q-args> . ': ' . string(<f-args>[0])
+
+function! startup#common#Init() abort
+endfunction

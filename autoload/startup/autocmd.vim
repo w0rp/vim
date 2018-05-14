@@ -22,5 +22,32 @@ augroup FiletypeGroup
     au BufNewFile,BufRead *.dart set filetype=dart
 augroup END
 
+function! startup#autocmd#StopProfiling() abort
+    if v:profiling
+        profile pause
+    endif
+endfunction
+
+" Automatically stop profiling when Vim exits.
+augroup StopProfilingGroup
+    autocmd!
+    autocmd VimLeavePre :call startup#autocmd#StopProfiling()
+augroup END
+
+" Do auto whitespace trimming.
+function! startup#autocmd#TrimWhitespace() abort
+    let l:pos = getcurpos()
+    execute '%s/\s*$//'
+    call setpos('.', l:pos)
+endfunction
+
+augroup TrimWhiteSpaceGroup
+    autocmd!
+    autocmd FileWritePre * :call startup#autocmd#TrimWhitespace()
+    autocmd FileAppendPre * :call startup#autocmd#TrimWhitespace()
+    autocmd FilterWritePre * :call startup#autocmd#TrimWhitespace()
+    autocmd BufWritePre * :call startup#autocmd#TrimWhitespace()
+augroup END
+
 function! startup#autocmd#Init() abort
 endfunction
