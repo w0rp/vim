@@ -17,4 +17,9 @@ let g:ale_pattern_options = {
 \   '/python-ls-project/': {
 \       'ale_linters': {'python': ['pyls', 'flake8']},
 \   },
+\   '/tslint/src/': {
+\       '&tabstop': 4,
+\       '&shiftwidth': 4,
+\       '&softtabstop': 4,
+\   },
 \}
