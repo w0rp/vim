@@ -27,19 +27,6 @@ endfunction
 
 command! Python call NewPythonScript()
 
-" Open the snippet file associated with this type of file.
-function! EditSnippet() abort
-    exec 'tabnew ' expand('~/.vim/snippets/' . &filetype . '.snippets')
-endfunction
-
-function! EditSyntax() abort
-    exec 'tabnew ' . $HOME . '/.vim/syntax/' . &l:filetype . '.vim'
-endfunction
-
-function! EditFtPlugin() abort
-    exec 'tabnew ' . $HOME . '/.vim/ftplugin/' . &l:filetype . '.vim'
-endfunction
-
 " This is created for the benefit of snippet magic.
 function! WriteReload() abort
     exec 'w'
@@ -53,22 +40,6 @@ function! StartProfiling() abort
     profile func *
     profile file *
 endfunction
-
-" Do auto whitespace trimming.
-
-function! TrimWhitespace() abort
-    let l:pos = getcurpos()
-    execute '%s/\s*$//'
-    call setpos('.', l:pos)
-endfunction
-
-augroup TrimWhiteSpaceGroup
-    autocmd!
-    autocmd FileWritePre * :call TrimWhitespace()
-    autocmd FileAppendPre * :call TrimWhitespace()
-    autocmd FilterWritePre * :call TrimWhitespace()
-    autocmd BufWritePre * :call TrimWhitespace()
-augroup END
 
 command! -nargs=0 CloseTabsToTheRight :silent! .+1,$tabdo :tabc
 command! -nargs=0 PrettyJSON :silent call json#MakeStringPretty(2)
@@ -85,6 +56,19 @@ command! -range=% WordDiff :silent call WordDiffLines(<line1>, <line2>)
 
 " A command for dumping Vim variables for debugging.
 command! -nargs=+ Dump :echom <q-args> . ': ' . string(<f-args>[0])
+
+" Commands for quickly edting commonly edited files.
+function! EditVimFile(relative_path) abort
+    let l:vim_dir = expand('~/.vim/')
+
+    execute 'tabnew ' . fnameescape(l:vim_dir . a:relative_path)
+endfunction
+
+command! EditCommon :call EditVimFile('autoload/startup/common.vim')
+command! EditKeybinds :call EditVimFile('autoload/startup/keybinds.vim')
+command! EditSnippets :call EditVimFile('snippets/' . &filetype . '.snippets')
+command! EditSyntax :call EditVimFile('syntax/' . &filetype . '.vim')
+command! EditFtPlugin :call EditVimFile('ftplugin/' . &filetype . '.vim')
 
 function! startup#common#Init() abort
 endfunction
