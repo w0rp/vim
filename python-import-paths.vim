@@ -70,6 +70,7 @@ let g:python_import_dict = {
 \   'pytz': 'import pytz',
 \   'quote': 'from six.moves.urllib.parse',
 \   'receiver': 'from django.dispatch',
+\   'reduce': 'from functools',
 \   'render': 'from django.shortcuts',
 \   'settings': 'from django.conf',
 \   'six': 'import six',
