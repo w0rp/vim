@@ -37,7 +37,7 @@ endfunction
 
 call ChangePythonLineLength()
 
-let b:ale_linters = ['flake8', 'pyls']
+let b:ale_linters = ['flake8']
 let b:ale_fixers = [
 \   'remove_trailing_lines',
 \   'isort',
@@ -48,5 +48,5 @@ let b:ale_fixers = [
 let b:ale_completion_excluded_words = ['and', 'or', 'if']
 
 if expand('%:e') is# 'pyi'
-    let b:ale_linters = ['mypy', 'pyls']
+    let b:ale_linters = ['mypy']
 endif
