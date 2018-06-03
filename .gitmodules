@@ -48,3 +48,6 @@
 [submodule "pack/git-plugins/start/vim-ps1"]
 	path = pack/git-plugins/start/vim-ps1
 	url = https://github.com/PProvost/vim-ps1.git
+[submodule "pack/git-plugins/start/vim-speech"]
+	path = pack/git-plugins/start/vim-speech
+	url = https://github.com/w0rp/vim-speech.git

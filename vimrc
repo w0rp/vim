@@ -333,6 +333,11 @@ let g:path_prefixes_to_trim = []
 " Left brace for snippets.
 let g:left_brace = "\n{"
 
+" --- vim-speech settings ---
+
+let $GOOGLE_APPLICATION_CREDENTIALS = $HOME
+\   . '/content/application/speech-to-text-key.json'
+
 " --- autoloaded extra code ---
 
 " Run mostly blank init functions for loading extra settings, which can

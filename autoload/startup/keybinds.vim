@@ -118,7 +118,8 @@ noremap <F4> :call startup#keybinds#CopyNameToClipboard()<CR>
 noremap <F5> :UniteWithProjectDir grep -no-empty<Return>
 noremap <C-f> :UniteWithProjectDir grep -no-empty<Return>
 noremap <F6> :UniteWithProjectDir file_rec/async:<Return>:setlocal modifiable<Return>i
-
+" Bind F7 To recording speech with vim-speech.
+noremap <silent> <F7> :SpeechToggle<CR>
 " Bind F8 to fixing problems with ALE
 nmap <F8> <Plug>(ale_fix)
 inoremap <F8> <C-c><Plug>(ale_fix)
