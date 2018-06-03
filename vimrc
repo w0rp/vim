@@ -293,11 +293,12 @@ let g:lightline = {
 \       ],
 \       'right': [
 \           ['lineinfo'],
-\           ['python_status', 'filetype'],
+\           ['python_status', 'vim_speech', 'filetype'],
 \       ],
 \   },
 \   'component_function': {
-\       'python_status': 'python_tools#statusline#GetStatus'
+\       'python_status': 'python_tools#statusline#GetStatus',
+\       'vim_speech': 'vim_speech#statusline#GetStatus',
 \   },
 \}
 
@@ -338,6 +339,7 @@ let g:left_brace = "\n{"
 
 let $GOOGLE_APPLICATION_CREDENTIALS = $HOME
 \   . '/content/application/speech-to-text-key.json'
+let g:vim_speech_recording_status = '◉ REC'
 
 " --- autoloaded extra code ---
 
