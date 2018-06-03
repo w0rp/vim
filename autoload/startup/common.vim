@@ -9,7 +9,9 @@ endfunction
 
 " A function for setting the execute bit for scripts.
 function! NewBashScript() abort
-    :0put =\"#!/bin/bash -eu\"
+    :0put =\"#!/usr/bin/env bash\"
+    :1put =\"\"
+    :2put =\"set -eu\"
     :w! %
     :silent !chmod ug+x %
     :e! %
