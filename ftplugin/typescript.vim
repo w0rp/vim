@@ -1,5 +1,5 @@
 setlocal expandtab
-setlocal colorcolumn=80
+setlocal colorcolumn=81
 " Use 2 space tabs for TypeScript
 setlocal tabstop=2
 setlocal shiftwidth=2

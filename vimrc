@@ -191,7 +191,7 @@ set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 set autoread
 
 " Set the right margin.
-set colorcolumn=80
+set colorcolumn=81
 " Automatically split words at the margin.
 set wrap
 
