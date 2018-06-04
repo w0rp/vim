@@ -65,18 +65,14 @@ inoremap <C-c> <Esc>
 " Bind gV so we can re-select pasted text.
 nnoremap <expr> gV "`[".getregtype(v:register)[0]."`]"
 
-" Bind Ctrl + Tab to switch tabs
-noremap <C-tab> :tabn <Return>
 noremap <Tab> :tabn <Return>
-inoremap <C-tab> <Esc> :tabn <Return>
-" Ctrl + l goes to the tab to the right.
-noremap <C-l> :tabn <Return>
+" Bind Ctrl + Tab goes back
+noremap <C-tab> :tabp <Return>
 
-" Ctrl + Shift + Tab to go back.
-noremap <C-S-tab> :tabp <Return>
-inoremap <C-S-tab> <Esc> :tabp <Return>
 " Ctrl + h goes to the tab to the left.
 noremap <C-h> :tabp <Return>
+" Ctrl + l goes to the tab to the right.
+noremap <C-l> :tabn <Return>
 
 " Bind Ctrl + t to opening new tabs.
 noremap <C-t> :tabnew <Return>
