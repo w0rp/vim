@@ -7,5 +7,7 @@ setlocal softtabstop=2
 setlocal nospell
 
 map <buffer> <F9> :w<CR><Plug>(run_jasmine_tests)
+inoremap <buffer> ; :
+inoremap <buffer> : ;
 
 let b:ale_completion_excluded_words = ['it', 'describe']
