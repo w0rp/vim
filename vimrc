@@ -312,6 +312,7 @@ highlight ALEWarningSign ctermfg=11 ctermbg=15 guifg=#ED6237 guibg=#F5F5F5
 let g:ale_warn_about_trailing_whitespace = 0
 let g:ale_maximum_file_size = 1024 * 1024
 let g:ale_completion_enabled = 1
+let g:ale_set_balloons_legacy_echo = 1
 
 " Options for different linters.
 let g:ale_python_mypy_ignore_invalid_syntax = 1
