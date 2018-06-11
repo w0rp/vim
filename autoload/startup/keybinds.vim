@@ -65,9 +65,10 @@ inoremap <C-c> <Esc>
 " Bind gV so we can re-select pasted text.
 nnoremap <expr> gV "`[".getregtype(v:register)[0]."`]"
 
-noremap <Tab> :tabn <Return>
-" Bind Ctrl + Tab goes back
-noremap <C-tab> :tabp <Return>
+" Bind Ctrl + Tab goes forward
+noremap <C-Tab> :tabn <Return>
+" Bind Ctrl + Shift + Tab goes back
+noremap <C-S-Tab> :tabp <Return>
 
 " Ctrl + h goes to the tab to the left.
 noremap <C-h> :tabp <Return>
