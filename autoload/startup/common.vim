@@ -72,5 +72,18 @@ command! EditSnippets :call EditVimFile('snippets/' . &filetype . '.snippets')
 command! EditSyntax :call EditVimFile('syntax/' . &filetype . '.vim')
 command! EditFtPlugin :call EditVimFile('ftplugin/' . &filetype . '.vim')
 
+function! startup#common#IgnoreError(buffer) abort
+    let l:Func = getbufvar(a:buffer, 'Ignore')
+
+    if type(l:Func) != type(function('type'))
+        return
+    endif
+
+    call l:Func(a:buffer)
+endfunction
+
+
+command! Ignore :call startup#common#IgnoreError(bufnr(''))
+
 function! startup#common#Init() abort
 endfunction

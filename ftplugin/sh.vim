@@ -11,3 +11,7 @@ vmap <buffer> <C-,> :s/^\(\s*\)#/\1/<Return>
 " Open files with Ctrl + ]
 map <buffer> <C-]> :tabfind <cfile><CR>
 
+function! ShIgnoreFunction(buffer) abort
+endfunction
+
+let b:Ignore = function('ShIgnoreFunction')
