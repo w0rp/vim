@@ -56,7 +56,7 @@ let g:python_import_dict = {
 \   'json': 'import json',
 \   'login_required': 'from django.contrib.auth.decorators',
 \   'mark_safe': 'from django.utils.safestring',
-\   'mock': 'from unittest import mock',
+\   'mock': 'from unittest',
 \   'operator': 'import operator',
 \   'os': 'import os',
 \   'parse_datetime': 'from django.utils.dateparse',
