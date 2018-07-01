@@ -5,13 +5,16 @@ function! startup#keybinds#TryToOpenLink() abort
     let l:line = getline(l:lnum)
 
     " TODO: handle multiple lines on a single line better.
-    let l:index = match(l:line[0 : l:col], '\vhttps?://')
+    let l:index = match(l:line[0 : l:col + len('https://')], '\vhttps?://')
 
     if l:index >= 0 && l:index < l:col
         let l:link = matchstr(l:line[l:index :], '\v[^ ]+')
 
         call job_start(['xdg-open', l:link])
+        return 1
     endif
+
+    return 0
 endfunction
 
 " This script holds all keybinding settings.

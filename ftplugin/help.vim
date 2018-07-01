@@ -2,8 +2,16 @@
 setlocal spell
 
 " Navigate quickly in help files with space and backspace.
-noremap <buffer> <space> <C-]>
 noremap <buffer> <BS> <C-O>
+
+function! OpenHelpTag() abort
+    if !startup#keybinds#TryToOpenLink()
+        call feedkeys("\<C-]>", 'n')
+    endif
+endfunction
+
+" Open help tags or links with Space.
+nnoremap <buffer> <silent> <space> :call OpenHelpTag()<CR>
 
 function! CloseHelpFilesWithQ() abort
     if !&modifiable
