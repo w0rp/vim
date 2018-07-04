@@ -25,3 +25,4 @@ whitespace
 gitlint
 gitcommit
 config
+AppVeyor
