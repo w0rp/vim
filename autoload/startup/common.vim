@@ -57,7 +57,7 @@ endfunction
 command! -range=% WordDiff :silent call WordDiffLines(<line1>, <line2>)
 
 " A command for dumping Vim variables for debugging.
-command! -nargs=+ Dump :echom <q-args> . ': ' . string(<f-args>[0])
+command! -nargs=+ Dump :echom <q-args> . ': ' . string(eval(<q-args>))
 
 " Commands for quickly edting commonly edited files.
 function! EditVimFile(relative_path) abort
