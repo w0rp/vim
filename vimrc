@@ -343,6 +343,10 @@ let g:vim_speech_recording_status = '◉ REC'
 
 " --- autoloaded extra code ---
 
+let g:path_remove_regex_list = [
+\   '^.*/wazoku/wazoku-spotlight/',
+\]
+
 " Run mostly blank init functions for loading extra settings, which can
 " be automatically reloaded when edited.
 call startup#keybinds#Init()

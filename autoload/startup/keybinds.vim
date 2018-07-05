@@ -134,21 +134,23 @@ if has('syntax')
 endif
 
 function! startup#keybinds#CopyNameToClipboard() abort
-    let l:current_filename = expand('%:p')
+    let l:filename = expand('%:p')
 
     " Look through a configured array of prefixes to remove, and remove
     " them from the filename if any match.
-    for l:prefix in g:path_prefixes_to_trim
-        if l:current_filename =~ '\V\^' . l:prefix
-            let l:current_filename = l:current_filename[len(l:prefix):]
-            " Remove additional leading slashes if removing prefixes.
-            let l:current_filename = substitute(l:current_filename, '^/*', '', '')
+    for l:regex in g:path_remove_regex_list
+        let [l:match, l:start, l:end] = matchstrpos(l:filename, l:regex)
+
+        if !empty(l:match)
+            let l:filename = l:start > 0
+            \   ? l:filename[: l:start - 1] . l:filename[l:end :]
+            \   : l:filename[l:end :]
 
             break
         endif
     endfor
 
-    let l:text = l:current_filename
+    let l:text = l:filename
 
     if &filetype =~# 'python'
         let l:info = python_tools#cursor_info#GetInfo()
