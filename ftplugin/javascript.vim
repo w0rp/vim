@@ -5,6 +5,8 @@ setlocal tabstop=2
 setlocal shiftwidth=2
 setlocal softtabstop=2
 setlocal nospell
+" Include - for completion.
+setlocal iskeyword+=-
 
 map <buffer> <F9> :w<CR><Plug>(run_jasmine_tests)
 " Swap ; and : in TS code, to make my left wrist hurt less.

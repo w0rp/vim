@@ -7,3 +7,6 @@ setlocal comments=:// commentstring=//\ %s
 
 setlocal omnifunc=csscomplete#CompleteCSS
 setlocal suffixesadd=.less
+
+" Include - for completion.
+setlocal iskeyword+=-
