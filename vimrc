@@ -95,15 +95,47 @@ if has('gui_running')
     set showtabline=2
 
     function! GetTabLabel() abort
-        let l:title = expand('%:t')
+        " TODO Detect if a NerdTree window is open split with a file, and show
+        " the name of the file in the tab instead.
+        let l:full_name = expand('%:p')
 
-        if l:title is# 'index.ts'
-        \|| l:title is# '__init__.py'
-        \|| l:title is# '__init__.pyi'
-            let l:title = expand('%:p:h:t') . '/' . l:title
+        if empty(l:full_name)
+            return ''
         endif
 
-        return l:title
+        let l:buffer = bufnr('')
+        " Get the buffer names for all windows.
+        let l:name_list = map(
+        \   filter(getwininfo(), 'v:val.bufnr isnot l:buffer'),
+        \   'expand(''#'' . v:val.bufnr . '':p'')',
+        \)
+        let l:depth = 1
+
+        while 1
+            let l:dir = fnamemodify(l:full_name, repeat(':h', l:depth))
+            let l:depth += 1
+            let l:filename = l:full_name[len(l:dir) + 1:]
+            let l:lower_filename = tolower(l:filename)
+
+            if len(l:dir) <= 1
+                break
+            endif
+
+            let l:match_found = 0
+
+            for l:other_name in l:name_list
+                if tolower(l:other_name)[-len(l:lower_filename):] is? l:lower_filename
+                    let l:match_found = 1
+                    break
+                endif
+            endfor
+
+            if !l:match_found
+                break
+            endif
+        endwhile
+
+        return l:filename
     endfunction
 
     " Make only filenames appear in gvim tabs.
