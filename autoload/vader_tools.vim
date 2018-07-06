@@ -52,5 +52,5 @@ function! vader_tools#TryAndMakeEverythingBetter() abort
         return
     endif
 
-    call vader_tools#ReplaceListsWithDiffs()
+    " call vader_tools#ReplaceListsWithDiffs()
 endfunction
