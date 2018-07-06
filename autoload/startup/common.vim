@@ -85,5 +85,13 @@ endfunction
 
 command! Ignore :call startup#common#IgnoreError(bufnr(''))
 
+function! startup#common#UpdateIndexFile() abort
+    if &filetype =~# 'typescript'
+        call setline(1, map(glob('*', 1, 1), {_,x -> 'export * from ''./' . substitute(x, '\v\.ts', '', '') . ''''}))
+    endif
+endfunction
+
+command! UpdateIndexFile :call startup#common#UpdateIndexFile()
+
 function! startup#common#Init() abort
 endfunction
