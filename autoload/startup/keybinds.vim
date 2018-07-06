@@ -181,7 +181,13 @@ endfunction
 " Use Tab and Shift+Tab for either completion or SnipMate.
 function! SmartTab() abort
     if pumvisible()
-        return "\<C-n>"
+        let l:keys = "\<C-n>"
+
+        if get(b:, 'ale_last_completion_count') is 1
+            let l:keys .= "\<Left>\<Right>"
+        endif
+
+        return l:keys
     endif
 
     return snipMate#TriggerSnippet()
