@@ -341,6 +341,13 @@ let $GOOGLE_APPLICATION_CREDENTIALS = $HOME
 \   . '/content/application/speech-to-text-key.json'
 let g:vim_speech_recording_status = '◉ REC'
 
+" --- splitjoin settings ---
+" Default mappings are disabled, and configured in keybinds.vim instead.
+let g:splitjoin_split_mapping = ''
+let g:splitjoin_join_mapping  = ''
+let g:splitjoin_curly_brace_padding = 0
+let g:splitjoin_trailing_comma = 1
+
 " --- autoloaded extra code ---
 
 let g:path_remove_regex_list = [

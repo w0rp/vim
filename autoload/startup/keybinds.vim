@@ -223,5 +223,8 @@ nnoremap \\ @@
 " Bind // so it sets up an expression for replacing the previous match.
 noremap // :%s//
 
+noremap <silent> gs :SplitjoinSplit<CR>:ALEFix<CR>
+noremap <silent> gj :SplitjoinJoin<CR>
+
 function! startup#keybinds#Init() abort
 endfunction

@@ -51,3 +51,6 @@
 [submodule "pack/git-plugins/start/vim-speech"]
 	path = pack/git-plugins/start/vim-speech
 	url = https://github.com/w0rp/vim-speech.git
+[submodule "pack/git-plugins/start/splitjoin.vim"]
+	path = pack/git-plugins/start/splitjoin.vim
+	url = git@github.com:AndrewRadev/splitjoin.vim.git
