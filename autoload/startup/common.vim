@@ -59,6 +59,13 @@ command! -range=% WordDiff :silent call WordDiffLines(<line1>, <line2>)
 " A command for dumping Vim variables for debugging.
 command! -nargs=+ Dump :echom <q-args> . ': ' . string(eval(<q-args>))
 
+" Evaluate an expression 1000 times and say how long it took in milliseconds.
+command! -nargs=+ -complete=expression PerformanceRun :let s:start = float2nr(reltimefloat(reltime()) * 1000)
+\ | for s:x in range(1000) | call eval(<q-args>) | endfor
+\ | :let s:end = float2nr(reltimefloat(reltime()) * 1000)
+\ | :echom 'Took ' . (s:end - s:start) . 'ms'
+\ | :unlet! s:start s:x s:end
+
 " Commands for quickly edting commonly edited files.
 function! EditVimFile(relative_path) abort
     let l:vim_dir = expand('~/.vim/')
