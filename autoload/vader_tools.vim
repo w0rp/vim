@@ -52,5 +52,11 @@ function! vader_tools#TryAndMakeEverythingBetter() abort
         return
     endif
 
+<<<<<<< b6be34015f4ad0b4c91094bfa098821a01572618
     " call vader_tools#ReplaceListsWithDiffs()
+=======
+    return
+
+    call vader_tools#ReplaceListsWithDiffs()
+>>>>>>> Disable the Vader list diffs for now
 endfunction
