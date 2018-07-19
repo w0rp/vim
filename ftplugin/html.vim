@@ -9,4 +9,6 @@ setlocal tabstop=2
 setlocal shiftwidth=2
 setlocal softtabstop=2
 
-let b:ale_linters = []
+if index(split(&filetype, '\.'), 'pug') < 0
+    let b:ale_linters = []
+endif
