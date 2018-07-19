@@ -11,3 +11,4 @@ setlocal iskeyword+=-
 map <buffer> <F9> :w<CR><Plug>(run_jasmine_tests)
 
 let b:ale_linters = ['eslint']
+let b:ale_javascript_eslint_options = '--ignore-pattern ''!.eslintrc.js'''
