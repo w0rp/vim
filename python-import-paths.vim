@@ -6,6 +6,7 @@ let g:python_import_dict = {
 \   'BaseManager': 'from django.db.models.manager',
 \   'BooleanField': 'from django.db.models',
 \   'Case': 'from django.db.models',
+\   'Coalesce': 'from django.db.models.functions',
 \   'Concat': 'from django.db.models.functions',
 \   'ContentType': 'from django.contrib.contenttypes.models',
 \   'Count': 'from django.db.models',
