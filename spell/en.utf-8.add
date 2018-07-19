@@ -26,3 +26,9 @@ gitlint
 gitcommit
 config
 AppVeyor
+autocmd
+stdin
+ALELint
+ALEFix
+ALEFixSuggest
+Funcref
