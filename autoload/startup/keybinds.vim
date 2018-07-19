@@ -40,15 +40,15 @@ nnoremap <ESC><ESC> :q!<CR>
 snoremap V <ESC>gvV
 
 " CTRL-C is copy to the clipboard
-vnoremap <C-C> "+y
+vnoremap <C-C> y
 snoremap <C-C> <ESC>gv"+y<ESC>
 
 " CTRL-X is cut to the clipboard
 vnoremap <C-X> "+x
 
 " CTRL-V pastes from the clipboard
-noremap <C-V> "+gPk$
-inoremap <C-V> <Esc>"+gPk$
+noremap <C-V> p
+inoremap <C-V> <C-R>*
 cnoremap <C-V> <C-R>+
 
 " CTRL-S Saves the file.
