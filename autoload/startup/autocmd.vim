@@ -20,6 +20,9 @@ augroup FiletypeGroup
     au BufNewFile,BufRead *.pyi set filetype=python
     " .dart is a Dart file
     au BufNewFile,BufRead *.dart set filetype=dart
+    " .sublime-files are JSON files.
+    au BufRead,BufNewFile *.sublime-project set filetype=json
+    au BufRead,BufNewFile *.cson set filetype=coffee
 augroup END
 
 function! startup#autocmd#StopProfiling() abort
