@@ -46,7 +46,7 @@ snippet ale_linter
 	\})
 
 snippet func
-	function! `snippet_functions#VimFunctionPrefix()`${1:Name}() abort
+	function! `snippet_functions#VimFunctionPrefix()`${1:Name}() `snippet_functions#VimFunctionPostfix()`
 		${0}
 	endfunction
 
@@ -63,3 +63,13 @@ snippet redir
 snippet if
 	if ${0}
 	endif
+snippet v:t_string
+	v:t_string
+snippet v:t_number
+	v:t_number
+snippet v:t_func
+	v:t_func
+snippet v:t_list
+	v:t_list
+snippet v:t_dict
+	v:t_dict
