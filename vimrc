@@ -384,6 +384,7 @@ let g:splitjoin_trailing_comma = 1
 
 let g:path_remove_regex_list = [
 \   '^.*/wazoku/wazoku-spotlight/',
+\   '^.*/ale/',
 \]
 
 " Run mostly blank init functions for loading extra settings, which can
