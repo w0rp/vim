@@ -57,7 +57,7 @@ endfunction
 command! -range=% WordDiff :silent call WordDiffLines(<line1>, <line2>)
 
 " A command for dumping Vim variables for debugging.
-command! -nargs=+ Dump :echom <q-args> . ': ' . string(eval(<q-args>))
+command! -nargs=+ Dump :echom <q-args> . ': ' . string(<args>)
 
 " Evaluate an expression 1000 times and say how long it took in milliseconds.
 command! -nargs=+ -complete=expression PerformanceRun :let s:start = float2nr(reltimefloat(reltime()) * 1000)
