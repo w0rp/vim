@@ -271,6 +271,8 @@ set incsearch
 " Configure the delay for custom chained keybinds.
 set timeoutlen=250
 
+let g:c_syntax_for_h = 1
+
 " --- rainbow parens settings ---
 
 let g:rainbow_conf = {
@@ -346,6 +348,7 @@ let g:ale_warn_about_trailing_whitespace = 0
 let g:ale_maximum_file_size = 1024 * 1024
 let g:ale_completion_enabled = 1
 let g:ale_set_balloons_legacy_echo = 1
+let g:ale_c_parse_compile_commands = 1
 
 " Options for different linters.
 let g:ale_python_mypy_ignore_invalid_syntax = 1
@@ -353,6 +356,17 @@ let g:ale_python_mypy_options = '--incremental'
 let g:ale_typescript_tslint_ignore_empty_files = 1
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
+
+" Use newer clang versions where available.
+if executable('clang-6.0')
+    let g:ale_c_clang_executable = 'clang-6.0'
+    let g:ale_cpp_clang_executable = 'clang-6.0'
+endif
+
+if executable('clangd-6.0')
+    let g:ale_c_clangd_executable = 'clangd-6.0'
+    let g:ale_cpp_clangd_executable = 'clangd-6.0'
+endif
 
 " --- python-tools settings ---
 
