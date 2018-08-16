@@ -232,5 +232,8 @@ noremap // :%s//
 noremap <silent> gs :SplitjoinSplit<CR>:ALEFix<CR>
 noremap <silent> gj :SplitjoinJoin<CR>
 
+" Quit terminals with just 'q'
+tnoremap q <C-w>N:q!<CR>
+
 function! startup#keybinds#Init() abort
 endfunction

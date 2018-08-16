@@ -8,7 +8,13 @@ setlocal nospell
 " Include - for completion.
 setlocal iskeyword+=-
 
-map <buffer> <F9> :w<CR><Plug>(run_jasmine_tests)
+map <buffer> <silent> <F9> :TestFile<CR>
 
 let b:ale_linters = ['eslint']
 let b:ale_javascript_eslint_options = '--ignore-pattern ''!.eslintrc.js'''
+
+let s:dir = ale#path#Dirname(ale#path#FindNearestDirectory(bufnr(''), 'node_modules'))
+
+if !empty(s:dir)
+    let g:test#javascript#jest#executable = s:dir . '/node_modules/.bin/jest'
+endif
