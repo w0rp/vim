@@ -9,6 +9,8 @@ setlocal tabstop=2
 setlocal shiftwidth=2
 setlocal softtabstop=2
 
-if index(split(&filetype, '\.'), 'pug') < 0
-    let b:ale_linters = []
+if !exists('b:ale_linters')
+    let b:ale_linters = {}
 endif
+
+let b:ale_linters = {'html': []}
