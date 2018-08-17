@@ -51,6 +51,9 @@ noremap <C-V> p
 inoremap <C-V> <C-R>*
 cnoremap <C-V> <C-R>+
 
+" CTRL-P replaces the current line with the buffer without cutting it.
+noremap <C-p> "_ddP
+
 " CTRL-S Saves the file.
 noremap <silent> <C-S> :w<CR>
 vnoremap <silent> <C-S> <C-C>:w<CR>
