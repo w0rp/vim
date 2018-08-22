@@ -433,6 +433,11 @@ if !g:vimrc_loaded
 
     " Automatically regenerate help tags.
     silent! helptags ALL
+
+    " Regenerate the spelling file on startup.
+    execute 'silent mkspell!'
+    \   ' ' . fnameescape($VIMHOME . '/spell/en.utf-8.add.spl')
+    \   ' ' . fnameescape($VIMHOME . '/spell/en.utf-8.add')
 endif
 
 let g:vimrc_loaded = 1
