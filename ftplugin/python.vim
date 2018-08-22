@@ -14,9 +14,6 @@ vmap <buffer> <C-,> :s/^\(\s*\)#/\1/<Return>
 " Use the AutoPythonImport tool.
 map <buffer> <C-n> :call AutoPythonImport(expand("<cword>"))<Return>
 
-map <buffer> <F9> <Plug>(python_tools_pytest_class_reuse_db)
-map <buffer> <C-F9> <Plug>(python_tools_pytest_class)
-
 " Change the line length for Python files based on configuration files.
 function! ChangePythonLineLength() abort
     let l:conf = ale#path#FindNearestFile(bufnr(''), 'setup.cfg')
@@ -49,4 +46,15 @@ let b:ale_completion_excluded_words = ['and', 'or', 'if']
 
 if expand('%:e') is# 'pyi'
     let b:ale_linters = ['mypy']
+endif
+
+map <buffer> <silent> <F9> :TestFile<CR>
+
+let s:virtualenv = ale#python#FindVirtualenv(bufnr(''))
+
+if !empty(s:virtualenv)
+    let g:test#python#runner = 'djangotest'
+    let g:test#python#djangotest#executable =
+    \   ale#Escape(s:virtualenv . '/bin/python')
+    \   . ' ' . ale#Escape(ale#path#Dirname(s:virtualenv) . '/manage.py') . ' test'
 endif
