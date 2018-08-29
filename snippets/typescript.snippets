@@ -96,3 +96,7 @@ snippet import
 	import {${2}} from '${1}'${0}
 snippet copy
 	Object.assign({}, ${1})${0}
+snippet forof
+	for (const ${1:name} of ${2:container}) {
+		${3}
+	}
