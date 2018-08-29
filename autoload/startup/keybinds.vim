@@ -212,17 +212,28 @@ inoremap <silent> <S-Tab> <C-R>=SmartShiftTab()<CR>
 " one window open.
 "
 " I never record macros while working with split windows.
-function! CloseSplitWindowsWithQ() abort
+function! startup#keybinds#CloseSplitWindowsWithQ() abort
     let l:tab_info = gettabinfo(tabpagenr())[0]
 
     if len(l:tab_info.windows) > 1
+        " Close the terminal window instead of the current one.
+        for l:win_id in l:tab_info.windows
+            let l:bufnr = getwininfo(l:win_id)[0].bufnr
+            let l:bufname = expand('#' . l:bufnr . ':p')
+
+            if l:bufname =~# '^!/bin'
+                execute 'bwipeout ' . l:bufnr
+                return
+            endif
+        endfor
+
         :q
     else
         call feedkeys('q', 'n')
     endif
 endfunction
 
-nnoremap <silent> q :call CloseSplitWindowsWithQ()<CR>
+nnoremap <silent> q :call startup#keybinds#CloseSplitWindowsWithQ()<CR>
 
 " Run macros with \, which is easier to press.
 nnoremap \ @
