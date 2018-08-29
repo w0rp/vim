@@ -73,8 +73,10 @@ nnoremap <expr> gV "`[".getregtype(v:register)[0]."`]"
 
 " Bind Ctrl + Tab goes forward
 noremap <C-Tab> :tabn <Return>
+tnoremap <C-Tab> <C-w>N:tabn<Return>
 " Bind Ctrl + Shift + Tab goes back
 noremap <C-S-Tab> :tabp <Return>
+tnoremap <C-S-Tab> <C-w>N:tabp<Return>
 
 " Ctrl + h goes to the tab to the left.
 noremap <C-h> :tabp <Return>
