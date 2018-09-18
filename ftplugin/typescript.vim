@@ -18,3 +18,35 @@ if !empty(s:dir)
     let g:test#javascript#jest#executable = s:dir . '/node_modules/.bin/jest'
     let g:test#project_root = s:dir
 endif
+
+function! TypeScriptBindingReplacement() abort
+    let l:implements_line = getline(search('implements', 'bn'))
+
+    if empty(l:implements_line)
+        return submatch(0)
+    endif
+
+    let l:match = matchlist(l:implements_line, 'implements \([a-zA-Z]\+\)')
+
+    if empty(l:match)
+        return submatch(0)
+    endif
+
+    let l:key = submatch(1)
+    let l:interface = l:match[1]
+
+    return printf('%s!: %s[''%s'']', l:key, l:interface, l:key)
+endfunction
+
+function! FixTypeScriptBindings(line1, line2) abort
+    execute printf(
+    \   '%s,%ss/\([a-zA-z]\+\):.*/\=TypeScriptBindingReplacement()/',
+    \   a:line1, a:line2
+    \)
+
+    if getline(a:line1 - 1) !~# '// Bindings'
+        call append(a:line1 - 1, '  // Bindings')
+    endif
+endfunction
+
+command! -range FixBindings :call FixTypeScriptBindings(<line1>, <line2>)
