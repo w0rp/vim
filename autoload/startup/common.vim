@@ -100,5 +100,8 @@ endfunction
 
 command! UpdateIndexFile :call startup#common#UpdateIndexFile()
 
+" Run ALEHover with :ah
+cnoreabbrev ah ALEHover
+
 function! startup#common#Init() abort
 endfunction
