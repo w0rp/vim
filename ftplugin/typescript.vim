@@ -10,7 +10,13 @@ setlocal iskeyword+=-
 
 map <buffer> <silent> <F9> :TestFile<CR>
 
-let b:ale_completion_excluded_words = ['it', 'describe', 'beforeEach', 'import']
+let b:ale_completion_excluded_words = [
+\   'it',
+\   'describe',
+\   'beforeEach',
+\   'import',
+\   'implements',
+\]
 
 let s:dir = ale#path#Dirname(ale#path#FindNearestDirectory(bufnr(''), 'node_modules'))
 

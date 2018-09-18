@@ -21,3 +21,19 @@ function! snippet_functions#VimFunctionPostfix() abort
 
     return 'abort'
 endfunction
+
+function! snippet_functions#MagicTypeScriptInterfaceName() abort
+    let l:line = getline(search('interface', 'bn'))
+
+    if empty(l:line)
+        return ''
+    endif
+
+    let l:match = matchlist(l:line, 'interface \([a-zA-Z0-9]\+\)')
+
+    if empty(l:match)
+        return ''
+    endif
+
+    return ' ' . l:match[1]
+endfunction
