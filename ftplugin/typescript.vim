@@ -40,13 +40,14 @@ function! TypeScriptBindingReplacement() abort
 
     let l:key = submatch(1)
     let l:interface = l:match[1]
+    let l:indicator = !empty(submatch(2)) ? submatch(2) : '!'
 
-    return printf('%s!: %s[''%s'']', l:key, l:interface, l:key)
+    return printf('%s%s: %s[''%s'']', l:key, l:indicator, l:interface, l:key)
 endfunction
 
 function! FixTypeScriptBindings(line1, line2) abort
     execute printf(
-    \   '%s,%ss/\([a-zA-z]\+\):.*/\=TypeScriptBindingReplacement()/',
+    \   '%s,%ss/\([a-zA-z]\+\)\(?\?\):.*/\=TypeScriptBindingReplacement()/',
     \   a:line1, a:line2
     \)
 
