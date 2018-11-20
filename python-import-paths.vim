@@ -2,6 +2,7 @@ let g:python_import_dict = {
 \   'APIView': 'from rest_framework.views',
 \   'AnonymousUser': 'from django.contrib.auth.models',
 \   'AppConfig': 'from django.apps',
+\   'ArrayAgg': 'from django.contrib.postgres.aggregates',
 \   'Avg': 'from django.db.models',
 \   'BaseManager': 'from django.db.models.manager',
 \   'BooleanField': 'from django.db.models',
