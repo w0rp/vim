@@ -83,7 +83,7 @@ let g:python_import_dict = {
 \   'transaction': 'from django.db',
 \   'unittest': 'import unittest',
 \   'url_reverse': 'from django.core.urlresolvers import reverse as',
-\   'urlencode': 'from six.moves.urllib.parse',
-\   'urlparse': 'from six.moves.urllib.parse',
+\   'urlencode': 'from urllib.parse',
+\   'urlparse': 'from urllib.parse',
 \   'uuid': 'import uuid',
 \}
