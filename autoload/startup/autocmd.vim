@@ -40,7 +40,7 @@ augroup END
 " Do auto whitespace trimming.
 function! startup#autocmd#TrimWhitespace() abort
     let l:pos = getcurpos()
-    execute '%s/\s*$//'
+    silent! execute '%s/\s*$//'
     call setpos('.', l:pos)
 endfunction
 
