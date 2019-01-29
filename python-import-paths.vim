@@ -78,6 +78,7 @@ let g:python_import_dict = {
 \   'six': 'import six',
 \   'status': 'from rest_framework',
 \   'sys': 'import sys',
+\   'textwrap': 'import textwrap',
 \   'time': 'import time',
 \   'timezone': 'from django.utils',
 \   'transaction': 'from django.db',
