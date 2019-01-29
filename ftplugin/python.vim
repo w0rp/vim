@@ -53,8 +53,15 @@ map <buffer> <silent> <F9> :TestFile<CR>
 let s:virtualenv = ale#python#FindVirtualenv(bufnr(''))
 
 if !empty(s:virtualenv)
-    let g:test#python#runner = 'djangotest'
-    let g:test#python#djangotest#executable =
-    \   ale#Escape(s:virtualenv . '/bin/python')
-    \   . ' ' . ale#Escape(ale#path#Dirname(s:virtualenv) . '/manage.py') . ' test'
+    if executable(s:virtualenv . '/bin/pytest')
+        let g:test#python#runner = 'pytest'
+        let g:test#python#pytest#executable =
+        \   ale#path#CdString(ale#path#Dirname(s:virtualenv))
+        \   . ale#Escape(s:virtualenv . '/bin/pytest')
+    else
+        let g:test#python#runner = 'djangotest'
+        let g:test#python#djangotest#executable =
+        \   ale#Escape(s:virtualenv . '/bin/python')
+        \   . ' ' . ale#Escape(ale#path#Dirname(s:virtualenv) . '/manage.py') . ' test'
+    endif
 endif
