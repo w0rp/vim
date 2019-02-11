@@ -157,8 +157,8 @@ if has('syntax')
     endif
 
     " Reduce processing for syntax highlighting to make it less of a pain.
-    syntax sync minlines=200
-    syntax sync maxlines=500
+    syntax sync minlines=2000
+    syntax sync maxlines=5000
     set synmaxcol=400
 endif
 
