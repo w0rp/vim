@@ -160,6 +160,7 @@ if has('syntax')
     syntax sync minlines=2000
     syntax sync maxlines=5000
     set synmaxcol=400
+    set redrawtime=4000
 endif
 
 " Enable the status line at all times
