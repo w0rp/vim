@@ -1,4 +1,4 @@
-function! extra_ale_fixers#AutomaticallyFixJSONDiffOutput(buffer, done, lines) abort
+function! extra_ale_fixers#AutomaticallyFixJSONDiffOutput(buffer, lines) abort
     let l:result = []
 
     for l:line in a:lines
