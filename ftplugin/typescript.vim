@@ -57,3 +57,5 @@ function! FixTypeScriptBindings(line1, line2) abort
 endfunction
 
 command! -range FixBindings :call FixTypeScriptBindings(<line1>, <line2>)
+
+imap <buffer> <silent> <C-Tab> <Plug>(ale_complete)
