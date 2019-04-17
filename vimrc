@@ -403,6 +403,7 @@ let g:splitjoin_trailing_comma = 1
 
 let g:path_remove_regex_list = [
 \   '^.*/wazoku/wazoku-spotlight/',
+\   '^.*/wazoku/wazoku-api/',
 \   '^.*/ale/',
 \]
 
