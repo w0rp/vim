@@ -369,6 +369,11 @@ if executable('clangd-6.0')
     let g:ale_cpp_clangd_executable = 'clangd-6.0'
 endif
 
+if executable('clangd-8')
+    let g:ale_c_clangd_executable = 'clangd-8'
+    let g:ale_cpp_clangd_executable = 'clangd-8'
+endif
+
 " --- vim-test settings ---
 
 let g:test#strategy = 'vimterminal'
