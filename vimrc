@@ -143,6 +143,18 @@ if has('gui_running')
 
     " Set maximum number of tabs to 20.
     set tabpagemax=20
+
+    " Use right click for showing a popup menu.
+    set mousemodel=popup_setpos
+
+    " Remove some menu items we don't want.
+    silent! aunmenu PopUp.Select\ Word
+    silent! aunmenu PopUp.Select\ Sentence
+    silent! aunmenu PopUp.Select\ Paragraph
+    silent! aunmenu PopUp.Select\ Line
+    silent! aunmenu PopUp.Select\ Block
+    silent! aunmenu PopUp.Select\ Blockwise
+    silent! aunmenu PopUp.Select\ All
 else
     " When the GUI is not running...
 
@@ -348,6 +360,7 @@ highlight ALEWarningSign ctermfg=11 ctermbg=15 guifg=#ED6237 guibg=#F5F5F5
 let g:ale_warn_about_trailing_whitespace = 0
 let g:ale_maximum_file_size = 1024 * 1024
 let g:ale_completion_enabled = 1
+let g:ale_code_actions_enabled = 1
 let g:ale_set_balloons_legacy_echo = 1
 let g:ale_c_parse_compile_commands = 1
 
