@@ -10,8 +10,9 @@ setlocal iskeyword+=-
 
 map <buffer> <silent> <F9> :TestFile<CR>
 
-let b:ale_linters = ['eslint']
+let b:ale_linters = ['eslint', 'tsserver']
 let b:ale_javascript_eslint_options = '--ignore-pattern ''!.eslintrc.js'''
+setlocal completeopt=menu,menuone,preview,noselect,noinsert
 
 let s:dir = ale#path#Dirname(ale#path#FindNearestDirectory(bufnr(''), 'node_modules'))
 
