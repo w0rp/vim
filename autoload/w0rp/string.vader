@@ -1,0 +1,3 @@
+Execute(w0rp#string#ToKebabCase should convert strings to kebab case correctly):
+  AssertEqual 'foo-bar-baz', w0rp#string#ToKebabCase('fooBarBaz')
+  AssertEqual 'foo-bar-baz', w0rp#string#ToKebabCase('FooBarBaz')
