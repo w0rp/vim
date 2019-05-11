@@ -57,3 +57,12 @@
 [submodule "pack/git-plugins/start/vim-test"]
 	path = pack/git-plugins/start/vim-test
 	url = https://github.com/janko-m/vim-test.git
+[submodule "pack/git-plugins/start/vim-hug-neovim-rpc"]
+	path = pack/git-plugins/start/vim-hug-neovim-rpc
+	url = https://github.com/roxma/vim-hug-neovim-rpc.git
+[submodule "pack/git-plugins/start/nvim-yarp"]
+	path = pack/git-plugins/start/nvim-yarp
+	url = https://github.com/roxma/nvim-yarp.git
+[submodule "pack/git-plugins/start/deoplete"]
+	path = pack/git-plugins/start/deoplete
+	url = https://github.com/Shougo/deoplete.nvim.git
