@@ -48,7 +48,27 @@ if expand('%:e') is# 'pyi'
     let b:ale_linters = ['mypy']
 endif
 
-map <buffer> <silent> <F9> :TestFile<CR>
+function! RunPythonTests() abort
+    let l:cwd = getcwd()
+
+    " Switch the current working directory for running Django tests.
+    " This tricks vim-test into working for me.
+    if g:test#python#runner is# 'djangotest'
+        let l:root = ale#python#FindProjectRoot(bufnr(''))
+
+        if !empty(l:root)
+            execute 'cd ' . fnameescape(l:root)
+        endif
+    endif
+
+    :TestFile
+
+    if g:test#python#runner is# 'djangotest'
+        execute 'cd ' . fnameescape(l:cwd)
+    endif
+endfunction
+
+map <buffer> <silent> <F9> :call RunPythonTests()<CR>
 
 let s:virtualenv = ale#python#FindVirtualenv(bufnr(''))
 
@@ -61,7 +81,8 @@ if !empty(s:virtualenv)
     else
         let g:test#python#runner = 'djangotest'
         let g:test#python#djangotest#executable =
-        \   ale#Escape(s:virtualenv . '/bin/python')
+        \   ale#path#CdString(ale#path#Dirname(s:virtualenv))
+        \   . ale#Escape(s:virtualenv . '/bin/python')
         \   . ' ' . ale#Escape(ale#path#Dirname(s:virtualenv) . '/manage.py') . ' test'
     endif
 endif
