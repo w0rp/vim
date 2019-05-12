@@ -86,3 +86,12 @@ if !empty(s:virtualenv)
         \   . ' ' . ale#Escape(ale#path#Dirname(s:virtualenv) . '/manage.py') . ' test'
     endif
 endif
+
+if expand('%:p') =~# 'ale/test/python/'
+    let g:test#python#runner = 'djangotest'
+    let g:test#python#djangotest#executable =
+    \   ale#path#CdString(ale#path#Dirname(ale#path#FindNearestDirectory(bufnr(''), 'test')))
+    \   . 'docker run --rm -v "$PWD:/testplugin" w0rp/ale'
+    \   . ' python -W ignore -m unittest discover /testplugin/test/python'
+    \   . ' -p ' . ale#Escape(expand('%')) . ' # '
+endif
