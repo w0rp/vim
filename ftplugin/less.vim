@@ -10,3 +10,14 @@ setlocal suffixesadd=.less
 
 " Include - for completion.
 setlocal iskeyword+=-
+
+if expand('%:p') =~# 'spotlight/static/app/components'
+    let b:ale_less_lessc_options = join(map(
+    \   [
+    \       ['border-radius-base', '2px'],
+    \   ],
+    \   '''--global-var='' . ale#Escape(v:val[0] . ''='' . v:val[1])'
+    \), ' ')
+else
+    let b:ale_less_lessc_options = ''
+endif
