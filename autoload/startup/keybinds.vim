@@ -131,8 +131,8 @@ noremap <F6> :UniteWithProjectDir file_rec/async:<Return>:setlocal modifiable<Re
 nmap <F8> <Plug>(ale_fix)
 inoremap <F8> <C-c><Plug>(ale_fix)
 
-" Use Ctrl+m to go to the definition of something.
-noremap <C-m> :ALEGoToDefinition<CR>
+" Use Ctrl+y to go to the definition of something.
+nmap <C-y> <Plug>(ale_go_to_definition)
 
 if has('syntax')
     " Use F12 to resync syntax from the start.
