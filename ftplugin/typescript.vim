@@ -15,6 +15,7 @@ let b:ale_completion_excluded_words = [
 \   'describe',
 \   'beforeEach',
 \   'import',
+\   'importScripts',
 \   'implements',
 \]
 
