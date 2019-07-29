@@ -21,7 +21,7 @@
 	url = https://github.com/garbas/vim-snipmate.git
 [submodule "bundle/ale"]
 	path = pack/git-plugins/start/ale
-	url = https://github.com/w0rp/ale.git
+	url = https://github.com/dense-analysis/ale.git
 	ignore = all
 [submodule "bundle/vader"]
 	path = pack/git-plugins/start/vader
