@@ -273,6 +273,9 @@ set nofoldenable
 " Switch to the directory files are in automatically.
 set autochdir
 
+" Keep buffers open after closing them, for the benefit of jumping.
+set hidden
+
 " Do not echo the mode, lightline will display it instead.
 set noshowmode
 
