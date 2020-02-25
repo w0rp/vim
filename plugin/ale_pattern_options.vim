@@ -1,5 +1,9 @@
 let g:ale_pattern_options_enabled = 1
 let g:ale_pattern_options = {
+\   'ale/doc/.*.txt$': {
+\       '&modifiable': 1,
+\       '&readonly': 0,
+\   },
 \   'python-to-typescript/python_to_typescript/.*$': {
 \       'ale_linters': {'python': ['flake8', 'pylint']},
 \   },
