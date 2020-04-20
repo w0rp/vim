@@ -114,12 +114,21 @@ nmap <silent> m <Plug>(ale_next_wrap)
 
 " --- Function key bindings in order ---
 
+function! startup#keybinds#RedrawSearch() abort
+    if get(g:, 'f3_redraw') is# 'ale'
+        ALERepeatSelection
+    else
+        UniteResume
+        execute "normal \<Plug>(unite_redraw)"
+    endif
+endfunction
+
 " Bind F1 to showing details of ALE errors.
 noremap <F1> :ALEDetail<CR>
 " Toggle the project NERD tree with F2
 noremap <F2> :ToggleNERDTree<CR>
 " Search for files in the project with Ctrl+H
-noremap <F3> :UniteResume<Return>:execute "normal \<Plug>(unite_redraw)"<Return>
+noremap <F3> :call startup#keybinds#RedrawSearch()<CR>
 " Map F4 to copying the current filename to the clipboard.
 noremap <F4> :call startup#keybinds#CopyNameToClipboard()<CR>
 noremap <F5> :UniteWithProjectDir grep -no-empty<Return>
