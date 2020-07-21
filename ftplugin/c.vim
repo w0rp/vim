@@ -1,8 +1,5 @@
 setlocal colorcolumn=80
-
-if has('gui_running')
-    setlocal spell
-endif
+setlocal nospell
 
 let b:ale_echo_msg_format = '[%linter%] %code: %%s'
 let b:ale_linters = {'c': ['clang', 'clangd']}
