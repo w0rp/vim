@@ -18,6 +18,10 @@ let b:ale_completion_excluded_words = [
 \   'importScripts',
 \   'implements',
 \]
+let b:ale_exclude_highlights = [
+\   'Remember not to commit fit()',
+\   'Remember not to commit fdescribe()',
+\]
 
 let s:dir = ale#path#Dirname(ale#path#FindNearestDirectory(bufnr(''), 'node_modules'))
 

@@ -12,6 +12,10 @@ map <buffer> <silent> <F9> :TestFile<CR>
 
 let b:ale_linters = ['eslint', 'tsserver']
 let b:ale_javascript_eslint_options = '--ignore-pattern ''!.eslintrc.js'''
+let b:ale_exclude_highlights = [
+\   'Remember not to commit fit()',
+\   'Remember not to commit fdescribe()',
+\]
 setlocal completeopt=menu,menuone,preview,noselect,noinsert
 
 let s:dir = ale#path#Dirname(ale#path#FindNearestDirectory(bufnr(''), 'node_modules'))
