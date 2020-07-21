@@ -52,5 +52,36 @@ augroup TrimWhiteSpaceGroup
     autocmd BufWritePre * :call startup#autocmd#TrimWhitespace()
 augroup END
 
+function! startup#autocmd#MergeCompleteText(completed_item) abort
+    let l:pos = getpos('.')
+    let l:line = l:pos[1]
+    let l:col = l:pos[2] - 1
+
+    let l:line_text = getline(l:line)
+
+    let l:word = a:completed_item.word
+    let l:word_len = len(l:word)
+
+    for l:index in range(l:word_len)
+        let l:left = l:word[l:index : ]
+        let l:right = l:line_text[l:col : l:col + len(l:left) - 1]
+
+        if l:left is# l:right
+            call setline(
+            \   l:line,
+            \   l:line_text[: l:col - 1]
+            \       . l:line_text[l:col + (l:word_len - l:index) :]
+            \)
+
+            break
+        endif
+    endfor
+endfunction
+
+augroup AutoMergeCompleteText
+    autocmd!
+    autocmd CompleteDone * call startup#autocmd#MergeCompleteText(v:completed_item)
+augroup END
+
 function! startup#autocmd#Init() abort
 endfunction
