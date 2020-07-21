@@ -131,7 +131,7 @@ noremap <F2> :ToggleNERDTree<CR>
 noremap <F3> :call startup#keybinds#RedrawSearch()<CR>
 " Map F4 to copying the current filename to the clipboard.
 noremap <F4> :call startup#keybinds#CopyNameToClipboard()<CR>
-noremap <F5> :UniteWithProjectDir grep -no-empty<Return>
+nmap <F5> <Plug>(ale_find_references)
 noremap <C-f> :UniteWithProjectDir grep -no-empty<Return>
 noremap <F6> :UniteWithProjectDir file_rec/async:<Return>:setlocal modifiable<Return>i
 " Bind F7 To recording speech with vim-speech.
