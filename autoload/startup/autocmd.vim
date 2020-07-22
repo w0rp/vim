@@ -53,6 +53,10 @@ augroup TrimWhiteSpaceGroup
 augroup END
 
 function! startup#autocmd#MergeCompleteText(completed_item) abort
+    if !has_key(a:completed_item, 'word')
+        return
+    endif
+
     let l:pos = getpos('.')
     let l:line = l:pos[1]
     let l:col = l:pos[2] - 1
