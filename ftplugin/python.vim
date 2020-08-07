@@ -34,7 +34,8 @@ endfunction
 
 call ChangePythonLineLength()
 
-let b:ale_linters = ['flake8']
+let b:ale_linters = ['flake8', 'pyright']
+let b:ale_linters_ignore = ['pyright']
 let b:ale_fixers = [
 \   'remove_trailing_lines',
 \   'isort',
@@ -43,9 +44,17 @@ let b:ale_fixers = [
 \   'autopep8',
 \]
 let b:ale_completion_excluded_words = ['and', 'or', 'if']
+let b:ale_python_pyright_config = {
+\   'python': {
+\       'analysis': {
+\           'typeCheckingMode': 'off',
+\           'logLevel': 'error',
+\       },
+\   },
+\}
 
 if expand('%:e') is# 'pyi'
-    let b:ale_linters = ['mypy']
+    let b:ale_linters = ['pyright']
 endif
 
 function! RunPythonTests() abort
