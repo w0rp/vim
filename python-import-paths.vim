@@ -6,6 +6,7 @@ let g:python_import_dict = {
 \   'ArrayAgg': 'from django.contrib.postgres.aggregates',
 \   'Avg': 'from django.db.models',
 \   'BaseManager': 'from django.db.models.manager',
+\   'BasePermission': 'from rest_framework.permissions',
 \   'BooleanField': 'from django.db.models',
 \   'BytesIO': 'from io',
 \   'Callable': 'from typing',
