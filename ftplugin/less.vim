@@ -15,6 +15,10 @@ if expand('%:p') =~# 'spotlight/static/app/components'
     let b:ale_less_lessc_options = join(map(
     \   [
     \       ['border-radius-base', '2px'],
+    \       ['brand-primary', 'black'],
+    \       ['brand-secondary', 'black'],
+    \       ['brand-danger', 'red'],
+    \       ['gray-lightest', 'red'],
     \   ],
     \   '''--global-var='' . ale#Escape(v:val[0] . ''='' . v:val[1])'
     \), ' ')
