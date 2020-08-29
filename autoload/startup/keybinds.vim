@@ -217,9 +217,18 @@ function! SmartShiftTab() abort
     return snipMate#BackwardsSnippet()
 endfunction
 
+function! SmartInsertCompletion() abort
+    if pumvisible()
+        return "\<C-n>"
+    endif
+
+    return "\<Esc>a\<C-n>"
+endfunction
+
 inoremap <silent> <CR> <C-R>=SmartEnter()<CR>
 inoremap <silent> <Tab> <C-R>=SmartTab()<CR>
 inoremap <silent> <S-Tab> <C-R>=SmartShiftTab()<CR>
+inoremap <silent> <C-n> <C-R>=SmartInsertCompletion()<CR>
 
 " Close split windows just by pressing 'q', but record macros if there is only
 " one window open.
