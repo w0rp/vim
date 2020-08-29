@@ -2,7 +2,7 @@ setlocal colorcolumn=80
 setlocal nospell
 
 let b:ale_echo_msg_format = '[%linter%] %code: %%s'
-let b:ale_linters = {'c': ['clang', 'clangd']}
+let b:ale_linters = {'c': ['cc', 'clangd']}
 let b:ale_linters_ignore = {'c': ['clangd']}
 
 if expand('%:p') =~# 'xmms2-mpris/'

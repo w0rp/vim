@@ -52,6 +52,11 @@ let b:ale_python_pyright_config = {
 \       },
 \   },
 \}
+let b:ale_completion_excluded_words = [
+\   'do',
+\   'doc',
+\   'super',
+\]
 
 if expand('%:e') is# 'pyi'
     let b:ale_linters = ['pyright']
@@ -96,11 +101,9 @@ if !empty(s:virtualenv)
     endif
 endif
 
-if expand('%:p') =~# 'ale/test/python/'
-    let g:test#python#runner = 'djangotest'
-    let g:test#python#djangotest#executable =
-    \   ale#path#CdString(ale#path#Dirname(ale#path#FindNearestDirectory(bufnr(''), 'test')))
-    \   . 'docker run --rm -v "$PWD:/testplugin" w0rp/ale'
-    \   . ' python -W ignore -m unittest discover /testplugin/test/python'
-    \   . ' -p ' . ale#Escape(expand('%')) . ' # '
+if expand('%:p') =~# 'test-pylint'
+    let b:ale_linters = ['pylint']
+    let b:ale_python_pylint_use_global = 1
+    let b:ale_python_pylint_executable = '/home/w0rp/git/test-pylint/pylint.sh'
+    let b:ale_filename_mappings = {'pylint': [['/home/w0rp/git/test-pylint', '/data']]}
 endif
