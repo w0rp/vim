@@ -27,6 +27,8 @@ let s:dir = ale#path#Dirname(ale#path#FindNearestDirectory(bufnr(''), 'node_modu
 
 if !empty(s:dir)
     let g:test#javascript#jest#executable = s:dir . '/node_modules/.bin/jest'
+    " let g:test#javascript#jest#options = '--reporters=jest-progress-bar-reporter'
+    let g:test#javascript#jest#options = ''
     let g:test#project_root = s:dir
 endif
 
