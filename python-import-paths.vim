@@ -40,6 +40,7 @@ let g:python_import_dict = {
 \   'Max': 'from django.db.models',
 \   'Min': 'from django.db.models',
 \   'ObjectDoesNotExist': 'from django.core.exceptions',
+\   'Optional': 'from typing',
 \   'OuterRef': 'from django.db.models',
 \   'PermissionDenied': 'from rest_framework.exceptions',
 \   'Prefetch': 'from django.db.models',
