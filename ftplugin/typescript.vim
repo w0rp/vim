@@ -26,6 +26,7 @@ let b:ale_exclude_highlights = [
 let s:dir = ale#path#Dirname(ale#path#FindNearestDirectory(bufnr(''), 'node_modules'))
 
 if !empty(s:dir)
+    let g:test#enabled_runners = ['javascript#jest']
     let g:test#javascript#jest#executable = s:dir . '/node_modules/.bin/jest'
     " let g:test#javascript#jest#options = '--reporters=jest-progress-bar-reporter'
     let g:test#javascript#jest#options = ''
