@@ -14,8 +14,10 @@ snippet beforEach
 	beforeEach(() => {
 		${0}
 	})
+snippet mockmod
+	beforeEach(angular.mock.module(${0}))
 snippet provide
-	beforeEach(angular.mock.module($provide => {
+	beforeEach(angular.mock.module(($provide: ng.auto.IProvideService) => {
 		$provide.constant('USER', USER)
 	}))
 snippet inject
