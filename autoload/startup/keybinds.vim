@@ -9,6 +9,8 @@ function! startup#keybinds#TryToOpenLink() abort
 
     if l:index >= 0 && l:index < l:col
         let l:link = matchstr(l:line[l:index :], '\v[^ ]+')
+        " Remove CR characters from links.
+        let l:link = substitute(l:link, '\r', '', 'g')
 
         call job_start(['xdg-open', l:link])
         return 1
@@ -222,7 +224,7 @@ function! SmartInsertCompletion() abort
         return "\<C-n>"
     endif
 
-    return "\<Esc>a\<C-n>"
+    return "\<C-c>a\<C-n>"
 endfunction
 
 inoremap <silent> <CR> <C-R>=SmartEnter()<CR>
