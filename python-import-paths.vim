@@ -44,6 +44,7 @@ let g:python_import_dict = {
 \   'OuterRef': 'from django.db.models',
 \   'PermissionDenied': 'from rest_framework.exceptions',
 \   'Prefetch': 'from django.db.models',
+\   'ProgrammingError': 'from django.db.utils',
 \   'Q': 'from django.db.models',
 \   'QuerySet': 'from django.db.models',
 \   'RawSQL': 'from django.db.models.expressions',
