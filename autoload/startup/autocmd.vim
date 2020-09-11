@@ -87,5 +87,13 @@ augroup AutoMergeCompleteText
     autocmd CompleteDone * call startup#autocmd#MergeCompleteText(v:completed_item)
 augroup END
 
+augroup FixAfterComplete
+  autocmd!
+  " Run ALEFix when completion items are added.
+  autocmd User ALECompletePost ALEFix!
+  " If ALE starts fixing a file, stop linters running for now.
+  autocmd User ALEFixPre ALELintStop
+augroup END
+
 function! startup#autocmd#Init() abort
 endfunction
