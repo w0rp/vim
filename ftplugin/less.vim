@@ -14,7 +14,9 @@ setlocal iskeyword+=-
 if expand('%:p') =~# 'spotlight/static/app/components'
     let b:ale_less_lessc_options = join(map(
     \   [
+    \       ['screen-xs-max', '120px'],
     \       ['border-radius-base', '2px'],
+    \       ['font-size-base', '12pt'],
     \       ['brand-primary', 'black'],
     \       ['brand-secondary', 'black'],
     \       ['brand-danger', 'red'],
