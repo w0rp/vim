@@ -33,6 +33,7 @@ syn region     poMsgCTxt	matchgroup=poStatementMsgCTxt start=+^msgctxt "+rs=e-1 
 syn region     poMsgID	matchgroup=poStatementMsgid start=+^msgid "+rs=e-1 matchgroup=poStringID end=+^msgstr\(\|\[[\]0\[]\]\) "+me=s-1 contains=poStringID,poStatementMsgidplural,poStatementMsgid
 syn region     poMsgSTR	matchgroup=poStatementMsgstr start=+^msgstr\(\|\[[\]0\[]\]\) "+rs=e-1 matchgroup=poStringSTR end=+\n\n+me=s-1 contains=poStringSTR,poStatementMsgstr
 syn region poStringCTxt	start=+"+ skip=+\\\\\|\\"+ end=+"+
+                            \ contains=@Spell
 syn region poStringID	start=+"+ skip=+\\\\\|\\"+ end=+"+ contained
                             \ contains=@Spell,poSpecial,poFormat,poCommentKDE,poPluralKDE,poKDEdesktopFile,poHtml,poAcceleratorId,poHtmlNot,poVariable
 syn region poStringSTR	start=+"+ skip=+\\\\\|\\"+ end=+"+ contained
