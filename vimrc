@@ -317,6 +317,7 @@ let g:NERDTreeMouseMode = 3
 let g:NERDTreeMapActivateNode = '<Space>'
 let g:NERDTreeIgnore = [
 \   '\.pyc$',
+\   '^junit\.xml$',
 \   '^__pycache__$',
 \]
 
