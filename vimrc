@@ -376,24 +376,14 @@ let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 
 " Use newer clang versions where available.
-if executable('clang-6.0')
-    let g:ale_c_cc_executable = 'clang-6.0'
-    let g:ale_cpp_cc_executable = 'clang++-6.0'
+if executable('clang-10')
+    let g:ale_c_cc_executable = 'clang-10'
+    let g:ale_cpp_cc_executable = 'clang++-10'
 endif
 
-if executable('clangd-6.0')
-    let g:ale_c_clangd_executable = 'clangd-6.0'
-    let g:ale_cpp_clangd_executable = 'clangd-6.0'
-endif
-
-if executable('clang-8')
-    let g:ale_c_cc_executable = 'clang-8'
-    let g:ale_cpp_cc_executable = 'clang++-8'
-endif
-
-if executable('clangd-8')
-    let g:ale_c_clangd_executable = 'clangd-8'
-    let g:ale_cpp_clangd_executable = 'clangd-8'
+if executable('clangd-10')
+    let g:ale_c_clangd_executable = 'clangd-10'
+    let g:ale_cpp_clangd_executable = 'clangd-10'
 endif
 
 " --- vim-test settings ---
