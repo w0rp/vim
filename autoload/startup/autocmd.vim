@@ -15,6 +15,7 @@ augroup FiletypeGroup
     " .vader is a Vader file
     au BufNewFile,BufRead *.vader set filetype=vader
     " .ts is a Typescript file
+    au FileType typescript JsPreTmpl
     au BufNewFile,BufRead *.ts set filetype=typescript
     " .pyi is a Python interface file.
     au BufNewFile,BufRead *.pyi set filetype=python
