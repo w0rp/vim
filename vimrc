@@ -430,6 +430,7 @@ call startup#keybinds#Init()
 call startup#autocmd#Init()
 call startup#spelling_corrections#Init()
 call startup#common#Init()
+call startup#command_abbreviations#Init()
 
 " --- finishing touches ---
 
