@@ -47,7 +47,6 @@ let b:ale_completion_excluded_words = ['and', 'or', 'if']
 let b:ale_python_pyright_config = {
 \   'python': {
 \       'analysis': {
-\           'typeCheckingMode': 'off',
 \           'logLevel': 'error',
 \       },
 \   },
