@@ -460,4 +460,7 @@ if !g:vimrc_loaded
     \   ' ' . fnameescape($VIMHOME . '/spell/en.utf-8.add')
 endif
 
+" Set tags by default to use HTML.
+call jspretmpl#register_tag('/\* *html *\*/', 'html')
+
 let g:vimrc_loaded = 1

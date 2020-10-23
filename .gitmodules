@@ -66,3 +66,6 @@
 [submodule "pack/git-plugins/start/deoplete"]
 	path = pack/git-plugins/start/deoplete
 	url = https://github.com/Shougo/deoplete.nvim.git
+[submodule "pack/git-plugins/start/vim-js-pretty-template"]
+	path = pack/git-plugins/start/vim-js-pretty-template
+	url = https://github.com/Quramy/vim-js-pretty-template.git
