@@ -344,11 +344,12 @@ let g:lightline = {
 \       ],
 \       'right': [
 \           ['lineinfo'],
-\           ['python_status', 'vim_speech', 'filetype'],
+\           ['python_status', 'javascript_status', 'vim_speech', 'filetype'],
 \       ],
 \   },
 \   'component_function': {
 \       'python_status': 'python_tools#statusline#GetStatus',
+\       'javascript_status': 'js_tools#GetStatus',
 \       'vim_speech': 'vim_speech#statusline#GetStatus',
 \   },
 \}
