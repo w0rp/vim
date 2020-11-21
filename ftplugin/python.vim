@@ -106,3 +106,11 @@ if expand('%:p') =~# 'test-pylint'
     let b:ale_python_pylint_executable = '/home/w0rp/git/test-pylint/pylint.sh'
     let b:ale_filename_mappings = {'pylint': [['/home/w0rp/git/test-pylint', '/data']]}
 endif
+
+if expand('%:p') =~# 'configurations-and-helpers'
+    let b:ale_linters_ignore = []
+endif
+
+if expand('%:p') =~# 'django-common-migration'
+    let b:ale_linters_ignore = []
+endif
