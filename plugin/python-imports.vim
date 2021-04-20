@@ -37,14 +37,16 @@ function! AutoPythonImport(word)
         endif
     endif
 
+    let l:last_import_line_number = search('^import\|^from', 'bn')
+
     if !empty(l:line)
         " Save the current position.
-        let l:line_number=line('.')
-        let l:column_number=col('.')
+        let l:line_number = line('.')
+        let l:column_number = col('.')
 
         " Insert the import line at the end of the file. isort will sort it
         " out.
-        call append('$', l:line)
+        call append(l:last_import_line_number, l:line)
         ALEFix
         " Remove any additional newlines isort mistakenly added to the end of
         " the file.
