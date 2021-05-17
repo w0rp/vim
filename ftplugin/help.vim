@@ -1,5 +1,7 @@
 " Spell check help files
 setlocal spell
+" Include - for completion.
+setlocal iskeyword+=-
 
 " Navigate quickly in help files with space and backspace.
 noremap <buffer> <BS> <C-O>
