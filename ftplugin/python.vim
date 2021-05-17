@@ -35,12 +35,12 @@ endfunction
 call ChangePythonLineLength()
 
 let b:ale_linters = ['flake8', 'pyright']
-let b:ale_linters_ignore = ['pyright']
+let b:ale_linters_ignore = []
+" \   'ale#fixers#generic_python#BreakUpLongLines',
 let b:ale_fixers = [
 \   'remove_trailing_lines',
 \   'isort',
 \   'extra_ale_fixers#AutomaticallyFixJSONDiffOutput',
-\   'ale#fixers#generic_python#BreakUpLongLines',
 \   'autopep8',
 \]
 let b:ale_completion_excluded_words = ['and', 'or', 'if']
@@ -55,6 +55,8 @@ let b:ale_completion_excluded_words = [
 \   'do',
 \   'doc',
 \   'super',
+\   'DOCUMENT_EXTENSIONS',
+\   'DOCUMENT_DIR',
 \]
 
 if expand('%:e') is# 'pyi'
@@ -89,12 +91,12 @@ if !empty(s:virtualenv)
     if executable(s:virtualenv . '/bin/pytest')
         let g:test#python#runner = 'pytest'
         let g:test#python#pytest#executable =
-        \   ale#path#CdString(ale#path#Dirname(s:virtualenv))
+        \   ale#command#CdString(ale#path#Dirname(s:virtualenv))
         \   . ale#Escape(s:virtualenv . '/bin/pytest')
     else
         let g:test#python#runner = 'djangotest'
         let g:test#python#djangotest#executable =
-        \   ale#path#CdString(ale#path#Dirname(s:virtualenv))
+        \   ale#command#CdString(ale#path#Dirname(s:virtualenv))
         \   . ale#Escape(s:virtualenv . '/bin/python')
         \   . ' ' . ale#Escape(ale#path#Dirname(s:virtualenv) . '/manage.py') . ' test'
     endif
@@ -113,4 +115,8 @@ endif
 
 if expand('%:p') =~# 'django-common-migration'
     let b:ale_linters_ignore = []
+endif
+
+if expand('%:p') =~# 'migrations'
+    call filter(b:ale_fixers, 'v:val isnot# ''ale#fixers#generic_python#BreakUpLongLines''')
 endif
