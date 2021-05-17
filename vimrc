@@ -74,9 +74,9 @@ if has('gui_running')
 
     if has('osx') || has('win32')
         " Windows - http://levien.com/type/myfonts/inconsolata.html
-        set guifont=Inconsolata:h18:cANSI:qDRAFT
+        set guifont=Inconsolata:h16:cANSI:qDRAFT
     else
-        set guifont=Inconsolata\ 18
+        set guifont=Inconsolata\ 16
     endif
 
     " Set guioptions
@@ -368,6 +368,7 @@ let g:ale_completion_enabled = 1
 let g:ale_code_actions_enabled = 1
 let g:ale_set_balloons_legacy_echo = 1
 let g:ale_c_parse_compile_commands = 1
+let g:ale_lsp_suggestions = 0
 
 " Options for different linters.
 let g:ale_python_mypy_ignore_invalid_syntax = 1
@@ -375,6 +376,7 @@ let g:ale_python_mypy_options = '--incremental'
 let g:ale_typescript_tslint_ignore_empty_files = 1
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
+let g:ale_set_balloons = has('gui_running') ? 'hover' : 0
 
 " Use newer clang versions where available.
 if executable('clang-10')
