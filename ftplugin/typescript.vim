@@ -7,11 +7,13 @@ setlocal softtabstop=2
 setlocal nospell
 " Include - for completion.
 setlocal iskeyword+=-
+setlocal comments=s1:/*,mb:*,ex:*/,://,fb:-
 
 map <buffer> <silent> <F9> :TestFile<CR>
 " Use :ALEImport to import words at the cursor.
 map <buffer> <C-n> <Plug>(ale_import)
 
+let b:ale_fix_on_save = 1
 let b:ale_completion_excluded_words = [
 \   'it',
 \   'describe',
@@ -24,6 +26,8 @@ let b:ale_exclude_highlights = [
 \   'Remember not to commit fit()',
 \   'Remember not to commit fdescribe()',
 \]
+let b:ale_javascript_eslint_options = '--ignore-pattern ''!.eslintrc.js'''
+let b:ale_javascript_eslint_project_options = 'app'
 
 let s:dir = ale#path#Dirname(ale#path#FindNearestDirectory(bufnr(''), 'node_modules'))
 
