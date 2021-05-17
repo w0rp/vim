@@ -9,4 +9,6 @@ setlocal tabstop=2
 setlocal shiftwidth=2
 setlocal softtabstop=2
 
-let b:ale_linters = []
+if expand('%:e') is# 'html' || expand('%:e') is# 'htm'
+    let b:ale_linters = ['angular']
+endif
