@@ -23,7 +23,7 @@ snippet main
 # doc string
 snippet doc
 	"""
-	${1}
+	x${1}
 	"""${2}
 # Function
 snippet def
@@ -92,3 +92,6 @@ snippet utest
 			super().tearDown()
 snippet .save(u
 	.save(update_fields=[${0}])
+snippet typec
+	if TYPE_CHECKING:
+		${0}
