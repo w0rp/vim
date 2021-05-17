@@ -37,7 +37,7 @@ function! AutoPythonImport(word)
         endif
     endif
 
-    let l:last_import_line_number = search('^import\|^from', 'bn')
+    let l:last_import_line_number = max([1, search('^import\|^from', 'bn') - 1])
 
     if !empty(l:line)
         " Save the current position.
