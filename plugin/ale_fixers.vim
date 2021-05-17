@@ -8,6 +8,7 @@ let g:ale_fixers = {
 \   ],
 \   'typescript': [
 \       'eslint',
+\       'extra_ale_fixers#FixWeirdImportCommas',
 \   ],
 \   'ruby': [
 \       'rubocop',
