@@ -12,3 +12,17 @@ function! extra_ale_fixers#AutomaticallyFixJSONDiffOutput(buffer, lines) abort
 
     return l:result
 endfunction
+
+function! extra_ale_fixers#FixWeirdImportCommas(buffer, lines) abort
+    let l:result = []
+
+    for l:line in a:lines
+        if l:line ==# '  ,'
+            let l:result[-1] .= ','
+        else
+            call add(l:result, l:line)
+        endif
+    endfor
+
+    return l:result
+endfunction
