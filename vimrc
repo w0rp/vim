@@ -243,9 +243,10 @@ set wrap
 " Disable automatic wrapping.
 set textwidth=0
 
-" Make :Q and :W work like :q and :w
+" Make some capitalised commands work the same as their normal forms.
 command! W w
 command! Q q
+command! -bang Qall qall<bang>
 
 " Make completion smarter.
 set ignorecase
