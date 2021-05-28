@@ -288,7 +288,10 @@ set incsearch
 " Configure the delay for custom chained keybinds.
 set timeoutlen=250
 
+" --- syntax file settings ---
+
 let g:c_syntax_for_h = 1
+let g:go_highlight_trailing_whitespace_error = 0
 
 " --- rainbow parens settings ---
 
