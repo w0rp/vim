@@ -10,6 +10,7 @@ setlocal iskeyword+=-
 
 map <buffer> <silent> <F9> :TestFile<CR>
 
+let b:ale_fixers = ['eslint', 'extra_ale_fixers#FixWeirdImportCommas']
 let b:ale_linters = ['eslint', 'tsserver']
 let b:ale_javascript_eslint_options = '--ignore-pattern ''!.eslintrc.js'''
 let b:ale_exclude_highlights = [

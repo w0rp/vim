@@ -13,6 +13,7 @@ map <buffer> <silent> <F9> :TestFile<CR>
 " Use :ALEImport to import words at the cursor.
 map <buffer> <C-n> <Plug>(ale_import)
 
+let b:ale_fixers = ['eslint', 'extra_ale_fixers#FixWeirdImportCommas']
 let b:ale_fix_on_save = 1
 let b:ale_completion_excluded_words = [
 \   'it',

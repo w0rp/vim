@@ -6,6 +6,8 @@ setlocal iskeyword+=-
 " Navigate quickly in help files with space and backspace.
 noremap <buffer> <BS> <C-O>
 
+let b:ale_fixers = ['align_help_tags']
+
 function! OpenHelpTag() abort
     if !startup#keybinds#TryToOpenLink()
         call feedkeys("\<C-]>", 'n')
