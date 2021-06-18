@@ -64,7 +64,8 @@ hi Visual		guifg=#FFFFFF guibg=#3465a4 gui=none
 hi VisualNOS    guifg=#FFFFFF guibg=#204a87 gui=none
 hi IncSearch	guibg=#FFFFFF guifg=#ef5939
 hi Search		guibg=#ad7fa8 guifg=#FFFFFF
-hi SpecialKey	guifg=#8ae234
+" Edited by w0rp to make tabs more subtle
+hi SpecialKey	guifg=#2e630f
 
 hi Title		guifg=#ef5939
 hi WarningMsg	guifg=#ef5939
