@@ -15,4 +15,12 @@ if has('gui_macvim')
     noremap <D-h> :tabp <Return>
     " Command + l goes to the tab to the left.
     noremap <D-l> :tabn <Return>
+
+    " Command + C is copy to the clipboard
+    vnoremap <D-c> y
+    snoremap <D-c> <ESC>gv"+y<ESC>
+
+    " Map common Ctrl keybinds to Command
+    noremap <D-w> <C-w>
+    inoremap <D-w> <C-w>
 endif
