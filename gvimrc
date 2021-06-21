@@ -21,6 +21,10 @@ if has('gui_macvim')
     snoremap <D-c> <ESC>gv"+y<ESC>
 
     " Map common Ctrl keybinds to Command
-    noremap <D-w> <C-w>
-    inoremap <D-w> <C-w>
+    imap <D-n> <C-n>
+    imap <D-q> <C-q>
+    imap <D-w> <C-w>
+    map <D-o> <C-o>
+    map <D-w> <C-w>
+    vmap <D-Space> <C-Space>
 endif
