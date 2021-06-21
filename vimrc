@@ -251,6 +251,7 @@ command! -bang Qall qall<bang>
 " Make completion smarter.
 set ignorecase
 set smartcase
+set completeopt=menu,preview,noselect
 
 " viminfo settings
 " '100 : Remember marks for 100 previously edited files.
