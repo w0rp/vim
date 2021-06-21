@@ -69,3 +69,6 @@
 [submodule "pack/git-plugins/start/vim-js-pretty-template"]
 	path = pack/git-plugins/start/vim-js-pretty-template
 	url = https://github.com/Quramy/vim-js-pretty-template.git
+[submodule "pack/git-plugins/start/vim-easy-align"]
+	path = pack/git-plugins/start/vim-easy-align
+	url = https://github.com/junegunn/vim-easy-align.git
