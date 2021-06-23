@@ -22,15 +22,18 @@ if has('gui_macvim')
 
     " Map common Ctrl keybinds to Command
     imap <D-n> <C-n>
+    imap <D-p> <C-p>
     imap <D-q> <C-q>
     imap <D-w> <C-w>
     map <D-b> <C-b>
     map <D-d> <C-d>
     map <D-f> <C-f>
     map <D-n> <C-n>
+    map <D-p> <C-p>
     map <D-o> <C-o>
     map <D-p> <C-p>
     map <D-q> <C-q>
     map <D-w> <C-w>
+    map <D-y> <C-y>
     vmap <D-Space> <C-Space>
 endif
