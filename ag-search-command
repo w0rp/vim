@@ -1,15 +1,16 @@
 #!/bin/bash -eu
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    ag --nocolor --nogroup --hidden --line-numbers --filename \
-        --ignore=.git --ignore=.svn --ignore=.hg --ignore=.bzr \
-        "$@" | sort
-else
-    function faketty { script -qfc "$(printf "%q " "$@")" /dev/null; }
+function faketty {
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        # brew install expect is needed in Mac OSX
+        unbuffer "$@"
+    else
+        script -qfc "$(printf "%q " "$@")" /dev/null;
+    fi
+}
 
-    # Run the ag command in a fake TTY and sort the output.
-    # This will let us get predictable results, and quickly.
-    faketty ag --nocolor --nogroup --hidden --line-numbers --filename \
-        --ignore=.git --ignore=.svn --ignore=.hg --ignore=.bzr \
-        "$@" | sort
-fi
+# Run the ag command in a fake TTY and sort the output.
+# This will let us get predictable results, and quickly.
+faketty ag --nocolor --nogroup --hidden --line-numbers --filename \
+    --ignore=.git --ignore=.svn --ignore=.hg --ignore=.bzr \
+    "$@" | sort
