@@ -21,10 +21,6 @@ if !g:vimrc_loaded
     set runtimepath=$VIMHOME,$VIM/vimfiles/,$VIMRUNTIME,$VIM/vimfiles/after
 endif
 
-let s:ag_opts='--nocolor --nogroup --hidden'
-let s:ag_opts.=' --ignore=.git --ignore=.svn --ignore=.hg --ignore=.bzr'
-let g:unite_source_rec_async_command=['ag'] + split(s:ag_opts) + ['-g', '']
-
 " Set our after directory after everything.
 if !g:vimrc_loaded
     let &runtimepath.=',' . $VIMHOME . '/after'
@@ -303,15 +299,17 @@ let g:rainbow_conf = {
 \}
 let g:rainbow_active = 1
 
-" --- Unite.vim settings ---
+" --- ctrlp settings ---
 
-" Use ag for search inside files.
-let g:unite_source_grep_command=expand('<sfile>:p:h') . '/ag-search-command'
-let g:unite_source_grep_default_opts=''
-let g:unite_source_grep_recursive_opt=''
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_custom_ignore = '\v\.git|\.hg|\.svn|node_modules'
+let g:ctrlp_match_window = 'top,order:ttb,min:10,max:10,results:10'
 
-" Who the fuck knows what this does, but it makes things less slow.
-let g:unite_redraw_hold_candidates = 50000
+" --- Vim grep settings ---
+
+set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 
 " --- NERDTree settings ---
 

@@ -4,9 +4,6 @@
 [submodule "bundle/nerdtree-project"]
 	path = pack/git-plugins/start/nerdtree-project
 	url = https://github.com/janlay/NERD-tree-project.git
-[submodule "bundle/unite"]
-	path = pack/git-plugins/start/unite
-	url = https://github.com/Shougo/unite.vim.git
 [submodule "bundle/vim-pug"]
 	path = pack/git-plugins/start/vim-pug
 	url = https://github.com/digitaltoad/vim-pug.git
@@ -72,3 +69,6 @@
 [submodule "pack/git-plugins/start/vim-easy-align"]
 	path = pack/git-plugins/start/vim-easy-align
 	url = https://github.com/junegunn/vim-easy-align.git
+[submodule "pack/git-plugins/start/ctrlp"]
+	path = pack/git-plugins/start/ctrlp
+	url = https://github.com/ctrlpvim/ctrlp.vim.git

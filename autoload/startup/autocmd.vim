@@ -96,5 +96,11 @@ augroup FixAfterComplete
   autocmd User ALEFixPre ALELintStop
 augroup END
 
+augroup Quickfix
+    autocmd!
+    " Automatically close quickfix after making a selection.
+    autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>
+augroup END
+
 function! startup#autocmd#Init() abort
 endfunction

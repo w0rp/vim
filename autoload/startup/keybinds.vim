@@ -120,10 +120,11 @@ function! startup#keybinds#RedrawSearch() abort
     if get(g:, 'f3_redraw') is# 'ale'
         ALERepeatSelection
     else
-        UniteResume
-        execute "normal \<Plug>(unite_redraw)"
+        copen
     endif
 endfunction
+
+command! -nargs=+ Grep let g:f3_redraw = 'grep' | execute 'silent grep! <args>' | cwindow
 
 " Bind F1 to showing details of ALE errors.
 noremap <F1> :ALEDetail<CR>
@@ -134,9 +135,10 @@ noremap <F3> :call startup#keybinds#RedrawSearch()<CR>
 " Map F4 to copying the current filename to the clipboard.
 noremap <F4> :call startup#keybinds#CopyNameToClipboard()<CR>
 nmap <F5> <Plug>(ale_find_references)
-noremap <C-f> :UniteWithProjectDir grep -no-empty<Return>
-noremap <F6> :UniteWithProjectDir file_rec/async:<Return>:setlocal modifiable<Return>i
-noremap <F7> :UniteWithProjectDir file_rec/async:<Return>:setlocal modifiable<Return>i
+" Use Vim's built in grep with ripgrep to search in files.
+noremap <C-f> :Grep<Space>
+" Use ctrlp to fuzzy find files.
+noremap <C-p> :CtrlP<Return>
 " Bind F7 To recording speech with vim-speech.
 " noremap <silent> <F7> :SpeechToggle<CR>
 " Bind F8 to fixing problems with ALE
