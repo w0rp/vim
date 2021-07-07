@@ -28,8 +28,8 @@ if has('gui_macvim')
     map <D-b> <C-b>
     map <D-d> <C-d>
     map <D-f> <C-f>
+    map <D-i> <C-i>
     map <D-n> <C-n>
-    map <D-p> <C-p>
     map <D-o> <C-o>
     map <D-p> <C-p>
     map <D-q> <C-q>
