@@ -33,6 +33,8 @@ if has('gui_macvim')
     map <D-o> <C-o>
     map <D-p> <C-p>
     map <D-q> <C-q>
+    map <D-r> <C-r>
+    map <D-t> <C-t>
     map <D-w> <C-w>
     map <D-y> <C-y>
     vmap <D-Space> <C-Space>
