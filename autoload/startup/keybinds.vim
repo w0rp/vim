@@ -124,7 +124,20 @@ function! startup#keybinds#RedrawSearch() abort
     endif
 endfunction
 
-command! -nargs=+ Grep let g:f3_redraw = 'grep' | execute 'silent grep! <args>' | cwindow
+function! startup#keybinds#SwitchToProjectRoot() abort
+    let s:old_search_cwd = getcwd()
+    let l:dir = finddir('.git/..', expand('%:p:h').';')
+
+    if !empty(l:dir)
+        execute 'cd ' . fnameescape(l:dir)
+    endif
+endfunction
+
+function! startup#keybinds#SwitchBackToOldCwd() abort
+    execute 'cd ' . fnameescape(s:old_search_cwd)
+endfunction
+
+command! -nargs=+ Grep let g:f3_redraw = 'grep' | call startup#keybinds#SwitchToProjectRoot() | execute 'silent grep! <args>' | cwindow | call startup#keybinds#SwitchBackToOldCwd()
 
 " Bind F1 to showing details of ALE errors.
 noremap <F1> :ALEDetail<CR>
