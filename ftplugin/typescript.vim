@@ -73,3 +73,7 @@ endfunction
 command! -range FixBindings :call FixTypeScriptBindings(<line1>, <line2>)
 
 imap <buffer> <silent> <C-Tab> <Plug>(ale_complete)
+
+if expand('%:p') =~# 'wazoku-spotlight'
+    let b:ale_linters = ['eslint', 'tsserver']
+endif
