@@ -137,7 +137,30 @@ function! startup#keybinds#SwitchBackToOldCwd() abort
     execute 'cd ' . fnameescape(s:old_search_cwd)
 endfunction
 
-command! -nargs=+ Grep let g:f3_redraw = 'grep' | call startup#keybinds#SwitchToProjectRoot() | execute 'silent grep! <args>' | cwindow | call startup#keybinds#SwitchBackToOldCwd()
+function! startup#keybinds#PerformGrep(cleaned_args) abort
+    let g:f3_redraw = 'grep'
+    call startup#keybinds#SwitchToProjectRoot()
+
+    let g:f3_redraw_repeat_search = a:cleaned_args
+
+    execute 'silent grep! ' . a:cleaned_args
+    cwindow
+    call startup#keybinds#SwitchBackToOldCwd()
+endfunction
+
+function! startup#keybinds#Grep(pattern) abort
+    call startup#keybinds#PerformGrep(shellescape(a:pattern))
+endfunction
+
+function! startup#keybinds#RepeatGrep() abort
+    if exists('g:f3_redraw_repeat_search')
+        call startup#keybinds#PerformGrep(g:f3_redraw_repeat_search)
+    else
+        echoerr 'No search to repeat'
+    endi
+endfunction
+
+command! -nargs=+ Grep call startup#keybinds#Grep(<q-args>)
 
 " Bind F1 to showing details of ALE errors.
 noremap <F1> :ALEDetail<CR>
@@ -150,6 +173,8 @@ noremap <F4> :call startup#keybinds#CopyNameToClipboard()<CR>
 nmap <F5> <Plug>(ale_find_references)
 " Use Vim's built in grep with ripgrep to search in files.
 noremap <C-f> :Grep<Space>
+" Ctrl+shift+f repeats the last search.
+noremap <C-s-f> :call startup#keybinds#RepeatGrep()<Return>
 " Use ctrlp to fuzzy find files.
 noremap <C-p> :CtrlP<Return>
 " Bind F7 To recording speech with vim-speech.
