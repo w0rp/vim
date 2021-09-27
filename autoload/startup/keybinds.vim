@@ -49,9 +49,9 @@ snoremap <C-C> <ESC>gv"+y<ESC>
 vnoremap <C-X> "+x
 
 " CTRL-V pastes from the clipboard
-noremap <C-V> p
-inoremap <C-V> <C-R>*
-cnoremap <C-V> <C-R>+
+noremap <C-v> p
+inoremap <C-v> <C-r><C-o>*
+cnoremap <C-v> <C-R>+
 
 " CTRL-P replaces the current line with the buffer without cutting it.
 noremap <C-p> "_ddP
