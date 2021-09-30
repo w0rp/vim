@@ -149,7 +149,7 @@ function! startup#keybinds#PerformGrep(cleaned_args) abort
 endfunction
 
 function! startup#keybinds#Grep(pattern) abort
-    call startup#keybinds#PerformGrep(shellescape(a:pattern))
+    call startup#keybinds#PerformGrep(escape(shellescape(a:pattern), '#'))
 endfunction
 
 function! startup#keybinds#RepeatGrep() abort
