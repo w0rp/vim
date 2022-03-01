@@ -15,3 +15,7 @@ function! ShIgnoreFunction(buffer) abort
 endfunction
 
 let b:Ignore = function('ShIgnoreFunction')
+
+if expand('%:r') is# '.env'
+    let b:ale_linters = []
+endif
