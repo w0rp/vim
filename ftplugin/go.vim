@@ -20,3 +20,5 @@ if !empty(s:mod_file)
     \   ale#command#CdString(ale#path#Dirname(s:mod_file))
     \   . ' go test'
 endif
+
+map <buffer> <silent> <F9> :TestFile<CR>
