@@ -24,6 +24,8 @@ augroup FiletypeGroup
     " .sublime-files are JSON files.
     au BufRead,BufNewFile *.sublime-project set filetype=json
     au BufRead,BufNewFile *.cson set filetype=coffee
+    " Go files
+    au BufRead,BufNewFile *.tmpl set filetype=gohtmltmpl
 augroup END
 
 function! startup#autocmd#StopProfiling() abort
