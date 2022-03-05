@@ -175,8 +175,8 @@ nmap <F5> <Plug>(ale_find_references)
 noremap <C-f> :Grep<Space>
 " Ctrl+shift+f repeats the last search.
 noremap <C-s-f> :call startup#keybinds#RepeatGrep()<Return>
-" Use ctrlp to fuzzy find files.
-noremap <C-p> :CtrlP<Return>
+" Use ripgrep to fuzzy find files.
+noremap <C-p> :call file_search#OpenNewSearch()<Return>
 " Bind F7 To recording speech with vim-speech.
 " noremap <silent> <F7> :SpeechToggle<CR>
 " Bind F8 to fixing problems with ALE

@@ -299,14 +299,6 @@ let g:rainbow_conf = {
 \}
 let g:rainbow_active = 1
 
-" --- ctrlp settings ---
-
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_custom_ignore = '\v\.git|\.hg|\.svn|node_modules'
-let g:ctrlp_match_window = 'top,order:ttb,min:10,max:10,results:10'
-
 " --- Vim grep settings ---
 
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
