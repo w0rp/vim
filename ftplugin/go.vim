@@ -14,12 +14,21 @@ vnoremap <buffer> <C-Space> :EasyAlign *\<Space><Return>
 let g:test#enabled_runners = ['go#gotest']
 let g:test#go#runner = 'gotest'
 
-let s:mod_file = ale#path#FindNearestFile(bufnr(''), 'go.mod')
+function! UpdateGoTestPath() abort
+    let l:mod_file = ale#path#FindNearestFile(bufnr(''), 'go.mod')
 
-if !empty(s:mod_file)
-    let g:test#go#gotest#executable =
-    \   ale#command#CdString(ale#path#Dirname(s:mod_file))
-    \   . ' go test'
-endif
+    if !empty(l:mod_file)
+        let g:test#go#gotest#executable =
+        \   ale#command#CdString(ale#path#Dirname(l:mod_file))
+        \   . ' go test'
+    else
+        let g:test#go#gotest#executable = 'go test'
+    endif
+endfunction
 
 map <buffer> <silent> <F9> :TestFile<CR>
+
+augroup UpdateGoTestPathGroup
+    autocmd! * <buffer>
+    autocmd BufEnter <buffer> call UpdateGoTestPath()
+augroup END
