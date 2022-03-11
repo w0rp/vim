@@ -13,6 +13,8 @@ map <buffer> <silent> <F9> :TestFile<CR>
 " Use :ALEImport to import words at the cursor.
 map <buffer> <C-n> <Plug>(ale_import)
 
+let g:test#enabled_runners = ['javascript#jest']
+
 let b:ale_fixers = ['eslint', 'extra_ale_fixers#FixWeirdImportCommas']
 let b:ale_fix_on_save = 1
 let b:ale_completion_excluded_words = [
@@ -33,7 +35,6 @@ let b:ale_javascript_eslint_project_options = 'app'
 let s:dir = ale#path#Dirname(ale#path#FindNearestDirectory(bufnr(''), 'node_modules'))
 
 if !empty(s:dir)
-    let g:test#enabled_runners = ['javascript#jest']
     let g:test#javascript#jest#executable = s:dir . '/node_modules/.bin/jest'
     let g:test#javascript#jest#options = '--reporters=default'
     let g:test#project_root = s:dir

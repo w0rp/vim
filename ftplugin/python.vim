@@ -83,6 +83,8 @@ function! RunPythonTests() abort
     endif
 endfunction
 
+let g:test#enabled_runners = ['python#pytest']
+
 map <buffer> <silent> <F9> :call RunPythonTests()<CR>
 
 let s:virtualenv = ale#python#FindVirtualenv(bufnr(''))

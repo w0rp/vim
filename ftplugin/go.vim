@@ -11,6 +11,7 @@ setlocal colorcolumn=121
 
 vnoremap <buffer> <C-Space> :EasyAlign *\<Space><Return>
 
+let g:test#enabled_runners = ['go#gotest']
 let g:test#go#runner = 'gotest'
 
 let s:mod_file = ale#path#FindNearestFile(bufnr(''), 'go.mod')
