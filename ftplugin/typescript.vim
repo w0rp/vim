@@ -34,7 +34,7 @@ let s:dir = ale#path#Dirname(ale#path#FindNearestDirectory(bufnr(''), 'node_modu
 if !empty(s:dir)
     let b:test_command = ale#command#CdString(s:dir)
     \   . ' ' . ale#Escape(s:dir . '/node_modules/.bin/jest')
-    \   . ' ' . substitute(expand('%:p'), '^' . s:dir . '/', '', '')
+    \   . ' ' . ale#Escape(substitute(expand('%:p'), '^' . s:dir . '/', '', ''))
 endif
 
 function! TypeScriptBindingReplacement() abort
