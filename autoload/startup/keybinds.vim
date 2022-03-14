@@ -114,6 +114,9 @@ noremap ; :
 nmap <silent> , <Plug>(ale_previous_wrap)
 nmap <silent> m <Plug>(ale_next_wrap)
 
+" Use Ctrl+Tab to autocomplete in all filetypes.
+imap <silent> <C-Tab> <Plug>(ale_complete)
+
 " --- Function key bindings in order ---
 
 function! startup#keybinds#RedrawSearch() abort
@@ -313,6 +316,18 @@ noremap <silent> gj :SplitjoinJoin<CR>
 
 " Quit terminals with just 'q'
 tnoremap q <C-w>N:q!<CR>
+
+function! startup#keybinds#RunTests() abort
+    if !exists('b:test_command')
+        echom 'b:test_command is not defined'
+
+        return
+    endif
+
+    belowright call term_start(['/bin/sh', '-c', b:test_command])
+endfunction
+
+noremap  <silent> <F9> :call startup#keybinds#RunTests()<CR>
 
 function! startup#keybinds#Init() abort
 endfunction

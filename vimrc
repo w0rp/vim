@@ -384,10 +384,6 @@ if executable('clangd-10')
     let g:ale_cpp_clangd_executable = 'clangd-10'
 endif
 
-" --- vim-test settings ---
-
-let g:test#strategy = 'vimterminal'
-
 " --- python-tools settings ---
 
 " Don't run migrations for pytest runs in python_tools
