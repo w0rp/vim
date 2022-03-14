@@ -88,6 +88,7 @@ let g:python_import_dict = {
 \   'call_command': 'from django.core.management',
 \   'cast': 'from typing',
 \   'connection': 'from django.db',
+\   'csv': 'import csv',
 \   'datetime': 'import datetime',
 \   'decimal': 'import decimal',
 \   'deepcopy': 'from copy',
