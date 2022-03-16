@@ -13,6 +13,7 @@ endfunction
 function! s:SetLines(buffer, lines) abort
     call setbufline(a:buffer, 1, a:lines)
     call deletebufline(a:buffer, len(a:lines) + 1, '$')
+    redraw
 endfunction
 
 function! s:Search(dir, search_buffer, text) abort
