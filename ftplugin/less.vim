@@ -12,11 +12,18 @@ setlocal suffixesadd=.less
 setlocal iskeyword+=-
 
 if expand('%:p') =~# 'spotlight/static'
+    let s:path_to_static = split(expand('%:p'), '/spotlight/static')[0]
+    \   . '/spotlight/static/'
     let s:path_to_base = split(expand('%:p'), '/spotlight/static')[0]
     \   . '/spotlight/static/main/styles/clients/base/'
+    let s:path_to_framework = split(expand('%:p'), '/spotlight/static')[0]
+    \   . '/spotlight/static/styles/framework/'
 
     let b:ale_less_lessc_options = join(map(
     \   [
+    \       ['path-to-base', s:path_to_base],
+    \       ['path-to-framework', s:path_to_framework],
+    \       ['static-url', s:path_to_static],
     \       ['line-height-computed', '20px'],
     \       ['screen-xs-max', '120px'],
     \       ['screen-sm-max', '120px'],
@@ -33,7 +40,6 @@ if expand('%:p') =~# 'spotlight/static'
     \       ['font-size-h6', '2px'],
     \       ['padding-xs-vertical', '2px'],
     \       ['padding-base-horizontal', '2px'],
-    \       ['path-to-base', s:path_to_base],
     \       ['fa-var-pencil-square-o', ''],
     \   ],
     \   '''--global-var='' . ale#Escape(v:val[0] . ''='' . v:val[1])'
