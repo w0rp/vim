@@ -112,6 +112,7 @@ let g:python_import_dict = {
 \   'overload': 'from typing',
 \   'parse_datetime': 'from django.utils.dateparse',
 \   'parse_qs': 'from urllib.parse',
+\   'parse_qsl': 'from urllib.parse',
 \   'partial': 'from functools',
 \   'permissions': 'from rest_framework',
 \   'post_save': 'from django.db.models.signals',
@@ -139,5 +140,6 @@ let g:python_import_dict = {
 \   'url_reverse': 'from django.urls import reverse as',
 \   'urlencode': 'from urllib.parse',
 \   'urlparse': 'from urllib.parse',
+\   'urlunparse': 'from urllib.parse',
 \   'uuid': 'import uuid',
 \}
