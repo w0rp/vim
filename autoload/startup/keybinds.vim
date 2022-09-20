@@ -303,11 +303,6 @@ endfunction
 
 nnoremap <silent> q :call startup#keybinds#CloseSplitWindowsWithQ()<CR>
 
-" Run macros with \, which is easier to press.
-nnoremap \ @
-" Repeat macros with \\ too.
-nnoremap \\ @@
-
 " Bind // so it sets up an expression for replacing the previous match.
 noremap // :%s//
 
