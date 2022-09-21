@@ -104,6 +104,52 @@ if expand('%:p') =~# 'git/contorta/'
     \}
 endif
 
+if expand('%:p') =~# 'git/coin/'
+    " pip install python-lsp-server pylsp-mypy
+    let b:ale_linters = ['pylsp']
+    let b:ale_fixers = [
+    \   'remove_trailing_lines',
+    \   'isort',
+    \   'black',
+    \]
+    let b:ale_fix_on_save = 1
+    let b:ale_root = expand('~/git/coin')
+    let $PYTHONPATH = expand('~/git/coin')
+
+    let b:ale_python_pylsp_config = {
+    \   'pylsp': {
+    \       'plugins': {
+    \           'pylsp_mypy': {
+    \               'enabled': v:true,
+    \           },
+    \       },
+    \   },
+    \}
+endif
+
+if expand('%:p') =~# 'git/tuin/'
+    " pip install isort==5.6.4 black==22.3.0 python-lsp-server pylsp-mypy
+    let b:ale_linters = ['pylsp']
+    let b:ale_fixers = [
+    \   'remove_trailing_lines',
+    \   'isort',
+    \   'black',
+    \]
+    let b:ale_fix_on_save = 1
+    let b:ale_root = expand('~/git/tuin')
+    let $PYTHONPATH = expand('~/git/tuin')
+
+    let b:ale_python_pylsp_config = {
+    \   'pylsp': {
+    \       'plugins': {
+    \           'pylsp_mypy': {
+    \               'enabled': v:true,
+    \           },
+    \       },
+    \   },
+    \}
+endif
+
 if expand('%:p') =~# 'django-common-migration'
     let b:ale_linters_ignore = []
 endif
