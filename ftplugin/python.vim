@@ -128,7 +128,7 @@ if expand('%:p') =~# 'git/coin/'
 endif
 
 if expand('%:p') =~# 'git/tuin/'
-    " pip install isort==5.6.4 black==22.3.0 python-lsp-server pylsp-mypy
+    " pip install isort==5.6.4 black==22.3.0 python-lsp-server pylsp-mypy pluggy==1.0.0
     let b:ale_linters = ['pylsp']
     let b:ale_fixers = [
     \   'remove_trailing_lines',
