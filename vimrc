@@ -413,9 +413,8 @@ let g:splitjoin_trailing_comma = 1
 " --- autoloaded extra code ---
 
 let g:path_remove_regex_list = [
-\   '^.*/wazoku/wazoku-spotlight/',
-\   '^.*/wazoku/wazoku-api/',
 \   '^.*/ale/',
+\   '^.*/git/[^/]*/',
 \]
 
 " Run mostly blank init functions for loading extra settings, which can
