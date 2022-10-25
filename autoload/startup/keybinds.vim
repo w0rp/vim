@@ -50,7 +50,7 @@ vnoremap <C-X> "+x
 
 " CTRL-V pastes from the clipboard
 noremap <C-v> p
-inoremap <C-v> <C-r><C-o>*
+inoremap <C-v> <C-r><C-o>+
 cnoremap <C-v> <C-R>+
 
 " CTRL-P replaces the current line with the buffer without cutting it.
