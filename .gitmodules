@@ -47,10 +47,10 @@
 	url = https://github.com/w0rp/vim-speech.git
 [submodule "pack/git-plugins/start/splitjoin.vim"]
 	path = pack/git-plugins/start/splitjoin.vim
-	url = git@github.com:AndrewRadev/splitjoin.vim.git
+	url = https://github.com/AndrewRadev/splitjoin.vim.git
 [submodule "pack/git-plugins/start/vim-coffee-script"]
 	path = pack/git-plugins/start/vim-coffee-script
-	url = git@github.com:kchmck/vim-coffee-script.git
+	url = https://github.com/kchmck/vim-coffee-script.git
 [submodule "pack/git-plugins/start/vim-hug-neovim-rpc"]
 	path = pack/git-plugins/start/vim-hug-neovim-rpc
 	url = https://github.com/roxma/vim-hug-neovim-rpc.git
