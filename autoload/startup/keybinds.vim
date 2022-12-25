@@ -8,7 +8,7 @@ function! startup#keybinds#TryToOpenLink() abort
     let l:index = match(l:line[0 : l:col + len('https://')], '\vhttps?://')
 
     if l:index >= 0 && l:index < l:col
-        let l:link = matchstr(l:line[l:index :], '\v[^ ]+')
+        let l:link = matchstr(l:line[l:index :], '\v[^ )]+')
         " Remove CR characters from links.
         let l:link = substitute(l:link, '\r', '', 'g')
 
