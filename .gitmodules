@@ -35,7 +35,7 @@
 	url = https://github.com/xolox/vim-reload.git
 [submodule "bundle/typescript-vim"]
 	path = pack/git-plugins/start/typescript-vim
-	url = https://github.com/leafgarland/typescript-vim.git
+	url = https://github.com/w0rp/typescript-vim.git
 [submodule "bundle/lightline"]
 	path = pack/git-plugins/start/lightline
 	url = https://github.com/w0rp/lightline.vim.git
