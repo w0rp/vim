@@ -25,3 +25,9 @@ if !empty(s:dir)
     let g:test#javascript#jest#executable = s:dir . '/node_modules/.bin/jest'
     let g:test#project_root = s:dir
 endif
+
+if expand('%:p') =~# 'git/relviz'
+    let b:ale_linters = ['eslint', 'tsserver']
+    let b:ale_fixers = ['eslint']
+    let b:ale_fix_on_save = 1
+endif

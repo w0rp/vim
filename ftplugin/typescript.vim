@@ -20,6 +20,7 @@ let b:ale_completion_excluded_words = [
 \   'beforeEach',
 \   'import',
 \   'importScripts',
+\   'ImportsNotUsedAsValues',
 \   'implements',
 \]
 let b:ale_exclude_highlights = [
@@ -72,4 +73,10 @@ command! -range FixBindings :call FixTypeScriptBindings(<line1>, <line2>)
 
 if expand('%:p') =~# 'wazoku-spotlight'
     let b:ale_linters = ['eslint', 'tsserver']
+endif
+
+if expand('%:p') =~# 'git/relviz'
+    let b:ale_linters = ['eslint', 'tsserver']
+    let b:ale_fixers = ['eslint']
+    let b:ale_fix_on_save = 1
 endif
