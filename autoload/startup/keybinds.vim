@@ -22,6 +22,7 @@ endfunction
 " This script holds all keybinding settings.
 
 nnoremap <silent> <C-LeftMouse> <LeftMouse> :call startup#keybinds#TryToOpenLink()<CR>
+nnoremap <silent> <C-9> :call startup#keybinds#TryToOpenLink()<CR>
 nnoremap <C-RightMouse> <Nop>
 
 " Disable replace mode, which turns on in bad terminals for some reason.
