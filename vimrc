@@ -403,6 +403,13 @@ let $GOOGLE_APPLICATION_CREDENTIALS = $HOME
 \   . '/content/application/speech-to-text-key.json'
 let g:vim_speech_recording_status = '◉ REC'
 
+" --- neutral settings ---
+let g:neural_datasource_config = {
+\   'openai': {
+\       'api_key': $OPENAI_API_KEY,
+\   },
+\}
+
 " --- splitjoin settings ---
 " Default mappings are disabled, and configured in keybinds.vim instead.
 let g:splitjoin_split_mapping = ''
