@@ -83,16 +83,14 @@ if expand('%:p') =~# 'test-pylint'
 endif
 
 if expand('%:p') =~# 'git/contorta/'
-    " pip install isort==5.6.4 black==22.3.0 python-lsp-server pylsp-mypy
-    let b:ale_linters = ['pylsp']
+    " pip install isort==5.6.4 black==22.3.0 pyright python-lsp-server pylsp-mypy
+    let b:ale_linters = ['pylsp', 'pyright']
     let b:ale_fixers = [
     \   'remove_trailing_lines',
     \   'isort',
     \   'black',
     \]
     let b:ale_fix_on_save = 1
-    let b:ale_root = expand('~/git/contorta')
-    let $PYTHONPATH = expand('~/git/contorta')
 
     let b:ale_python_pylsp_config = {
     \   'pylsp': {
@@ -100,9 +98,16 @@ if expand('%:p') =~# 'git/contorta/'
     \           'pylsp_mypy': {
     \               'enabled': v:true,
     \           },
+    \           'pycodestyle': {
+    \               'enabled': v:false,
+    \           },
     \       },
     \   },
     \}
+
+    if expand('%:p') =~# 'migrations'
+        let b:ale_fixers = ['remove_trailing_lines', 'isort']
+    endif
 endif
 
 if expand('%:p') =~# 'git/coin/'
