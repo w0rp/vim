@@ -277,6 +277,9 @@ inoremap <silent> <Tab> <C-R>=SmartTab()<CR>
 inoremap <silent> <S-Tab> <C-R>=SmartShiftTab()<CR>
 inoremap <silent> <C-n> <C-R>=SmartInsertCompletion()<CR>
 
+" Use Ctrl+n to prompt Neural in normal mode
+noremap <C-n> <Plug>(neural_prompt)
+
 " Close split windows just by pressing 'q', but record macros if there is only
 " one window open.
 "
