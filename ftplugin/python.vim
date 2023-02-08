@@ -58,6 +58,7 @@ let b:ale_completion_excluded_words = [
 \   'DOCUMENT_EXTENSIONS',
 \   'DOCUMENT_DIR',
 \]
+let b:ale_python_auto_virtualenv = 1
 
 if expand('%:e') is# 'pyi'
     let b:ale_linters = ['pyright']
@@ -156,4 +157,9 @@ endif
 
 if expand('%:p') =~# 'migrations'
     call filter(b:ale_fixers, 'v:val isnot# ''ale#fixers#generic_python#BreakUpLongLines''')
+endif
+
+if expand('%:p') =~# 'python3/neural'
+    let b:ale_linters = ['pyright', 'ruff']
+    let b:ale_fixers = ['ruff']
 endif
