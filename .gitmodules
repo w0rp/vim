@@ -66,3 +66,6 @@
 [submodule "pack/git-plugins/start/vim-easy-align"]
 	path = pack/git-plugins/start/vim-easy-align
 	url = https://github.com/junegunn/vim-easy-align.git
+[submodule "pack/git-plugins/start/neural"]
+	path = pack/git-plugins/start/neural
+	url = https://github.com/dense-analysis/neural.git
