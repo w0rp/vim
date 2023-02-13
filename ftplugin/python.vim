@@ -164,7 +164,6 @@ if expand('%:p') =~# 'migrations'
     call filter(b:ale_fixers, 'v:val isnot# ''ale#fixers#generic_python#BreakUpLongLines''')
 endif
 
-if expand('%:p') =~# 'python3/neural'
-    let b:ale_linters = ['pyright', 'ruff']
-    let b:ale_fixers = ['ruff']
+if expand('%:p') =~# 'neural'
+    let b:ale_fixers = ['isort']
 endif
