@@ -404,9 +404,11 @@ let $GOOGLE_APPLICATION_CREDENTIALS = $HOME
 let g:vim_speech_recording_status = '◉ REC'
 
 " --- neutral settings ---
-let g:neural_datasource_config = {
-\   'openai': {
-\       'api_key': $OPENAI_API_KEY,
+let g:neural = {
+\   'source': {
+\       'openai': {
+\           'api_key': $OPENAI_API_KEY,
+\       },
 \   },
 \}
 
