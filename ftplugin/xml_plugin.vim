@@ -546,9 +546,11 @@ setlocal commentstring=<!--%s-->
 
 " Have this as an escape incase you want a literal '>' not to run the
 " ParseTag function.
-if !exists("g:xml_tag_completion_map")
-    inoremap <buffer> <LocalLeader>. >
-    inoremap <buffer> <LocalLeader>> >
+if &filetype isnot# 'markdown'
+    if !exists("g:xml_tag_completion_map")
+        inoremap <buffer> <LocalLeader>. >
+        inoremap <buffer> <LocalLeader>> >
+    endif
 endif
 
 " Jump between the beggining and end tags.
