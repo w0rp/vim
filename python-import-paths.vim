@@ -19,6 +19,7 @@ let g:python_import_dict = {
 \   'Concat': 'from django.db.models.functions',
 \   'ContentType': 'from django.contrib.contenttypes.models',
 \   'Count': 'from django.db.models',
+\   'D': 'from decimal import Decimal as',
 \   'Decimal': 'from decimal',
 \   'Dict': 'from typing',
 \   'Exists': 'from django.db.models',
