@@ -69,3 +69,6 @@
 [submodule "pack/git-plugins/start/neural"]
 	path = pack/git-plugins/start/neural
 	url = https://github.com/dense-analysis/neural.git
+[submodule "pack/git-plugins/start/vim-hugo"]
+	path = pack/git-plugins/start/vim-hugo
+	url = https://github.com/phelipetls/vim-hugo.git
