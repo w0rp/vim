@@ -9,10 +9,6 @@ setlocal tabstop=2
 setlocal shiftwidth=2
 setlocal softtabstop=2
 
-if expand('%:e') is# 'html' || expand('%:e') is# 'htm'
-    let b:ale_linters = ['angular']
-endif
-
 if expand('%:p') =~# 'denseanalysis-org'
     setlocal spell spelllang=en_us
 endif
