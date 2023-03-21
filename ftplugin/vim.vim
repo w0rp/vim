@@ -8,4 +8,5 @@ setlocal comments=sO:\"\ -,mO:\"\ \ ,eO:\"\",b:\\
 
 let b:ale_completion_excluded_words = [
 \   'function',
+\   'funcref',
 \]
