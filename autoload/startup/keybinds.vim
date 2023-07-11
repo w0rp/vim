@@ -177,8 +177,12 @@ noremap <F4> :call startup#keybinds#CopyNameToClipboard()<CR>
 nmap <F5> <Plug>(ale_find_references)
 " Use Vim's built in grep with ripgrep to search in files.
 noremap <C-f> :Grep<Space>
-" Ctrl+shift+f repeats the last search.
-noremap <C-s-f> :call startup#keybinds#RepeatGrep()<Return>
+
+if !has('gui_macvim')
+    " Ctrl+shift+f repeats the last search.
+    noremap <C-s-f> :call startup#keybinds#RepeatGrep()<Return>
+endif
+
 " Use ripgrep to fuzzy find files.
 noremap <C-p> :call file_search#OpenNewSearch()<Return>
 " Bind F7 To recording speech with vim-speech.
