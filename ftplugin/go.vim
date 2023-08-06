@@ -18,12 +18,27 @@ function! UpdateGoTestPath() abort
     let l:mod_file = ale#path#FindNearestFile(bufnr(''), 'go.mod')
 
     if !empty(l:mod_file)
+        let l:executable = 'go'
+
+        " Automatically use versioned go executables for tests.
+        for l:line in readfile(l:mod_file)
+            if l:line =~# '^go'
+                let l:versioned = substitute(l:line, ' ', '', 'g')
+
+                if executable(l:versioned)
+                    let l:executable = l:versioned
+                endif
+
+                break
+            endif
+        endfor
+
         let l:dir = ale#path#Dirname(l:mod_file)
         let l:rel_path = substitute(expand('%:p'), '^' . l:dir . '/', '', '')
         let l:first = split(l:rel_path, '/')[0]
 
         let b:test_command = ale#command#CdString(l:dir)
-        \   . ' go test'
+        \   . ' ' . l:executable . ' test'
         \   . ' ./' . ale#Escape(l:first) . '/...'
     else
         let b:test_command = ''
