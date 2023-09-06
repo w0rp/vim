@@ -385,6 +385,16 @@ if executable('clangd-10')
     let g:ale_cpp_clangd_executable = 'clangd-10'
 endif
 
+if executable('clang-17')
+    let g:ale_c_cc_executable = 'clang-17'
+    let g:ale_cpp_cc_executable = 'clang++-17'
+endif
+
+if executable('clangd-17')
+    let g:ale_c_clangd_executable = 'clangd-17'
+    let g:ale_cpp_clangd_executable = 'clangd-17'
+endif
+
 " --- python-tools settings ---
 
 " Don't run migrations for pytest runs in python_tools
