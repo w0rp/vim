@@ -11,7 +11,7 @@ vnoremap <buffer> <C-Space> :EasyAlign *\<Space><Return>
 
 let b:ale_go_goimports_executable = $HOME . '/go/bin/goimports'
 let b:ale_linters = ['gopls']
-let b:ale_fixers = ['goimports']
+let b:ale_fixers = ['goimports', 'gofmt']
 let b:ale_fix_on_save = 1
 
 function! UpdateGoTestPath() abort
