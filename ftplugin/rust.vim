@@ -1,1 +1,1 @@
-let b:ale_linters = ['rls']
+setlocal nosmartindent
