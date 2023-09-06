@@ -364,6 +364,7 @@ let g:ale_code_actions_enabled = 1
 let g:ale_set_balloons_legacy_echo = 1
 let g:ale_c_parse_compile_commands = 1
 let g:ale_lsp_suggestions = 0
+let g:ale_save_hidden = 1
 
 " Options for different linters.
 let g:ale_python_mypy_ignore_invalid_syntax = 1
