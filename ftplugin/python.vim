@@ -43,7 +43,6 @@ let b:ale_fixers = [
 \   'extra_ale_fixers#AutomaticallyFixJSONDiffOutput',
 \   'autopep8',
 \]
-let b:ale_completion_excluded_words = ['and', 'or', 'if']
 let b:ale_python_pyright_config = {
 \   'python': {
 \       'analysis': {
@@ -52,11 +51,15 @@ let b:ale_python_pyright_config = {
 \   },
 \}
 let b:ale_completion_excluded_words = [
+\   'DOCUMENT_DIR',
+\   'DOCUMENT_EXTENSIONS',
+\   'and',
 \   'do',
 \   'doc',
+\   'if',
+\   'main',
+\   'or',
 \   'super',
-\   'DOCUMENT_EXTENSIONS',
-\   'DOCUMENT_DIR',
 \]
 let b:ale_python_auto_virtualenv = 1
 
