@@ -70,6 +70,7 @@ let g:python_import_dict = {
 \   'Subquery': 'from django.db.models',
 \   'TYPE_CHECKING': 'from typing',
 \   'TestCase': 'from unittest',
+\   'TestClient': 'from fastapi.testclient',
 \   'Trim': 'from django.db.models.functions',
 \   'Tuple': 'from typing',
 \   'Type': 'from typing',
