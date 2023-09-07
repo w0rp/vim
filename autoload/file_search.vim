@@ -115,8 +115,27 @@ function! s:CreateFileSearchBuffer() abort
     return l:buffer
 endfunction
 
+function! s:FindProjectDir() abort
+    let l:dir = expand('%:p:h')
+
+    while !empty(l:dir)
+        if !empty(globpath(l:dir, '.git', 1))
+            return l:dir
+        endif
+
+        " Stop searching if the last dir was the root.
+        if l:dir is# '/'
+            return ''
+        endif
+
+        let l:dir = fnamemodify(l:dir, ':h')
+    endwhile
+
+    return l:dir
+endfunction
+
 function! file_search#OpenNewSearch() abort
-    let l:dir = finddir('.git/..', expand('%:p:h').';')
+    let l:dir = s:FindProjectDir()
 
     if empty(l:dir)
         let l:dir = getcwd()
