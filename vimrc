@@ -355,6 +355,7 @@ let g:lightline = {
 " Disable ALE warnings about trailing whitespace.
 let g:ale_sign_error = '◉'
 let g:ale_sign_warning = '◉'
+let g:ale_sign_info = '◉'
 highlight ALEErrorSign ctermfg=9 ctermbg=15 guifg=#C30500 guibg=#F5F5F5
 highlight ALEWarningSign ctermfg=11 ctermbg=15 guifg=#ED6237 guibg=#F5F5F5
 let g:ale_warn_about_trailing_whitespace = 0
@@ -370,8 +371,6 @@ let g:ale_save_hidden = 1
 let g:ale_python_mypy_ignore_invalid_syntax = 1
 let g:ale_python_mypy_options = '--incremental'
 let g:ale_typescript_tslint_ignore_empty_files = 1
-let g:ale_lint_on_text_changed = 'normal'
-let g:ale_lint_on_insert_leave = 1
 let g:ale_set_balloons = has('gui_running') ? 'hover' : 0
 
 " Use newer clang versions where available.
