@@ -115,7 +115,7 @@ function! s:CreateFileSearchBuffer() abort
     return l:buffer
 endfunction
 
-function! s:FindProjectDir() abort
+function! file_search#FindProjectRoot() abort
     let l:dir = expand('%:p:h')
 
     while !empty(l:dir)
@@ -135,7 +135,7 @@ function! s:FindProjectDir() abort
 endfunction
 
 function! file_search#OpenNewSearch() abort
-    let l:dir = s:FindProjectDir()
+    let l:dir = file_search#FindProjectRoot()
 
     if empty(l:dir)
         let l:dir = getcwd()

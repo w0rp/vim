@@ -130,7 +130,7 @@ endfunction
 
 function! startup#keybinds#SwitchToProjectRoot() abort
     let s:old_search_cwd = getcwd()
-    let l:dir = finddir('.git/..', expand('%:p:h').';')
+    let l:dir = file_search#FindProjectRoot()
 
     if !empty(l:dir)
         execute 'cd ' . fnameescape(l:dir)
