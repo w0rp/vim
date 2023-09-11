@@ -37,9 +37,9 @@ function! UpdateGoTestPath() abort
         let l:rel_path = substitute(expand('%:p'), '^' . l:dir . '/', '', '')
         let l:first = split(l:rel_path, '/')[0]
 
+
         let b:test_command = ale#command#CdString(l:dir)
-        \   . ' ' . l:executable . ' test'
-        \   . ' ./' . ale#Escape(l:first) . '/...'
+        \   . l:executable . ' test ./...'
     else
         let b:test_command = ''
     endif
