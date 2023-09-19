@@ -73,7 +73,7 @@ if !empty(s:virtualenv)
     if executable(s:virtualenv . '/bin/pytest')
         let s:dir = ale#path#Dirname(s:virtualenv)
         let b:test_command = ale#command#CdString(s:dir)
-        \   . ale#Escape(s:virtualenv . '/bin/pytest')
+        \   . ale#Escape(s:virtualenv . '/bin/python') . ' -m pytest'
         \   . ' ' . ale#Escape(substitute(expand('%:p'), '^' . s:dir . '/', '', ''))
     endif
 endif
