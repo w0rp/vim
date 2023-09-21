@@ -12,7 +12,7 @@ vmap <buffer> <C-m> :s/^\(\s*\)/\1#/<Return>
 vmap <buffer> <C-,> :s/^\(\s*\)#/\1/<Return>
 
 " Use the AutoPythonImport tool.
-map <buffer> <C-n> :call AutoPythonImport(expand("<cword>"))<Return>
+map <buffer> <C-i> :call AutoPythonImport(expand("<cword>"))<Return>
 
 " Change the line length for Python files based on configuration files.
 function! ChangePythonLineLength() abort
