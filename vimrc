@@ -339,13 +339,12 @@ let g:lightline = {
 \       ],
 \       'right': [
 \           ['lineinfo'],
-\           ['python_status', 'javascript_status', 'vim_speech', 'filetype'],
+\           ['python_status', 'javascript_status', 'filetype'],
 \       ],
 \   },
 \   'component_function': {
 \       'python_status': 'python_tools#statusline#GetStatus',
 \       'javascript_status': 'js_tools#GetStatus',
-\       'vim_speech': 'vim_speech#statusline#GetStatus',
 \   },
 \}
 
@@ -365,6 +364,26 @@ let g:ale_set_balloons_legacy_echo = 1
 let g:ale_c_parse_compile_commands = 1
 let g:ale_lsp_suggestions = 0
 let g:ale_save_hidden = 1
+
+" ALE options for specific file patterns.
+let g:ale_pattern_options_enabled = 1
+let g:ale_pattern_options = {
+\   'ale/doc/.*.txt$': {
+\       '&modifiable': 1,
+\       '&readonly': 0,
+\   },
+\   'site-packages/.*$': {
+\       'ale_enabled': 0,
+\       '&modifiable': 0,
+\   },
+\   '\v\.min\.(js|css)$': {
+\       'ale_linters': [],
+\       'ale_fixers': [],
+\   },
+\   'node_modules': {
+\       'ale_fixers': [],
+\   },
+\}
 
 " Options for different linters.
 let g:ale_python_mypy_ignore_invalid_syntax = 1

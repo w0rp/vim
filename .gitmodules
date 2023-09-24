@@ -42,24 +42,9 @@
 [submodule "pack/git-plugins/start/vim-ps1"]
 	path = pack/git-plugins/start/vim-ps1
 	url = https://github.com/PProvost/vim-ps1.git
-[submodule "pack/git-plugins/start/vim-speech"]
-	path = pack/git-plugins/start/vim-speech
-	url = https://github.com/w0rp/vim-speech.git
 [submodule "pack/git-plugins/start/splitjoin.vim"]
 	path = pack/git-plugins/start/splitjoin.vim
 	url = https://github.com/AndrewRadev/splitjoin.vim.git
-[submodule "pack/git-plugins/start/vim-coffee-script"]
-	path = pack/git-plugins/start/vim-coffee-script
-	url = https://github.com/kchmck/vim-coffee-script.git
-[submodule "pack/git-plugins/start/vim-hug-neovim-rpc"]
-	path = pack/git-plugins/start/vim-hug-neovim-rpc
-	url = https://github.com/roxma/vim-hug-neovim-rpc.git
-[submodule "pack/git-plugins/start/nvim-yarp"]
-	path = pack/git-plugins/start/nvim-yarp
-	url = https://github.com/roxma/nvim-yarp.git
-[submodule "pack/git-plugins/start/deoplete"]
-	path = pack/git-plugins/start/deoplete
-	url = https://github.com/Shougo/deoplete.nvim.git
 [submodule "pack/git-plugins/start/vim-js-pretty-template"]
 	path = pack/git-plugins/start/vim-js-pretty-template
 	url = https://github.com/Quramy/vim-js-pretty-template.git
