@@ -283,6 +283,8 @@ inoremap <silent> <C-n> <C-R>=SmartInsertCompletion()<CR>
 
 " Use Ctrl+n to prompt Neural in normal mode
 noremap <C-n> <Plug>(neural_prompt)
+" Use Ctrl+n in Visual mode to explain code.
+vnoremap <C-n> <Plug>(neural_explain)
 
 " Close split windows just by pressing 'q', but record macros if there is only
 " one window open.
