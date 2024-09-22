@@ -233,8 +233,8 @@ set autoread
 
 " Set the right margin.
 set colorcolumn=81
-" Automatically split words at the margin.
-set wrap
+" Let long lines run on past the margin.
+set nowrap
 
 " Disable automatic wrapping.
 set textwidth=0
