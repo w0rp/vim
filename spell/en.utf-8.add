@@ -99,3 +99,7 @@ inlining
 inlined
 summarization
 DenseChat
+shellcheck
+SC2207
+SC2128
+SC2034
