@@ -37,5 +37,6 @@ if has('gui_macvim')
     map <D-t> <C-t>
     map <D-w> <C-w>
     map <D-y> <C-y>
+    map <D-u> <C-u>
     vmap <D-Space> <C-Space>
 endif

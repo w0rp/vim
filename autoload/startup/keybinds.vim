@@ -193,6 +193,8 @@ inoremap <F8> <C-c><Plug>(ale_fix)
 
 " Use Ctrl+y to go to the definition of something.
 nmap <C-y> <Plug>(ale_go_to_definition)
+" Use Ctrl+u to go to the type definition of something.
+nmap <C-u> <Plug>(ale_go_to_type_definition)
 
 if has('syntax')
     " Use F12 to resync syntax from the start.
