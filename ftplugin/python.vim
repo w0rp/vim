@@ -97,3 +97,8 @@ endif
 if expand('%:p') =~# 'neural'
     let b:ale_fixers = ['isort']
 endif
+
+if expand('%:p') =~# '/talisman/'
+    let b:ale_linters = ['flake8', 'pyright', 'vulture']
+    let b:ale_python_vulture_options = '--min-confidence 100 --ignore-names args,kwargs --exclude pyrax,django_mfa'
+endif
