@@ -65,7 +65,7 @@ let b:ale_completion_excluded_words = [
 let b:ale_python_auto_virtualenv = 1
 
 if expand('%:e') is# 'pyi'
-    let b:ale_linters = ['pyright']
+    let b:ale_linters = ['pyright', 'ruff', 'flake8']
 endif
 
 let s:virtualenv = ale#python#FindVirtualenv(bufnr(''))
