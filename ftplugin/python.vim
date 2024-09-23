@@ -34,14 +34,14 @@ endfunction
 
 call ChangePythonLineLength()
 
-let b:ale_linters = ['flake8', 'pyright']
+let b:ale_linters = ['ruff', 'flake8', 'pyright']
 let b:ale_linters_ignore = []
 " \   'ale#fixers#generic_python#BreakUpLongLines',
 let b:ale_fixers = [
 \   'remove_trailing_lines',
 \   'isort',
 \   'extra_ale_fixers#AutomaticallyFixJSONDiffOutput',
-\   'autopep8',
+\   'ruff',
 \]
 let b:ale_python_pyright_config = {
 \   'python': {
