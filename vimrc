@@ -451,6 +451,7 @@ let g:splitjoin_trailing_comma = 1
 
 let g:path_remove_regex_list = [
 \   '^.*/ale/',
+\   '^.*/git/obp-dev/[^/]*/',
 \   '^.*/git/[^/]*/',
 \]
 
