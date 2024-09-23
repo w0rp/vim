@@ -58,6 +58,7 @@ let b:ale_completion_excluded_words = [
 \   'doc',
 \   'if',
 \   'main',
+\   'main_thread',
 \   'or',
 \   'super',
 \]
