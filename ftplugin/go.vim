@@ -14,6 +14,10 @@ let b:ale_linters = ['gopls']
 let b:ale_fixers = ['goimports', 'gofmt']
 let b:ale_fix_on_save = 1
 
+if expand('%:p') =~# 'site-directory'
+    let b:ale_linters = ['gopls', 'golangci-lint']
+endif
+
 function! UpdateGoTestPath() abort
     let l:mod_file = ale#path#FindNearestFile(bufnr(''), 'go.mod')
 
