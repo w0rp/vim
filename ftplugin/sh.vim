@@ -16,6 +16,12 @@ endfunction
 
 let b:Ignore = function('ShIgnoreFunction')
 
-if expand('%:r') is# '.env'
-    let b:ale_linters = []
+" Disable linters
+if expand('%:e') is# 'env'
+    let b:ale_linters_ignore = [
+    \   'bash-language-server',
+    \   'bashate',
+    \   'shell',
+    \   'shellcheck',
+    \]
 endif
