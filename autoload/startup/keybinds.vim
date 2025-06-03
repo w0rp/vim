@@ -152,8 +152,21 @@ function! startup#keybinds#PerformGrep(cleaned_args) abort
     call startup#keybinds#SwitchBackToOldCwd()
 endfunction
 
-function! startup#keybinds#Grep(pattern) abort
-    call startup#keybinds#PerformGrep(escape(shellescape(a:pattern), '#|%'))
+function! startup#keybinds#Grep(original_pattern) abort
+    let l:pattern = a:original_pattern
+
+    " Try to match strings like ["foo"] and ['bar']
+    let l:key_match = matchlist(l:pattern, '\v^\[(\s*[''"][^''"]+[''"]\s*)\]$')
+
+    if !empty(l:key_match)
+        " Replace the above example if provided,
+        " with an exact search for the above, not a very expensive [] search.
+        let l:pattern = '\[' . l:key_match[1] . '\]'
+    endif
+
+    let l:escaped_pattern = escape(shellescape(l:pattern), '#|%')
+
+    call startup#keybinds#PerformGrep(l:escaped_pattern)
 endfunction
 
 function! startup#keybinds#RepeatGrep() abort
