@@ -116,7 +116,13 @@ function! s:CreateFileSearchBuffer() abort
 endfunction
 
 function! file_search#FindProjectRoot() abort
-    let l:dir = expand('%:p:h')
+    if expand('%:t') =~# '^NERD_tree' && exists('b:NERDTree')
+        " Get the root from NerdTree instead.
+        let l:dir = b:NERDTree.root.path.str()
+    else
+        " Get the dir for the current file to start the search from.
+        let l:dir = expand('%:p:h')
+    endif
 
     while !empty(l:dir)
         if !empty(globpath(l:dir, '.git', 1))
