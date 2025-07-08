@@ -125,6 +125,11 @@ function! file_search#FindProjectRoot() abort
     endif
 
     while !empty(l:dir)
+        " Stop searching at the home dir to stop expensive searches.
+        if l:dir ==# $HOME
+            return ''
+        endif
+
         if !empty(globpath(l:dir, '.git', 1))
             return l:dir
         endif

@@ -134,7 +134,10 @@ function! startup#keybinds#SwitchToProjectRoot() abort
 
     if !empty(l:dir)
         execute 'cd ' . fnameescape(l:dir)
+        return 1
     endif
+
+    return 0
 endfunction
 
 function! startup#keybinds#SwitchBackToOldCwd() abort
@@ -143,12 +146,13 @@ endfunction
 
 function! startup#keybinds#PerformGrep(cleaned_args) abort
     let g:f3_redraw = 'grep'
-    call startup#keybinds#SwitchToProjectRoot()
-
     let g:f3_redraw_repeat_search = a:cleaned_args
 
-    execute 'silent grep! ' . a:cleaned_args
-    cwindow
+    if startup#keybinds#SwitchToProjectRoot()
+        execute 'silent grep! ' . a:cleaned_args
+        cwindow
+    endif
+
     call startup#keybinds#SwitchBackToOldCwd()
 endfunction
 
