@@ -19,6 +19,8 @@ syntax case ignore
 syntax match dockerfileLinePrefix /\v^\s*(ONBUILD\s+)?\ze\S/ contains=dockerfileKeyword nextgroup=dockerfileInstruction skipwhite
 syntax region dockerfileFrom matchgroup=dockerfileKeyword start=/\v^\s*(FROM)\ze(\s|$)/ skip=/\v\\\_./ end=/\v((^|\s)AS(\s|$)|$)/ contains=dockerfileOption
 
+" Highlight special comment keywords
+syntax keyword dockerfileTodo TODO FIXME XXX TBD NOTE contained
 syntax keyword dockerfileKeyword contained ADD ARG CMD COPY ENTRYPOINT ENV EXPOSE HEALTHCHECK LABEL MAINTAINER ONBUILD RUN SHELL STOPSIGNAL USER VOLUME WORKDIR
 syntax match dockerfileOption contained /\v(^|\s)\zs--\S+/
 
@@ -34,12 +36,13 @@ syntax region dockerfileJSON   contained keepend start=/\v\[/ skip=/\v\\\_./ end
 syntax region dockerfileShell  contained keepend start=/\v/ skip=/\v\\\_./ end=/\v$/ contains=@Shell
 syntax region dockerfileValue  contained keepend start=/\v/ skip=/\v\\\_./ end=/\v$/ contains=dockerfileString
 
-syntax region dockerfileComment start=/\v^\s*#/ end=/\v$/
+syntax region dockerfileComment start=/\v^\s*#/ end=/\v$/ contains=@Spell,dockerfileTodo
 set commentstring=#\ %s
 
 hi def link dockerfileString String
 hi def link dockerfileKeyword Keyword
 hi def link dockerfileComment Comment
 hi def link dockerfileOption Special
+hi def link dockerfileTodo Todo
 
 let b:current_syntax = "dockerfile"
