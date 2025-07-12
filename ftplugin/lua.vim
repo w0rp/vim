@@ -1,6 +1,10 @@
 let b:ale_lua_language_server_executable = $HOME . '/git/lua-language-server/bin/lua-language-server'
 
 let b:ale_linters = ['luac', 'luacheck', 'lua-language-server']
+let b:ale_completion_excluded_words = [
+\   'elseif',
+\   'else',
+\]
 
 if expand('%:p') =~# '^/usr/share/nvim'
     let b:ale_lua_luacheck_options = '--globals vim'
