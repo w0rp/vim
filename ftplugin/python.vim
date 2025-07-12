@@ -34,14 +34,15 @@ endfunction
 
 call ChangePythonLineLength()
 
-let b:ale_linters = ['ruff', 'flake8', 'pyright']
+let b:ale_linters = ['ruff', 'pyright']
+" Ignore unused imports so auto-fix doesn't remove them when using completion.
+let b:ale_python_ruff_options = '--ignore F401'
 let b:ale_linters_ignore = []
 " \   'ale#fixers#generic_python#BreakUpLongLines',
 let b:ale_fixers = [
 \   'remove_trailing_lines',
-\   'isort',
-\   'extra_ale_fixers#AutomaticallyFixJSONDiffOutput',
 \   'ruff',
+\   'extra_ale_fixers#AutomaticallyFixJSONDiffOutput',
 \]
 let b:ale_python_pyright_config = {
 \   'python': {
@@ -65,7 +66,7 @@ let b:ale_completion_excluded_words = [
 let b:ale_python_auto_virtualenv = 1
 
 if expand('%:e') is# 'pyi'
-    let b:ale_linters = ['pyright', 'ruff', 'flake8']
+    let b:ale_linters = ['pyright', 'ruff']
 endif
 
 let s:virtualenv = ale#python#FindVirtualenv(bufnr(''))
@@ -86,19 +87,10 @@ if expand('%:p') =~# 'test-pylint'
     let b:ale_filename_mappings = {'pylint': [['/home/w0rp/git/test-pylint', '/data']]}
 endif
 
-if expand('%:p') =~# 'django-common-migration'
-    let b:ale_linters_ignore = []
-endif
-
 if expand('%:p') =~# 'migrations'
     call filter(b:ale_fixers, 'v:val isnot# ''ale#fixers#generic_python#BreakUpLongLines''')
 endif
 
 if expand('%:p') =~# 'neural'
-    let b:ale_fixers = ['isort']
-endif
-
-if expand('%:p') =~# '/talisman/'
-    let b:ale_linters = ['flake8', 'pyright', 'vulture']
-    let b:ale_python_vulture_options = '--min-confidence 100 --ignore-names args,kwargs --exclude pyrax,django_mfa'
+    let b:ale_fixers = ['ruff']
 endif
