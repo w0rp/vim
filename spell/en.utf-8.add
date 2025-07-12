@@ -1,3 +1,4 @@
+AGPL
 ALEFix
 ALEFixSuggest
 ALEGoToDefinition
@@ -19,6 +20,7 @@ contravariant
 datasource
 datasources
 datetime
+denseanalysis
 DenseChat
 Django
 docstrings
@@ -88,6 +90,7 @@ SoleTrader
 SoleTraders
 stdin
 subgraph
+submodules
 summarization
 swimlanes
 Tezos
@@ -99,6 +102,7 @@ tsserver
 TypeScript
 UAE
 ui
+validator
 variadic
 VimL
 VirtualBox
