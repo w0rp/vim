@@ -115,6 +115,10 @@ noremap ; :
 nmap <silent> , <Plug>(ale_previous_wrap)
 nmap <silent> m <Plug>(ale_next_wrap)
 
+" Bind keys for going to next and previous from quickfix
+noremap cp :cprev<Return>
+noremap cn :cnext<Return>
+
 " Use Ctrl+Tab to autocomplete in all filetypes.
 imap <silent> <C-Tab> <Plug>(ale_complete)
 
