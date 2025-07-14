@@ -80,3 +80,10 @@ if expand('%:p') =~# 'git/relviz'
     let b:ale_fixers = ['eslint']
     let b:ale_fix_on_save = 1
 endif
+
+if expand('%:p') =~# 'git/juro-nx'
+    setlocal noexpandtab
+
+    let b:ale_linters = ['eslint', 'tsserver']
+    let b:javascript_eslint_executable = $HOME . '/git/juro-nx/node_modules/.bin/eslint_d'
+endif
