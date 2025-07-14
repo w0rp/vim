@@ -433,13 +433,21 @@ let $GOOGLE_APPLICATION_CREDENTIALS = $HOME
 \   . '/content/application/speech-to-text-key.json'
 let g:vim_speech_recording_status = '◉ REC'
 
+
+try
+    let s:openai_api_key = startup#secrets#GetOpenAIKey()
+catch /E117/
+    let s:openai_api_key = ''
+endtry
+
 " --- neutral settings ---
 let g:neural = {
-\   'source': {
-\       'openai': {
-\           'api_key': $OPENAI_API_KEY,
+\   'providers': [
+\       {
+\           'type': 'openai',
+\           'api_key': s:openai_api_key,
 \       },
-\   },
+\   ]
 \}
 
 " --- splitjoin settings ---
