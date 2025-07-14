@@ -68,7 +68,9 @@ if has('gui_running')
         colorscheme darkspectrum
     endif
 
-    if has('osx') || has('win32')
+    if has('osx')
+        set guifont=Inconsolata-Regular:h24
+    elseif has('win32')
         " Windows - http://levien.com/type/myfonts/inconsolata.html
         set guifont=Inconsolata:h16:cANSI:qDRAFT
     else
