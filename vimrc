@@ -303,7 +303,7 @@ let g:rainbow_active = 1
 
 " --- Vim grep settings ---
 
-set grepprg=rg\ --hidden\ --vimgrep\ --smart-case\ --follow
+set grepprg=rg\ --hidden\ --glob\ '!.git/**'\ --vimgrep\ --smart-case\ --follow
 
 " --- NERDTree settings ---
 

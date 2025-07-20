@@ -23,7 +23,7 @@ function! s:Search(dir, search_buffer, text) abort
     \   split(a:text, ' \+'),
     \   ''' | rg -- '' . escape(shellescape(v:val), ''#'')',
     \)
-    let l:command = 'rg --files --hidden' . join(l:words, '') . ' | sort'
+    let l:command = 'rg --files --hidden --glob ''!.git/**''' . join(l:words, '') . ' | sort'
 
     let l:lines = []
     let s:job = job_start(['/bin/sh', '-c', l:command], {
